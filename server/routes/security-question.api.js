@@ -14,11 +14,11 @@ const ErrorResponse = require('../services/error-response');
 const router = express.Router();
 
 
-//findSecurityQuestionById
+//findById
 router.get('/:id', async(req, res) => {
   try {
 
-   SecurityQuestion.findOne({'id': req.params.id}, function(err,securityQuestion){
+   SecurityQuestion.findOne({'_id': req.params.id}, function(err,securityQuestion){
 
     if (err) {
         console.log(err); //returns only db
