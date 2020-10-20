@@ -11,9 +11,13 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const SecurityQuestion = require('./security-question');
 
+let securityQuestion = new Schema({
+  _id: { type: String },
+  text: {type: String}
+});
 
 const userSchema = new Schema({
-  userId: {type: String, unique: true, dropDups: true },
+  username: {type: String, unique: true, dropDups: true },
   firstName: {type: String },
   lastName: {type: String },
   phoneNumber: {type: String },
@@ -24,7 +28,7 @@ const userSchema = new Schema({
   addressZip: {type: String },
   role: {type: String },
   isEnabled: {type: Boolean },
-  securityQuestions: [SecurityQuestion]
+  securityQuestions: [securityQuestion]
 
 }, { collection: 'user' });
 
