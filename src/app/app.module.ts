@@ -13,13 +13,21 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AboutComponent } from './pages/about/about.component';
+import { ContactComponent } from './pages/contact/contact.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { SigninComponent } from './pages/signin/signin.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     BaseLayoutComponent,
-    AuthLayoutComponent
+    AuthLayoutComponent,
+    AboutComponent,
+    ContactComponent,
+    NotFoundComponent,
+    SigninComponent
   ],
   imports: [
     BrowserModule,
