@@ -86,16 +86,20 @@ router.post('/', async (req, res) => {
       username: req.body.username,
       firstName: req.body.firstName,
       lastName: req.body.lastName,
+      password: req.body.password,
       phoneNumber: req.body.phoneNumber,
       altPhoneNumber: req.body.phoneNumber,
       addressStreet: req.body.addressStreet,
       addressCity: req.body.addressCity,
       addressZip: req.body.addressZip,
+      email: req.body.email,
       // I'm not sure if the ternary operator will work inside the constructor
       // invocation, but we'll find out
       role: (req.body.role ? req.body.role : 'standard'),
       isEnabled: (req.body.isEnabled ? req.body.role : true),
-      securityQuestions: req.body.securityQuestions
+      securityQuestions: req.body.securityQuestions,
+      date_created: req.body.date_created,
+      date_modified: req.body.date_modified
     })
 
     aUser.save(function (err) {
