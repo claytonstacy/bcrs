@@ -45,7 +45,8 @@ const conn = 'mongodb+srv://bcrs_user:jnKtGz3V62e3yC29@buwebdev-cluster-1.xyv9m.
 mongoose.connect(conn, {
   promiseLibrary: require('bluebird'),
   useUnifiedTopology: true,
-  useNewUrlParser: true
+  useNewUrlParser: true,
+  useCreateIndex: true
 }).then(() => {
   console.debug(`Connection to the database instance was successful`);
 }).catch(err => {
