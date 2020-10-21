@@ -10,9 +10,8 @@
 
 const User = require('../models/user');
 const express = require('express');
-const bodyParser = require('body-parser');
-//const BaseResponse = require('../services/base-response');
-//const ErrorResponse = require('../services/error-response');
+const BaseResponse = require('../services/base-response');
+const ErrorResponse = require('../services/error-response');
 
 let router = express.Router();
 
@@ -25,26 +24,25 @@ let router = express.Router();
 /*******************************************************************************
  * Find all users
  ******************************************************************************/
-router.get('', async (req, res) => {
+router.get('/', async (req, res) => {
 
   try {
-    User.find({}),
+    User.find({},
       function (error, users) {
         if (error) {
           console.log(error);
-          // const errorResponse = new errorResponse(error);
-          // res.status(500).send(errorResponse.toObject());
+          const errorResponse = new errorResponse("500", "error", error);
+          res.status(500).send(errorResponse.toObject());
         } else {
           console.log(users);
-          // const successResponse = new BaseResponse(users);
-          // res.json(successResponse.toObject());
-          res.json(users);
+          const successResponse = new BaseResponse("200",
+            "successful find all", users);
+          res.json(successResponse.toObject());
         }
-      }
+      })
   } catch (e) {
     console.log(e);
-    // res.status(500).send(new ErrorResponse(e.message).toObject());
-    res.status(500).send(e.message);
+    res.status(500).send(new ErrorResponse("500", e.message, e).toObject());
   }
 });
 
@@ -55,24 +53,22 @@ router.get('/:userId', async (req, res) => {
 
   try {
     User.findOne({
-      'userId': req.params.userId
+      '_id': req.params.userId
     }, function (error, user) {
 
       if (error) {
         console.log(error);
-        // const errorResponse = new ErrorResponse(error);
-        // res.status(500).send(errorResponse.toObject());
+        const errorResponse = new ErrorResponse("500", "error", error);
+        res.status(500).send(errorResponse.toObject());
       } else {
         console.log(user);
-        // const successResponse = new BaseResponse(user);
-        // res.json(successResponse.toObject());
-        res.json(user);
+        const successResponse = new BaseResponse("200", "successful", user);
+        res.json(successResponse.toObject());
       }
     })
   } catch (e) {
     console.log(e);
-    // res.status(500).send(new ErrorResponse(e.message).toObject());
-    res.status(500).send(e.message);
+    res.status(500).send(new ErrorResponse("500", e.message, e).toObject());
   }
 });
 
@@ -82,40 +78,37 @@ router.get('/:userId', async (req, res) => {
 router.post('/', async (req, res) => {
 
   try {
-    aUser = new User({
+
+    let aUser = new User({
       username: req.body.username,
       firstName: req.body.firstName,
       lastName: req.body.lastName,
       phoneNumber: req.body.phoneNumber,
-      altPhoneNumber: req.body.phoneNumber,
+      altPhoneNumber: req.body.altPhoneNumber,
       addressStreet: req.body.addressStreet,
       addressCity: req.body.addressCity,
       addressZip: req.body.addressZip,
-      // I'm not sure if the ternary operator will work inside the constructor
-      // invocation, but we'll find out
-      role: (req.body.role ? req.body.role : 'standard'),
-      isEnabled: (req.body.isEnabled ? req.body.role : true),
+      role: req.body.role,
+      isEnabled: req.body.isEnabled,
       securityQuestions: req.body.securityQuestions
-    })
+    });
 
     aUser.save(function (err) {
       if (err) {
         console.log(err);
-        // const errorResponse = new ErrorResponse(err);
-        // res.status(500).send(errorResponse.toObject());
+        const errorResponse = new ErrorResponse("500", "create user error", err);
+        res.status(500).send(errorResponse.toObject());
       } else {
         console.log(user);
-        // const successResponse = new BaseResponse(user);
-        // res.json(successResponse.toObject());
-        res.json(user);
+        const successResponse = new BaseResponse("200", "success", user);
+        res.json(successResponse.toObject());
       }
     })
 
   } catch (e) {
     console.log(e);
-    // const catchErrorResponse = new catchErrorResponse(e.message);
-    // res.status(500).send(catchErrorResponse.toObject());
-    res.status(500).send(e.message);
+    const catchErrorResponse = new catchErrorResponse("500", e.message, e);
+    res.status(500).send(catchErrorResponse.toObject());
   }
 })
 
@@ -135,8 +128,10 @@ router.put('/:username', async (req, res) => {
 
         if (error) {
           console.log(error);
-          // const errorResponse = new ErrorResponse(error);
-          // res.status(500).send(errorResponse.toObject());
+          const errorResponse = new ErrorResponse("500",
+            "update user error", error);
+
+          res.status(500).send(errorResponse.toObject());
         } else {
           // iterate over the keys of the object so multiple items
           // can be changed.
@@ -146,14 +141,27 @@ router.put('/:username', async (req, res) => {
               key: req.body.user['key']
             })
           });
+
+          user.save(function (err, updatedUser) {
+            if (err) {
+              console.log(err);
+              const errorResponse = new ErrorResponse("500",
+                "Update user and save error", error);
+
+              res.status(500).send(errorResponse.toObject());
+            } else {
+              console.log(updatedUser);
+              const successResponse = new BaseResponse("200", "successfully saved", updatedUser);
+              res.json(successResponse.toObject());
+            }
+          })
         }
       })
 
   } catch (e) {
     console.log(e);
-    // const catchErrorResponse = new catchErrorResponse(e.message);
-    // res.status(500).send(catchErrorResponse.toObject());
-    res.status(500).send(e.message);
+    const catchErrorResponse = new catchErrorResponse("500", e.message, e);
+    res.status(500).send(catchErrorResponse.toObject());
   }
 })
 
