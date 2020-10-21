@@ -81,9 +81,9 @@ router.post('/', async (req, res) => {
 
     let aUser = new User({
       username: req.body.username,
+      password: req.body.password,
       firstName: req.body.firstName,
       lastName: req.body.lastName,
-      password: req.body.password,
       phoneNumber: req.body.phoneNumber,
       altPhoneNumber: req.body.altPhoneNumber,
       addressStreet: req.body.addressStreet,
