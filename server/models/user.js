@@ -18,6 +18,7 @@ let securityQuestion = new Schema({
 
 const userSchema = new Schema({
   username: {type: String, unique: true, dropDups: true },
+  password: {type: String, required: true },
   firstName: {type: String },
   lastName: {type: String },
   phoneNumber: {type: String },
@@ -26,9 +27,12 @@ const userSchema = new Schema({
   addressCity: {type: String },
   addressState: {type: String },
   addressZip: {type: String },
-  role: {type: String },
-  isEnabled: {type: Boolean },
-  securityQuestions: [securityQuestion]
+  email: {type: String},
+  role: {type: String, default: 'standard'},
+  isEnabled: {type: Boolean, default: false },
+  securityQuestions: [securityQuestion],
+  date_created: {type: Date, default: new Date()},
+  date_modified: {type: Date}
 
 }, { collection: 'user' });
 

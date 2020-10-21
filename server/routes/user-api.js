@@ -83,14 +83,18 @@ router.post('/', async (req, res) => {
       username: req.body.username,
       firstName: req.body.firstName,
       lastName: req.body.lastName,
+      password: req.body.password,
       phoneNumber: req.body.phoneNumber,
       altPhoneNumber: req.body.altPhoneNumber,
       addressStreet: req.body.addressStreet,
       addressCity: req.body.addressCity,
       addressZip: req.body.addressZip,
+      email: req.body.email,
       role: req.body.role,
       isEnabled: req.body.isEnabled,
-      securityQuestions: req.body.securityQuestions
+      securityQuestions: req.body.securityQuestions,
+      date_created: req.body.date_created,
+      date_modified: req.body.date_modified
     });
 
     aUser.save(function (err) {
