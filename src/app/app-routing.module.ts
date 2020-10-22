@@ -7,6 +7,9 @@ import { SigninComponent } from './pages/signin/signin.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { AboutComponent } from './pages/about/about.component';
 import { ContactComponent } from './pages/contact/contact.component';
+import { UserListComponent } from './pages/user-list/user-list.component';
+import { UserDetailsComponent } from './pages/user-details/user-details.component';
+import { UserCreateComponent } from './pages/user-create/user-create.component';
 
 const routes: Routes = [
   {
@@ -24,6 +27,18 @@ const routes: Routes = [
       {
         path: 'contact',
         component: ContactComponent
+      },
+      {
+        path: 'users',
+        component: UserListComponent
+      },
+      {
+        path: 'users/:userId',
+        component: UserDetailsComponent
+      },
+      {
+        path: 'users/create/new',
+        component: UserCreateComponent
       }
     ]
   },

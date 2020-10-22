@@ -20,6 +20,9 @@ import { AboutComponent } from './pages/about/about.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { SigninComponent } from './pages/signin/signin.component';
+import { UserListComponent } from './pages/user-list/user-list.component';
+import { UserDetailsComponent } from './pages/user-details/user-details.component';
+import { UserCreateComponent } from './pages/user-create/user-create.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +33,10 @@ import { SigninComponent } from './pages/signin/signin.component';
     AboutComponent,
     ContactComponent,
     NotFoundComponent,
-    SigninComponent
+    SigninComponent,
+    UserListComponent,
+    UserDetailsComponent,
+    UserCreateComponent
   ],
   imports: [
     BrowserModule,
