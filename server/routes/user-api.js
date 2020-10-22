@@ -167,7 +167,8 @@ router.put('/:id', async (req, res) => {
 
   } catch (e) {
     console.log(e);
-    const catchErrorResponse = new ErrorResponse("500", e.message, e);
+    const catchErrorResponse = new ErrorResponse("500",
+      "Internal server error", e.message);
     res.status(500).send(catchErrorResponse.toObject());
   }
 })
