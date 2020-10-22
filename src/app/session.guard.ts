@@ -23,8 +23,8 @@ export class AuthGuard implements CanActivate {
   }
 
   /****************************************************************************
-   * After the user successfully signs in to their account with username and
-   * password, the username is saved as a cookie. If the cookie is present,
+   * After the user successfully signs in to their account with userName and
+   * password, the userName is saved as a cookie. If the cookie is present,
    * this function returns true. If not present, the the user is redirected to
    * the sign-in page.
    ***************************************************************************/
