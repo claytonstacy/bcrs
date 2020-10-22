@@ -31,12 +31,12 @@ router.get('/', async (req, res) => {
       function (error, users) {
         if (error) {
           console.log(error);
-          const errorResponse = new errorResponse("500", "error", error);
+          const errorResponse = new ErrorResponse("500",
+            "find-all-users error", error);
           res.status(500).send(errorResponse.toObject());
         } else {
           console.log(users);
-          const successResponse = new BaseResponse("200",
-            "successful find all", users);
+          const successResponse = new BaseResponse("200", "success", users);
           res.json(successResponse.toObject());
         }
       })
@@ -58,11 +58,12 @@ router.get('/:userId', async (req, res) => {
 
       if (error) {
         console.log(error);
-        const errorResponse = new ErrorResponse("500", "error", error);
+        const errorResponse = new ErrorResponse("500",
+          "find-user-by-id error", error);
         res.status(500).send(errorResponse.toObject());
       } else {
         console.log(user);
-        const successResponse = new BaseResponse("200", "successful", user);
+        const successResponse = new BaseResponse("200", "success", user);
         res.json(successResponse.toObject());
       }
     })
@@ -100,7 +101,7 @@ router.post('/', async (req, res) => {
     aUser.save(function (err) {
       if (err) {
         console.log(err);
-        const errorResponse = new ErrorResponse("500", "create user error", err);
+        const errorResponse = new ErrorResponse("500", "create-user error", err);
         res.status(500).send(errorResponse.toObject());
       } else {
         console.log(user);
@@ -133,7 +134,7 @@ router.put('/:username', async (req, res) => {
         if (error) {
           console.log(error);
           const errorResponse = new ErrorResponse("500",
-            "update user error", error);
+            "update-user error", error);
 
           res.status(500).send(errorResponse.toObject());
         } else {
@@ -150,12 +151,13 @@ router.put('/:username', async (req, res) => {
             if (err) {
               console.log(err);
               const errorResponse = new ErrorResponse("500",
-                "Update user and save error", error);
+                "Update-user-and-save error", error);
 
               res.status(500).send(errorResponse.toObject());
             } else {
               console.log(updatedUser);
-              const successResponse = new BaseResponse("200", "successfully saved", updatedUser);
+              const successResponse = new BaseResponse("200",
+                "success", updatedUser);
               res.json(successResponse.toObject());
             }
           })
