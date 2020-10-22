@@ -10,6 +10,11 @@ import { ContactComponent } from './pages/contact/contact.component';
 import { UserListComponent } from './pages/user-list/user-list.component';
 import { UserDetailsComponent } from './pages/user-details/user-details.component';
 import { UserCreateComponent } from './pages/user-create/user-create.component';
+import { SecurityQuestionListComponent } from './pages/security-question-list/security-question-list.component';
+import { SecurityQuestionCreateComponent } from './pages/security-question-create/security-question-create.component';
+import { SecurityQuestionDetailsComponent } from './pages/security-question-details/security-question-details.component';
+
+
 
 const routes: Routes = [
   {
@@ -39,6 +44,18 @@ const routes: Routes = [
       {
         path: 'users/create/new',
         component: UserCreateComponent
+      },
+      {
+        path: 'security-questions',
+        component: SecurityQuestionListComponent
+      },
+      {
+        path: 'security-questions/:questionId',
+        component: SecurityQuestionDetailsComponent
+      },
+      {
+        path: 'security-questions/create/new',
+        component: SecurityQuestionCreateComponent
       }
     ]
   },
