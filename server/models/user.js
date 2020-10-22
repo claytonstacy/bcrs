@@ -9,28 +9,21 @@ Description: Model for BRCS Users
 
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const SecurityQuestion = require('./security-question');
+const SelectedSecurityQuestionSchema = require('../schemas/selected-security-question');
+const UserRoleSchema = require('../schemas/user-role');
 
-let securityQuestion = new Schema({
-  _id: { type: String },
-  text: {type: String}
-});
 
 const userSchema = new Schema({
-  username: {type: String, unique: true, dropDups: true },
+  userName: {type: String, unique: true, dropDups: true },
   password: {type: String, required: true },
   firstName: {type: String },
   lastName: {type: String },
   phoneNumber: {type: String },
-  altPhoneNumber: {type: String },
-  addressStreet: {type: String },
-  addressCity: {type: String },
-  addressState: {type: String },
-  addressZip: {type: String },
+  address: {type: String },
   email: {type: String},
-  role: {type: String, default: 'standard'},
-  isEnabled: {type: Boolean, default: false },
-  securityQuestions: [securityQuestion],
+  role: UserRoleSchema,
+  isEnabled: {type: Boolean, default: true },
+  securityQuestions: [SelectedSecurityQuestionSchema],
   date_created: {type: Date, default: new Date()},
   date_modified: {type: Date}
 

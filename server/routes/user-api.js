@@ -10,10 +10,13 @@
 
 const User = require('../models/user');
 const express = require('express');
+const bcrypt = require('bcryptjs');
 const BaseResponse = require('../services/base-response');
 const ErrorResponse = require('../services/error-response');
+const { restart } = require('nodemon');
 
 let router = express.Router();
+const saltRounds = 10;
 
 /*******************************************************************************
  * All of these functions work using "app.use('/api/users, UserApi);" in the
@@ -27,19 +30,19 @@ let router = express.Router();
 router.get('/', async (req, res) => {
 
   try {
-    User.find({},
-      function (error, users) {
-        if (error) {
-          console.log(error);
-          const errorResponse = new ErrorResponse("500",
-            "find-all-users error", error);
-          res.status(500).send(errorResponse.toObject());
-        } else {
-          console.log(users);
-          const successResponse = new BaseResponse("200", "success", users);
-          res.json(successResponse.toObject());
-        }
-      })
+    User.find({}.where('isEnabled').equals(true).exec(function (error, users) {
+      if (error) {
+        console.log(error);
+        const errorResponse = new errorResponse("500", "error", error);
+        res.status(500).send(errorResponse.toObject());
+      } else {
+        console.log(users);
+        const successResponse = new BaseResponse("200",
+          "successful find all", users);
+        res.json(successResponse.toObject());
+      }
+    })
+)
   } catch (e) {
     console.log(e);
     res.status(500).send(new ErrorResponse("500", e.message, e).toObject());
@@ -79,26 +82,19 @@ router.get('/:userId', async (req, res) => {
 router.post('/', async (req, res) => {
 
   try {
-
+    let hashedPassword = bcrypt.hashSync(req.body.password, saltRounds);
     let aUser = new User({
-      username: req.body.username,
-      password: req.body.password,
+      userName: req.body.userName,
+      password: hashedPassword,
       firstName: req.body.firstName,
       lastName: req.body.lastName,
       phoneNumber: req.body.phoneNumber,
-      altPhoneNumber: req.body.altPhoneNumber,
-      addressStreet: req.body.addressStreet,
-      addressCity: req.body.addressCity,
-      addressZip: req.body.addressZip,
+      address: req.body.addressStreet,
       email: req.body.email,
-      role: req.body.role,
-      isEnabled: req.body.isEnabled,
-      securityQuestions: req.body.securityQuestions,
-      date_created: req.body.date_created,
-      date_modified: req.body.date_modified
+      securityQuestions: req.body.securityQuestions
     });
 
-    aUser.save(function (err) {
+    User.create(aUser, function (err) {
       if (err) {
         console.log(err);
         const errorResponse = new ErrorResponse("500", "create-user error", err);
@@ -123,11 +119,11 @@ router.post('/', async (req, res) => {
  * the option I chose below. It may be worth considering other options.
  * Other options are updateOne(), findOneAndUpdate(), and findByIdAndUpdate()
  ******************************************************************************/
-router.put('/:username', async (req, res) => {
+router.put('/:userName', async (req, res) => {
 
   try {
     User.findOne({
-        'username': req.params.username
+        'userName': req.params.userName
       },
       function (error, user) {
 
@@ -174,12 +170,36 @@ router.put('/:username', async (req, res) => {
 /*******************************************************************************
  * Delete user
  ******************************************************************************/
-router.delete('/:username', async (req, res) => {
+router.delete('/:id', async (req, res) => {
 
   try {
-
+      User.findOne({'_id': req.params.id}, function(err, user) {
+        if (err) {
+          console.log(err);
+          const deleteUserErrorResponse = new ErrorResponse(500, 'Internal Server Error', err);
+          res.status(500).send(deleteUserErrorResponse.toObject());
+        } else {
+          console.log(user);
+          user.set({
+            isEnabled: false
+          });
+          user.save(function(error, savedUser) {
+            if (error) {
+              console.log(error);
+              const deleteUserErrorResponse = new ErrorResponse(500, 'Internal Server Error', error);
+              res.status(500).send(deleteUserErrorResponse.toObject());
+            } else {
+              console.log(savedUser);
+              const savedDeleteUserResponse = new BaseResponse(200, 'Delete Successful', savedUser);
+              res.json(savedDeleteUserResponse.toObject());
+            }
+          })
+        }
+      })
   } catch (e) {
-
+    console.log(e);
+    const deleteUserCatchErrorResponse = new ErrorResponse(500, 'Internal Server Error', e.message);
+    res.status(500).send(deleteUserCatchErrorResponse.toObject());
   }
 })
 

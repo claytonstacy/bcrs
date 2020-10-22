@@ -19,6 +19,7 @@ const mongoose = require('mongoose');
 const SecurityQuestion = require('./models/security-question');
 const SecurityQuestionApi = require('./routes/security-question.api'); //sets up routes for security questions object
 const UserApi = require('./routes/user-api');
+const SessionApi = require('./routes/session-api');
 
 /**
  * App configurations
@@ -58,6 +59,7 @@ mongoose.connect(conn, {
  */
 app.use('/api/security-questions', SecurityQuestionApi);
 app.use('/api/users', UserApi);
+app.use('/api/session', SessionApi);
 
 /**
  * Create and start server

@@ -22,20 +22,19 @@ router.get('/:id', async(req, res) => {
 
     if (err) {
         console.log(err); //returns only db
-        res.status(500).send({
-          'message': 'internal server error'
-        })
+        const findByIdMongoDbErrorResponse = new ErrorResponse(500, 'Internal Server Error', err);
+        res.status(500).send(findByIdMongoDbErrorResponse.toObject());
       } else {
         console.log(securityQuestion);
-        res.json(securityQuestion);
+        const findByIdResponse = new BaseResponse(200, 'Query Successful', securityQuestion)
+        res.json(findByIdResponse.toObject());
       }
    })
 
   } catch (e) {
     console.log(e);
-    res.status(500).send({
-      'message': 'Internal server error'
-    })
+    const findByIdCathErrorResponse = new ErrorResponse(500, 'Internal Server Error', e.message);
+    res.status(500).send(findByIdCathErrorResponse.toObject());
   }
 
   })
@@ -71,8 +70,7 @@ router.get('/', async(req, res) => {
 router.post('/', async(req, res) => {
   try {
      let sq = {
-      text: req.body.text,
-      isEnabled: true
+      text: req.body.text
      };
 
      SecurityQuestion.create(sq, function(err,updatedSecurityQuestion){
@@ -142,10 +140,7 @@ router.post('/', async(req, res) => {
 * DeleteSecurityQuestion - Delete a security question which means setting isEnabled to false.
 */
 router.delete('/:id', async(req, res) => {
-  console.log('HERE IN DELETE');
    try {
-     console.log('in delete');
-
           SecurityQuestion.findOne({'_id': req.params.id}, function(err, securityQuestion) {
             if (err) {
               console.log(err);
