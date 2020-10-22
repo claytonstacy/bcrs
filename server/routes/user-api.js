@@ -30,19 +30,21 @@ const saltRounds = 10;
 router.get('/', async (req, res) => {
 
   try {
-    User.find({}.where('isEnabled').equals(true).exec(function (error, users) {
-      if (error) {
-        console.log(error);
-        const errorResponse = new errorResponse("500", "error", error);
-        res.status(500).send(errorResponse.toObject());
-      } else {
-        console.log(users);
-        const successResponse = new BaseResponse("200",
-          "successful find all", users);
-        res.json(successResponse.toObject());
+    User.find({})
+      .where('isEnabled')
+      .equals(true)
+      .exec(function (error, users) {
+        if (error) {
+          console.log(error);
+          const errorResponse = new ErrorResponse("500", "error", error);
+          res.status(500).send(errorResponse.toObject());
+        } else {
+          console.log(users);
+          const successResponse = new BaseResponse("200",
+            "successful find all", users);
+          res.json(successResponse.toObject());
       }
     })
-)
   } catch (e) {
     console.log(e);
     res.status(500).send(new ErrorResponse("500", e.message, e).toObject());
@@ -52,11 +54,11 @@ router.get('/', async (req, res) => {
 /*******************************************************************************
  * Find user by ID
  ******************************************************************************/
-router.get('/:userId', async (req, res) => {
+router.get('/:id', async (req, res) => {
 
   try {
     User.findOne({
-      '_id': req.params.userId
+      '_id': req.params.id
     }, function (error, user) {
 
       if (error) {
@@ -83,18 +85,18 @@ router.post('/', async (req, res) => {
 
   try {
     let hashedPassword = bcrypt.hashSync(req.body.password, saltRounds);
-    let aUser = new User({
+
+    let aUser = {
       userName: req.body.userName,
       password: hashedPassword,
       firstName: req.body.firstName,
       lastName: req.body.lastName,
       phoneNumber: req.body.phoneNumber,
-      address: req.body.addressStreet,
+      address: req.body.address,
       email: req.body.email,
-      securityQuestions: req.body.securityQuestions
-    });
+    };
 
-    User.create(aUser, function (err) {
+    User.create(aUser, function (err, user) {
       if (err) {
         console.log(err);
         const errorResponse = new ErrorResponse("500", "create-user error", err);
@@ -108,22 +110,22 @@ router.post('/', async (req, res) => {
 
   } catch (e) {
     console.log(e);
-    const catchErrorResponse = new catchErrorResponse("500", e.message, e);
+    const catchErrorResponse = new catchErrorResponse("500",
+      'Internal server error', e.message);
     res.status(500).send(catchErrorResponse.toObject());
   }
 })
 
 /*******************************************************************************
  * Update user
- * We have several options for this including findOne() + save(), which is
- * the option I chose below. It may be worth considering other options.
- * Other options are updateOne(), findOneAndUpdate(), and findByIdAndUpdate()
+ * All five fields in the set method must be included. Otherwise, the related
+ * field will become undefined after this is executed.
  ******************************************************************************/
-router.put('/:userName', async (req, res) => {
+router.put('/:id', async (req, res) => {
 
   try {
     User.findOne({
-        'userName': req.params.userName
+        '_id': req.params.id
       },
       function (error, user) {
 
@@ -134,14 +136,15 @@ router.put('/:userName', async (req, res) => {
 
           res.status(500).send(errorResponse.toObject());
         } else {
-          // iterate over the keys of the object so multiple items
-          // can be changed.
-          const keys = Object.keys(req.body.user);
-          keys.forEach((key) => {
+            console.log(user);
+
             user.set({
-              key: req.body.user['key']
+              firstName: req.body.firstName,
+              lastName: req.body.lastName,
+              phoneNumber: req.body.phoneNumber,
+              address: req.body.address,
+              email: req.body.email
             })
-          });
 
           user.save(function (err, updatedUser) {
             if (err) {
