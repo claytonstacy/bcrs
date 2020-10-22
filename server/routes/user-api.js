@@ -47,7 +47,8 @@ router.get('/', async (req, res) => {
     })
   } catch (e) {
     console.log(e);
-    res.status(500).send(new ErrorResponse("500", e.message, e).toObject());
+    res.status(500).send(new ErrorResponse("500",
+      "Internal server error", e.message).toObject());
   }
 });
 
@@ -74,7 +75,8 @@ router.get('/:id', async (req, res) => {
     })
   } catch (e) {
     console.log(e);
-    res.status(500).send(new ErrorResponse("500", e.message, e).toObject());
+    res.status(500).send(new ErrorResponse("500",
+      "Internal server error", e.message).toObject());
   }
 });
 
@@ -110,7 +112,7 @@ router.post('/', async (req, res) => {
 
   } catch (e) {
     console.log(e);
-    const catchErrorResponse = new catchErrorResponse("500",
+    const catchErrorResponse = new ErrorResponse("500",
       'Internal server error', e.message);
     res.status(500).send(catchErrorResponse.toObject());
   }
@@ -165,7 +167,8 @@ router.put('/:id', async (req, res) => {
 
   } catch (e) {
     console.log(e);
-    const catchErrorResponse = new catchErrorResponse("500", e.message, e);
+    const catchErrorResponse = new ErrorResponse("500",
+      "Internal server error", e.message);
     res.status(500).send(catchErrorResponse.toObject());
   }
 })
