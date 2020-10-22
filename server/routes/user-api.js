@@ -30,7 +30,7 @@ const saltRounds = 10;
 router.get('/', async (req, res) => {
 
   try {
-    User.find({}.where('isEnabled').equals(true).exec(function (error, users) {
+    User.find({}).where('isEnabled').equals(true).exec(function (error, users) {
       if (error) {
         console.log(error);
         const errorResponse = new errorResponse("500", "error", error);
@@ -42,7 +42,6 @@ router.get('/', async (req, res) => {
         res.json(successResponse.toObject());
       }
     })
-)
   } catch (e) {
     console.log(e);
     res.status(500).send(new ErrorResponse("500", e.message, e).toObject());
