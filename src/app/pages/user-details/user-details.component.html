@@ -1,1 +1,39 @@
-<p>user-details works!</p>
+<div fxLayout="column">
+  <mat-card class="mat-elevation-z8">
+    <mat-card-title>User Details</mat-card-title>
+    <br>
+
+    <form [formGroup]="form" (ngSubmit)="saveUser()" #userForm>
+      <mat-card-content>
+        <div fxLayout="column" fxLayoutGap="10px">
+          <mat-form-field>
+            <input type="text" matInput [formControl]="form.controls.firstName" placeholder="First name">
+          </mat-form-field>
+
+          <mat-form-field>
+            <input type="text" matInput [formControl]="form.controls.lastName" placeholder="Last Name">
+          </mat-form-field>
+
+          <mat-form-field>
+            <input type="text" matInput [formControl]="form.controls.phoneNumber" placeholder="Phone number">
+          </mat-form-field>
+
+          <mat-form-field>
+            <input type="text" matInput [formControl]="form.controls.address" placeholder="Address">
+          </mat-form-field>
+
+          <mat-form-field>
+            <input type="text" matInput [formControl]="form.controls.email" placeholder="Email">
+          </mat-form-field>
+        </div>
+      </mat-card-content>
+
+      <br>
+
+      <mat-card-actions align="end">
+        <button mat-raised-button (click)="cancel()" color="warn">Cancel</button>
+        <button mat-raised-button color="accent">Submit</button>
+      </mat-card-actions>
+    </form>
+  </mat-card>
+</div>
