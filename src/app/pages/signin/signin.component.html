@@ -1,20 +1,26 @@
 <div fxLayout="row" fxLayoutAlign="center start" >
-  <mat-card fxFlex="50">
-      <mat-card-title>
+  <mat-card fxFlex="50" class="mat-card-top pa-0">
+      <mat-card-title style="text-align: center; font-size: 48px; font-weight: lighter;" class="mat-headline">
         User Sign-in Page
       </mat-card-title>
-      <mat-card-subtitle>
-        You must enter a valid user ID to proceed.
+      <mat-card-subtitle style="text-align: center; font-weight: lighter;">
+        You must enter a valid username and password to proceed.
       </mat-card-subtitle>
-      <form [formGroup]="form" (ngSubmit)="login(); form.reset();">
+      <form [formGroup]="form" (ngSubmit)="login(); form.reset();" #loginForm="ngForm">
         <mat-card-content>
           <mat-form-field>
-            <input matInput
-            [formControl]="form.controls['userId']"
-            placeholder="User ID" />
-            <mat-error *ngIf="error">
-              User Id is a required field
-            </mat-error>
+            <input
+            type="text"
+            matInput
+            [formControl]="form.controls['userName']"
+            placeholder="Username" />
+          </mat-form-field>
+          <mat-form-field>
+            <input
+            type="password"
+            matInput
+            [formControl]="form.controls['password']"
+            placeholder="Password" />
           </mat-form-field>
       </mat-card-content>
 
