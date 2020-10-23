@@ -1,3 +1,11 @@
+/*
+============================================
+Title: BCRS
+Author: Clayton Stacy, Christine Bohnet, Jeff Shepherd
+Date: 20 Oct 2020
+Description: security-question-list-component
+============================================
+*/
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SecurityQuestionService } from '../../shared/security-question.service';

@@ -1,10 +1,12 @@
-<div fxLayout="column">
-  <mat-card>
+<div fxLayout="column"  fxLayoutAlign="center center">
+  <mat-card class="mat-elevation-z8">
     <mat-card-title> Security Question Configuration</mat-card-title>
-    <mat-card-subtitle>
-      Button goes here
-    </mat-card-subtitle>
     <br />
+    <mat-card-subtitle>
+      <button mat-raised-button routerLink="/security-questions/create/new" color="primary">Create New </button>
+
+    </mat-card-subtitle>
+
     <mat-card-content *ngIf="securityQuestions">
       <table mat-table [dataSource]="securityQuestions">
         <ng-container matColumnDef="question">
@@ -19,6 +21,9 @@
             <button mat-icon-button routerLink="/security-questions/{{element._id}}">
               <mat-icon color="accent">edit</mat-icon>
             </button>
+            <button mat-icon-button (click)="delete(element._id)">
+              <mat-icon color="accent">delete</mat-icon>
+            </button>
           </td>
         </ng-container>
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
@@ -27,3 +32,4 @@
     </mat-card-content>
   </mat-card>
 </div>
+

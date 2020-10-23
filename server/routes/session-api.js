@@ -9,7 +9,7 @@
  //imports
  const express = require('express');
  const User = require('../models/user');
- const brcypt = require('bcryptjs');
+ const bcrypt = require('bcryptjs');
  const ErrorResponse = require('../services/error-response');
  const BaseResponse = require('../services/base-response');
 
@@ -27,7 +27,7 @@ router.post('/signin', async(req, res) => {
       } else {
         console.log(user);
         if (user) {
-          let passwordIsValid = brcrypt.compareSync(req.body.password, user.password);
+          let passwordIsValid = bcrypt.compareSync(req.body.password, user.password);
           if (passwordIsValid) {
             console.log('Login Successful');
             const signinResponse = new BaseResponse(200, 'Login Successful', user);
