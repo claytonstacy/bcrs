@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
@@ -13,22 +14,35 @@ export class SigninComponent implements OnInit {
   form: FormGroup;
   error: string;
 
-  constructor(private router: Router, private cookieService: CookieService, private fb: FormBuilder) { }
+  constructor(private router: Router, private cookieService: CookieService, private fb: FormBuilder, private http: HttpClient) { }
 
   ngOnInit(): void {
     this.form = this.fb.group({
-      userId: [null, Validators.compose([Validators.required, Validators.pattern('^[0-9]*$')])]
+      userName: [null, Validators.compose([Validators.required])],
+      password: [null, Validators.compose([Validators.required])] // Validators.pattern('^[a-zA-Z]+$')
     })
   }
 
 
   login() {
-    const userId = this.form.controls['userId'].value;
-      if(userId > 999 && userId < 1013) {
-        this.cookieService.set('session_user', userId, 1);
-        this.router.navigate(['/'])
-      } else {
-        this.error = 'The employee ID you entered was invalid.  Please try again';
+    const userName = this.form.controls.userName.value;
+    const password = this.form.controls.password.value;
+
+    this.http.post('/api/session/signin', {
+      userName,
+      password
+    }).subscribe(res => {
+      console.log(res['data']);
+      if (res['data'].userName) {
+        this.cookieService.set('session_user', res['data'].userName, 1);
+        this.router.navigate(['/']);
       }
+    }, err => {
+      console.log(err)
+      this.error = err.error.message;
+    })
+
+
+
   }
 }
