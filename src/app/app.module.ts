@@ -27,6 +27,8 @@ import { SecurityQuestionListComponent } from './pages/security-question-list/se
 import { SecurityQuestionCreateComponent } from './pages/security-question-create/security-question-create.component';
 import { SecurityQuestionDetailsComponent } from './pages/security-question-details/security-question-details.component';
 import { MatTableModule } from '@angular/material/table';
+import {MatDialogModule} from '@angular/material/dialog';
+import { DeleteRecordDialogComponent } from './shared/delete-record-dialog/delete-record-dialog.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +45,8 @@ import { MatTableModule } from '@angular/material/table';
     UserCreateComponent,
     SecurityQuestionListComponent,
     SecurityQuestionCreateComponent,
-    SecurityQuestionDetailsComponent
+    SecurityQuestionDetailsComponent,
+    DeleteRecordDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -59,8 +62,8 @@ import { MatTableModule } from '@angular/material/table';
     MatCardModule,
     MatInputModule,
     MatFormFieldModule,
-    MatTableModule
-
+    MatTableModule,
+    MatDialogModule
 
   ],
   providers: [],
