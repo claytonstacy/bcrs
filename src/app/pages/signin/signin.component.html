@@ -1,9 +1,9 @@
 <div fxLayout="row" fxLayoutAlign="center start" >
-  <mat-card fxFlex="50">
-      <mat-card-title>
+  <mat-card fxFlex="50" class="mat-card-top pa-0">
+      <mat-card-title style="text-align: center; font-size: 48px; font-weight: lighter;" class="mat-headline">
         User Sign-in Page
       </mat-card-title>
-      <mat-card-subtitle>
+      <mat-card-subtitle style="text-align: center; font-weight: lighter;">
         You must enter a valid username and password to proceed.
       </mat-card-subtitle>
       <form [formGroup]="form" (ngSubmit)="login(); form.reset();" #loginForm="ngForm">
