@@ -42,7 +42,7 @@ export class SecurityQuestionListComponent implements OnInit {
       data: {
         recordId,
         dialogHeader: 'Delete Record Dialog',
-        dialogBody: 'Are you sure you want to delete security question ${recordId}?'
+        dialogBody: 'Are you sure you want to delete security question ' + recordId + '?'
       },
       disableClose: true,
       width: '800px'
@@ -57,5 +57,5 @@ export class SecurityQuestionListComponent implements OnInit {
       }
     })
   }
-  
+
 }
