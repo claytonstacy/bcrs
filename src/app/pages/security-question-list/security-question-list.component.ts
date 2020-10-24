@@ -37,12 +37,12 @@ export class SecurityQuestionListComponent implements OnInit {
   ngOnInit() {
   }
 
-  delete(recordId: string) {
+  delete(recordId: string, question: string, ) {
     const dialogRef = this.dialog.open(DeleteRecordDialogComponent, {
       data: {
         recordId,
         dialogHeader: 'Delete Record Dialog',
-        dialogBody: 'Are you sure you want to delete security question ' + recordId + '?'
+        dialogBody: `Are you sure you want to delete security question, "${question}" ?`
       },
       disableClose: true,
       width: '800px'

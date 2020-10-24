@@ -21,7 +21,7 @@
             <button mat-icon-button routerLink="/security-questions/{{element._id}}">
               <mat-icon color="accent">edit</mat-icon>
             </button>
-            <button mat-icon-button (click)="delete(element._id)">
+            <button mat-icon-button (click)="delete(element._id, element.text)">
               <mat-icon color="accent">delete</mat-icon>
             </button>
           </td>
