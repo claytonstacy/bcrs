@@ -13,7 +13,6 @@ const express = require('express');
 const bcrypt = require('bcryptjs');
 const BaseResponse = require('../services/base-response');
 const ErrorResponse = require('../services/error-response');
-const { restart } = require('nodemon');
 
 let router = express.Router();
 const saltRounds = 10;
@@ -96,6 +95,7 @@ router.post('/', async (req, res) => {
       phoneNumber: req.body.phoneNumber,
       address: req.body.address,
       email: req.body.email,
+      role: {role: 'standard'}
     };
 
     User.create(aUser, function (err, user) {
