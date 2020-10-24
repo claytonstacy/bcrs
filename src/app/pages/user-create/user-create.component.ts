@@ -35,7 +35,7 @@ export class UserCreateComponent implements OnInit {
    * value before it can be submitted.
    *****************************************************************************/
   ngOnInit(): void {
-    const phonePattern = new RegExp('\d{10}');
+    const phonePattern = new RegExp('^\d{10}$');
 
     this.form = this.fb.group({
       userName: [null, Validators.compose([Validators.required,

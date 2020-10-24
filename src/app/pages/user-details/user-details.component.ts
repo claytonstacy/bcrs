@@ -25,8 +25,8 @@ export class UserDetailsComponent implements OnInit {
   roles: any;
 
   constructor(private route: ActivatedRoute, private http: HttpClient,
-    private fb: FormBuilder, private router: Router,
-    private userService: UserService) {
+              private fb: FormBuilder, private router: Router,
+              private userService: UserService) {
 
       this.userId = this.route.snapshot.paramMap.get('userId');
 
@@ -44,7 +44,7 @@ export class UserDetailsComponent implements OnInit {
     }
 
   ngOnInit(): void {
-    const phonePattern = new RegExp('\d{10}');
+    const phonePattern = new RegExp('^\d{10}$');
 
     this.form = this.fb.group({
       firstName: [null, Validators.compose([Validators.required])],
