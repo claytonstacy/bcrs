@@ -3,7 +3,7 @@
     <mat-card-title>User Create</mat-card-title>
     <br>
 
-    <form [formGroup]="form" (ngSubmit)="createUser()" #userForm>
+    <form [formGroup]="form" (ngSubmit)="createUser()" #userForm="ngForm">
       <mat-card-content>
         <div fxLayout="column" fxLayoutGap="10px">
           <mat-form-field>
@@ -47,7 +47,7 @@
 
       <mat-card-actions align="end">
         <button mat-raised-button (click)="cancel()" color="warn">Cancel</button>
-        <button mat-raised-button color="accent">Submit</button>
+        <button type="submit" mat-raised-button [disabled]="!userForm.form.valid" color="accent">Submit</button>
       </mat-card-actions>
     </form>
   </mat-card>

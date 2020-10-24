@@ -44,7 +44,7 @@ export class UserDetailsComponent implements OnInit {
     }
 
   ngOnInit(): void {
-    const phonePattern = new RegExp('^\d{10}$');
+    const numberPattern = '^[0-9]*$';
 
     this.form = this.fb.group({
       firstName: [null, Validators.compose([Validators.required])],
@@ -52,7 +52,8 @@ export class UserDetailsComponent implements OnInit {
       lastName: [null, Validators.compose([Validators.required])],
 
       phoneNumber: [null, Validators.compose([Validators.required,
-        Validators.pattern(phonePattern)])],
+        Validators.pattern(numberPattern), Validators.minLength(10),
+        Validators.maxLength(10)])],
 
       address: [null, Validators.compose([Validators.required])],
 
