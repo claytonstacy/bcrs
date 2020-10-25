@@ -29,6 +29,7 @@ import { SecurityQuestionDetailsComponent } from './pages/security-question-deta
 import { MatTableModule } from '@angular/material/table';
 import {MatDialogModule} from '@angular/material/dialog';
 import { DeleteRecordDialogComponent } from './shared/delete-record-dialog/delete-record-dialog.component';
+import { PhoneFormatPipe } from './shared/phone-format.pipe';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { DeleteRecordDialogComponent } from './shared/delete-record-dialog/delet
     SecurityQuestionListComponent,
     SecurityQuestionCreateComponent,
     SecurityQuestionDetailsComponent,
-    DeleteRecordDialogComponent
+    DeleteRecordDialogComponent,
+    PhoneFormatPipe
   ],
   imports: [
     BrowserModule,
