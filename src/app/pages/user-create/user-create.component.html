@@ -1,7 +1,7 @@
 <div class="user-create-container" fxLayout="column">
   <mat-card class="mat-elevation-z8">
     <mat-card-title>User Create</mat-card-title>
-    <br>
+
 
     <form [formGroup]="form" (ngSubmit)="createUser()" #userForm="ngForm">
       <mat-card-content>
@@ -43,10 +43,10 @@
         </div>
       </mat-card-content>
 
-      <br>
+      
 
       <mat-card-actions align="end">
-        <button mat-raised-button (click)="cancel()" color="warn">Cancel</button>
+        <button mat-raised-button (click)="cancel()" color="primary">Cancel</button>
         <button type="submit" mat-raised-button [disabled]="!userForm.form.valid" color="accent">Submit</button>
       </mat-card-actions>
     </form>
