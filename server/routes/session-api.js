@@ -28,7 +28,7 @@ router.post('/signin', async(req, res) => {
         console.log(user);
         if (user) {
           let passwordIsValid = bcrypt.compareSync(req.body.password, user.password);
-          if (passwordIsValid) {
+          if (passwordIsValid && user.isEnabled) {
             console.log('Login Successful');
             const signinResponse = new BaseResponse(200, 'Login Successful', user);
             res.json(signinResponse.toObject());

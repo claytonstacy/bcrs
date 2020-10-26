@@ -16,7 +16,7 @@ import {CookieService} from 'ngx-cookie-service';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuard implements CanActivate {
+export class SessionGuard implements CanActivate {
 
   constructor(private router: Router,
               private cookieService: CookieService) {

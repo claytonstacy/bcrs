@@ -13,6 +13,7 @@ import { UserCreateComponent } from './pages/user-create/user-create.component';
 import { SecurityQuestionListComponent } from './pages/security-question-list/security-question-list.component';
 import { SecurityQuestionCreateComponent } from './pages/security-question-create/security-question-create.component';
 import { SecurityQuestionDetailsComponent } from './pages/security-question-details/security-question-details.component';
+import { SessionGuard } from './session.guard';
 
 
 
@@ -57,7 +58,8 @@ const routes: Routes = [
         path: 'security-questions/create/new',
         component: SecurityQuestionCreateComponent
       }
-    ]
+    ],
+    canActivate: [SessionGuard]
   },
   {
     path: 'session',

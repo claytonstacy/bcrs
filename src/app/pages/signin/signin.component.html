@@ -3,21 +3,31 @@
       <mat-card-title style="text-align: center; font-size: 48px; font-weight: lighter;" class="mat-headline">
         User Sign-in Page
       </mat-card-title>
+      <br />
       <mat-card-subtitle style="text-align: center; font-weight: lighter;">
-        You must enter a valid username and password to proceed.
+        <a routerLink="/" class="register-link">or click here to register </a>
       </mat-card-subtitle>
+      <mat-card-content>
+        <small style="color: #df546a" *ngIf="error">
+          {{ error }}
+          <br />
+        </small>
+        <mat-card mat-elevation-z0>
       <form [formGroup]="form" (ngSubmit)="login(); form.reset();" #loginForm="ngForm">
-        <mat-card-content>
+        <mat-card-content fxLayout="column" fxLayoutGap="10px">
           <mat-form-field>
             <input
             type="text"
+            fxFlex
             matInput
             [formControl]="form.controls['userName']"
             placeholder="Username" />
           </mat-form-field>
+          <br />
           <mat-form-field>
             <input
             type="password"
+            fxFlex
             matInput
             [formControl]="form.controls['password']"
             placeholder="Password" />
@@ -25,10 +35,11 @@
       </mat-card-content>
 
       <mat-card-actions class="submit-button">
-        <button type="submit" fxFlex class="submit-button" color="accent" mat-raised-button [disabled]="!form.valid">Sign-in</button>
+        <button type="submit" fxFlex mat-raised-button class="submit-button" color="accent" mat-raised-button [disabled]="!form.valid">Sign-in</button>
       </mat-card-actions>
       </form>
-
+    </mat-card>
+    </mat-card-content>
   </mat-card>
 
   </div>
