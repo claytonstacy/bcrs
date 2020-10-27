@@ -47,4 +47,43 @@ router.post('/signin', async(req, res) => {
   }
 });
 
+
+//Register User API goes here
+
+
+//Verify User API goes here
+
+
+//Verify Security Question API goes here
+router.post('/verify/users/:userName/security-questions', async(req, res) => {
+  try {
+    User.findOne({'userName': req.params.userName}, function(err, user) {
+      if (err) {
+        console.log(err);
+        const verifySecurityQuestionsMongoDbErrorResponse = new ErrorResponse(500, 'Internal Server Error', err);
+        res.status(500).send(verifySecurityQuestionsMongoDbErrorResponse.toObject());
+      } else {
+        console.log(user);
+        if (user) {
+          console.log('User found');
+            const verifySecurityQuestionResponse = new BaseResponse(200, 'User Found', user);
+            res.json(verifySecurityQuestionResponse.toObject());
+          /* let passwordIsValid = bcrypt.compareSync(req.body.password, user.password);
+          if (passwordIsValid && user.isEnabled) {
+             */
+          } else {
+            console.log('User not found');
+            const invalidUsernameErrorResponse = new ErrorResponse(500, 'User not found', null);
+            res.status(401).send(invalidUsernameErrorResponse.toObject());
+          }
+        }
+    });
+  } catch (error) {
+
+  }
+});
+
+//Reset Password API goes here
+
+
 module.exports = router;
