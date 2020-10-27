@@ -15,6 +15,7 @@
 
  // configure router
 const router = express.Router();
+const saltRounds = 10;
 
 //Signin Method
 router.post('/signin', async(req, res) => {
@@ -85,5 +86,51 @@ router.post('/verify/users/:userName/security-questions', async(req, res) => {
 
 //Reset Password API goes here
 
+router.put('/users/:userName/reset-password',async(req, res) => {
+  let hashedPassword = bcrypt.hashSync(req.body.password, saltRounds);
+
+  try {
+    User.findOne({
+        'userName': req.params.userName
+      },
+      function (error, user) {
+
+        if (error) {
+          console.log(error);
+          const findUserErrorResponse = new ErrorResponse("500",
+            "Update-password error", error);
+
+          res.status(500).send(findUserErrorResponse.toObject());
+        } else {
+            console.log(user);
+
+            user.set({
+              password: hashedPassword
+            })
+
+          user.save(function (err, updatedUser) {
+            if (err) {
+              console.log(err);
+              const savePasswordErrorResponse = new ErrorResponse("500",
+                "There was a problem saving your password", error);
+
+              res.status(500).send(savePasswordErrorResponse.toObject());
+            } else {
+              console.log(updatedUser);
+              const savePasswordSuccessResponse = new BaseResponse("200",
+                "New Password Saved", updatedUser);
+              res.json(savePasswordSuccessResponse.toObject());
+            }
+          });
+        }
+      });
+
+  } catch (e) {
+    console.log(e);
+    const catchErrorResponse = new ErrorResponse("500",
+      "Internal server error", e.message);
+    res.status(500).send(catchErrorResponse.toObject());
+  }
+})
 
 module.exports = router;
