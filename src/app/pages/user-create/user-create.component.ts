@@ -12,6 +12,8 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {UserService} from '../../shared/user.service';
 import {User} from '../../shared/user.interface';
+import { SecurityQuestion } from 'src/app/shared/security-question.interface';
+import {SecurityQuestionService} from 'src/app/shared/security-question.service';
 
 @Component({
   selector: 'app-user-create',
@@ -24,9 +26,17 @@ export class UserCreateComponent implements OnInit {
   userId: string;
   form: FormGroup;
   roles: any;
+  securityQuestionOptions: SecurityQuestion[];
 
   constructor(private http: HttpClient, private fb: FormBuilder,
-              private router: Router, private userService: UserService) {
+              private router: Router, private userService: UserService,
+              private securityQuestionService: SecurityQuestionService) {
+    this.securityQuestionService.findAllSecurityQuestions().subscribe(res => {
+      this.securityQuestionOptions = res['data'];
+      console.log('These are the security questions', JSON.stringify(this.securityQuestionOptions))
+    }, err => {
+      console.log(err);
+    })
   }
 
   /******************************************************************************
@@ -55,7 +65,14 @@ export class UserCreateComponent implements OnInit {
       address: [null, Validators.compose([Validators.required])],
 
       email: [null, Validators.compose([Validators.required,
-        Validators.email])]
+        Validators.email])],
+        selectedQuestion1: [null, Validators.compose([Validators.required])],
+        selectedQuestion2: [null, Validators.compose([Validators.required])],
+        selectedQuestion3: [null, Validators.compose([Validators.required])],
+        securityQuestionAnswer1: [null, Validators.compose([Validators.required])],
+        securityQuestionAnswer2: [null, Validators.compose([Validators.required])],
+        securityQuestionAnswer3: [null, Validators.compose([Validators.required])]
+
     });
   }
 
@@ -70,8 +87,13 @@ export class UserCreateComponent implements OnInit {
     newUser.phoneNumber = this.form.controls.phoneNumber.value;
     newUser.address = this.form.controls.address.value;
     newUser.email = this.form.controls.email.value;
+    newUser.securityQuestions = [
+      {questionText: this.form.controls.selectedQuestion1.value, answerText: this.form.controls.securityQuestionAnswer1.value},
+      {questionText: this.form.controls.selectedQuestion2.value, answerText: this.form.controls.securityQuestionAnswer2.value},
+      {questionText: this.form.controls.selectedQuestion3.value, answerText: this.form.controls.securityQuestionAnswer3.value}]
 
-    this.userService.createUser(newUser).subscribe(() => {
+      this.userService.createUser(newUser).subscribe(() => {
+      console.log('Adding this user', JSON.stringify(newUser));
       this.router.navigate(['/users']);
     }, err => {
       console.log(err);

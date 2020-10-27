@@ -39,6 +39,7 @@ import { MatTableModule } from '@angular/material/table';
 import {MatDialogModule} from '@angular/material/dialog';
 import { DeleteRecordDialogComponent } from './shared/delete-record-dialog/delete-record-dialog.component';
 import { PhoneFormatPipe } from './shared/phone-format.pipe';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -74,7 +75,8 @@ import { PhoneFormatPipe } from './shared/phone-format.pipe';
     MatInputModule,
     MatFormFieldModule,
     MatTableModule,
-    MatDialogModule
+    MatDialogModule,
+    MatSelectModule
 
   ],
   providers: [],

@@ -40,10 +40,41 @@
             <input type="text" matInput [formControl]="form.controls.email"
               placeholder="Email">
           </mat-form-field>
+          <h3>Security Questions (must select and answer three)</h3>
+          <mat-form-field appearance="fill">
+            <mat-label>Select an option</mat-label>
+            <mat-select [formControl]="form.controls.selectedQuestion1">
+              <mat-option *ngFor="let question of securityQuestionOptions;" [value]="question.text">{{ question.text }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field>
+            <input type="text" matInput [formControl]="form.controls.securityQuestionAnswer1"
+              placeholder="Answer">
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Select an option</mat-label>
+            <mat-select [formControl]="form.controls.selectedQuestion2">
+              <mat-option *ngFor="let question of securityQuestionOptions;" [value]=question.text>{{ question.text }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field>
+            <input type="text" matInput [formControl]="form.controls.securityQuestionAnswer2"
+              placeholder="Answer">
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Select an option</mat-label>
+            <mat-select [formControl]="form.controls.selectedQuestion3">
+              <mat-option *ngFor="let question of securityQuestionOptions;" [value]=question.text>{{ question.text }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field>
+            <input type="text" matInput [formControl]="form.controls.securityQuestionAnswer3"
+              placeholder="Answer">
+          </mat-form-field>
         </div>
       </mat-card-content>
 
-      
+
 
       <mat-card-actions align="end">
         <button mat-raised-button (click)="cancel()" color="primary">Cancel</button>

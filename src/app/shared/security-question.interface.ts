@@ -7,6 +7,8 @@
  *****************************************************************************/
 
 export interface SecurityQuestion {
-  _id: string;
-  text: string;
+  _id?: string;
+  text?: string;
+  answerText?: string;
+  questionText?: string;
 }

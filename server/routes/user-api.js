@@ -95,7 +95,8 @@ router.post('/', async (req, res) => {
       phoneNumber: req.body.phoneNumber,
       address: req.body.address,
       email: req.body.email,
-      role: {role: 'standard'}
+      role: {role: 'standard'},
+      securityQuestions: req.body.securityQuestions
     };
 
     User.create(aUser, function (err, user) {

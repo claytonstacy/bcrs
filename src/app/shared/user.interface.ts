@@ -6,6 +6,7 @@
  * Description: user interface
  *****************************************************************************/
 
+import { SecurityQuestion } from './security-question.interface';
  export interface User {
    _id: string;
    userName: string;
@@ -15,4 +16,5 @@
    phoneNumber: string;
    address: string;
    email: string;
+   securityQuestions: SecurityQuestion[];
  }

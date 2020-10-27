@@ -40,7 +40,8 @@ export class UserService {
       lastName: user.lastName,
       phoneNumber: user.phoneNumber,
       address: user.address,
-      email: user.email
+      email: user.email,
+      securityQuestions: user.securityQuestions
     });
   }
 
