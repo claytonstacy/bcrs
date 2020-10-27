@@ -1,3 +1,12 @@
+/*
+============================================
+Title: BCRS
+Author: Clayton Stacy, Christine Bohnet, Jeff Shepherd
+Date: 20 Oct 2020
+Description: signin component ts file
+============================================
+*/
+
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';

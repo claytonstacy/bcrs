@@ -1,3 +1,12 @@
+/*
+============================================
+Title: BCRS
+Author: Clayton Stacy, Christine Bohnet, Jeff Shepherd
+Date: 20 Oct 2020
+Description:
+============================================
+*/
+
 import { enableProdMode } from '@angular/core';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 

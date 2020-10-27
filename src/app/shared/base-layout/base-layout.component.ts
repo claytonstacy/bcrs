@@ -1,3 +1,12 @@
+/*
+============================================
+Title: BCRS
+Author: Clayton Stacy, Christine Bohnet, Jeff Shepherd
+Date: 20 Oct 2020
+Description: base layout component ts file
+============================================
+*/
+
 import { Component, OnInit } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';

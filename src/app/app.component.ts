@@ -1,3 +1,12 @@
+/*
+============================================
+Title: BCRS
+Author: Clayton Stacy, Christine Bohnet, Jeff Shepherd
+Date: 20 Oct 2020
+Description: app component ts file
+============================================
+*/
+
 import { Component } from '@angular/core';
 
 @Component({
@@ -6,5 +15,5 @@ import { Component } from '@angular/core';
   styles: [``]
 })
 export class AppComponent {
-  
+
 }
