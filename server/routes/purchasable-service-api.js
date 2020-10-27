@@ -31,15 +31,15 @@ router.get('/', async (req, res) => {
     PurchasableService.find({})
       .where('isEnabled')
       .equals(true)
-      .exec(function (error, users) {
+      .exec(function (error, services) {
         if (error) {
           console.log(error);
           const errorResponse = new ErrorResponse("500", "error", error);
           res.status(500).send(errorResponse.toObject());
         } else {
-          console.log(users);
+          console.log(services);
           const successResponse = new BaseResponse("200",
-            "successful find all", users);
+            "successful find all", services);
           res.json(successResponse.toObject());
         }
       })
@@ -58,7 +58,7 @@ router.get('/:id', async (req, res) => {
   try {
     PurchasableService.findOne({
       '_id': req.params.id
-    }, function (error, user) {
+    }, function (error, document) {
 
       if (error) {
         console.log(error);
@@ -66,8 +66,8 @@ router.get('/:id', async (req, res) => {
           "find-service-by-id error", error);
         res.status(500).send(errorResponse.toObject());
       } else {
-        console.log(user);
-        const successResponse = new BaseResponse("200", "success", user);
+        console.log(document);
+        const successResponse = new BaseResponse("200", "success", document);
         res.json(successResponse.toObject());
       }
     })
