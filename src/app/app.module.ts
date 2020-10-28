@@ -40,6 +40,9 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { DeleteRecordDialogComponent } from './shared/delete-record-dialog/delete-record-dialog.component';
 import { PhoneFormatPipe } from './shared/phone-format.pipe';
 import { MatSelectModule } from '@angular/material/select';
+import { ProductListComponent } from './pages/product-list/product-list.component';
+import { ProductCreateComponent } from './pages/product-create/product-create.component';
+import { ProductDetailsComponent } from './pages/product-details/product-details.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +61,10 @@ import { MatSelectModule } from '@angular/material/select';
     SecurityQuestionCreateComponent,
     SecurityQuestionDetailsComponent,
     DeleteRecordDialogComponent,
-    PhoneFormatPipe
+    PhoneFormatPipe,
+    ProductListComponent,
+    ProductCreateComponent,
+    ProductDetailsComponent
   ],
   imports: [
     BrowserModule,
