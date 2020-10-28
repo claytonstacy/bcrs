@@ -1,0 +1,39 @@
+<div class="user-details-container" fxLayout="column">
+  <mat-card class="mat-elevation-z8">
+    <mat-card-title>User Details</mat-card-title>
+    <br>
+
+    <form [formGroup]="form" (ngSubmit)="saveUser()" #userForm="ngForm">
+      <mat-card-content>
+        <div fxLayout="column" fxLayoutGap="10px">
+          <mat-form-field>
+            <input type="text" matInput [formControl]="form.controls.firstName" placeholder="First name">
+          </mat-form-field>
+
+          <mat-form-field>
+            <input type="text" matInput [formControl]="form.controls.lastName" placeholder="Last Name">
+          </mat-form-field>
+
+          <mat-form-field>
+            <input type="text" matInput [formControl]="form.controls.phoneNumber" placeholder="Phone number">
+          </mat-form-field>
+
+          <mat-form-field>
+            <input type="text" matInput [formControl]="form.controls.address" placeholder="Address">
+          </mat-form-field>
+
+          <mat-form-field>
+            <input type="text" matInput [formControl]="form.controls.email" placeholder="Email">
+          </mat-form-field>
+        </div>
+      </mat-card-content>
+
+      <br>
+
+      <mat-card-actions align="end">
+        <button mat-raised-button (click)="cancel()" color="primary">Cancel</button>
+        <button type="submit" mat-raised-button [disabled]="!userForm.form.valid" color="accent">Submit</button>
+      </mat-card-actions>
+    </form>
+  </mat-card>
+</div>

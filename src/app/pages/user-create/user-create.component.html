@@ -1,0 +1,85 @@
+<div class="user-create-container" fxLayout="column">
+  <mat-card class="mat-elevation-z8">
+    <mat-card-title>User Create</mat-card-title>
+
+
+    <form [formGroup]="form" (ngSubmit)="createUser()" #userForm="ngForm">
+      <mat-card-content>
+        <div fxLayout="column" fxLayoutGap="10px">
+          <mat-form-field>
+            <input type="text" matInput [formControl]="form.controls.userName"
+              placeholder="Username">
+          </mat-form-field>
+
+          <mat-form-field>
+            <input type="text" matInput [formControl]="form.controls.password"
+              placeholder="Password">
+          </mat-form-field>
+
+          <mat-form-field>
+            <input type="text" matInput [formControl]="form.controls.firstName"
+              placeholder="First name">
+          </mat-form-field>
+
+          <mat-form-field>
+            <input type="text" matInput [formControl]="form.controls.lastName"
+              placeholder="Last Name">
+          </mat-form-field>
+
+          <mat-form-field>
+            <input type="text" matInput [formControl]="form.controls.phoneNumber"
+              placeholder="Phone number">
+          </mat-form-field>
+
+          <mat-form-field>
+            <input type="text" matInput [formControl]="form.controls.address"
+              placeholder="Address">
+          </mat-form-field>
+
+          <mat-form-field>
+            <input type="text" matInput [formControl]="form.controls.email"
+              placeholder="Email">
+          </mat-form-field>
+          <h3>Security Questions (must select and answer three)</h3>
+          <mat-form-field appearance="fill">
+            <mat-label>Select an option</mat-label>
+            <mat-select [formControl]="form.controls.selectedQuestion1">
+              <mat-option *ngFor="let question of securityQuestionOptions;" [value]="question.text">{{ question.text }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field>
+            <input type="text" matInput [formControl]="form.controls.securityQuestionAnswer1"
+              placeholder="Answer">
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Select an option</mat-label>
+            <mat-select [formControl]="form.controls.selectedQuestion2">
+              <mat-option *ngFor="let question of securityQuestionOptions;" [value]=question.text>{{ question.text }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field>
+            <input type="text" matInput [formControl]="form.controls.securityQuestionAnswer2"
+              placeholder="Answer">
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Select an option</mat-label>
+            <mat-select [formControl]="form.controls.selectedQuestion3">
+              <mat-option *ngFor="let question of securityQuestionOptions;" [value]=question.text>{{ question.text }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field>
+            <input type="text" matInput [formControl]="form.controls.securityQuestionAnswer3"
+              placeholder="Answer">
+          </mat-form-field>
+        </div>
+      </mat-card-content>
+
+
+
+      <mat-card-actions align="end">
+        <button mat-raised-button (click)="cancel()" color="primary">Cancel</button>
+        <button type="submit" mat-raised-button [disabled]="!userForm.form.valid" color="accent">Submit</button>
+      </mat-card-actions>
+    </form>
+  </mat-card>
+</div>

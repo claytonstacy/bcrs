@@ -1,20 +1,26 @@
 <div fxLayout="column">
-
+  <div fxFlex="10" class="nav-container">
   <!-- navigation -->
   <nav fxFlex>
-    <mat-toolbar>
+    <mat-toolbar color="primary">
       <!-- navbar container -->
       <div class="navbar-container">
         <!-- logo -->
-        <button class="logo" routerLink="/" mat-button>BCRS</button>
+        <button class="logo" routerLink="/" mat-button color="accent">
+        <img src="../../../assets/BRCSLogo160x160.png" alt="Bob's Computer Repair Shop Logo" height="55"/>
+        </button>
 
-        <button class="navbar-link" routerLink="/" mat-button>Home</button>
-        <button class="navbar-link" mat-button>About</button>
+        <button class="navbar-link" routerLink="/" mat-button color="accent">Home</button>
+        <button class="navbar-link" routerLink="/about" mat-button color="accent">About</button>
+        <button class="navbar-link" routerLink="/contact" mat-button color="accent">Contact</button>
+        <button class="navbar-link" routerLink="/users" mat-button color="accent">User Config</button>
+        <button class="navbar-link" routerLink="/security-questions" mat-button color="accent">SQ Config</button>
+        <button class="navbar-link" mat-button color="accent" (click)="logout()">Logout</button>
       </div>
 
     </mat-toolbar>
   </nav>
-
+</div>
   <!-- main content -->
   <div fxFlex>
     <main class="main-content" fxFlex="100%;">
@@ -23,10 +29,10 @@
   </div>
 
   <!-- footer -->
-  <div fxFlex>
+  <div fxFlex="5">
     <footer class="footer">
-      <mat-toolbar class="footer-content">
-        <p>
+      <mat-toolbar class="footer-content" color="primary">
+        <p class="footer-text">
           &copy; {{year | date: 'yyyy'}} - Bob's Computer Repair Shop - <a href="https://www.bellevue.edu/" class="bu-link" target="_blank">Bellevue University</a>
         </p>
       </mat-toolbar>

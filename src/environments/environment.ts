@@ -1,3 +1,12 @@
+/*
+============================================
+Title: BCRS
+Author: Clayton Stacy, Christine Bohnet, Jeff Shepherd
+Date: 20 Oct 2020
+Description:
+============================================
+*/
+
 // This file can be replaced during build by using the `fileReplacements` array.
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.

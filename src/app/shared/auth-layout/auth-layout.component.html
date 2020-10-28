@@ -1,1 +1,41 @@
-<p>auth-layout works!</p>
+<div fxLayout="column">
+
+  <!-- navigation -->
+  <nav fxFlex>
+    <mat-toolbar color="primary">
+      <!-- navbar container -->
+      <div class="navbar-container">
+        <!-- logo -->
+        <button class="logo" routerLink="/" mat-button color="accent">
+        <img src="../../../assets/BRCSLogo160x160.png" alt="Bob's Computer Repair Shop Logo" height="55"/>
+        </button>
+
+        <button class="navbar-link" routerLink="/" mat-button color="accent">Home</button>
+        <button class="navbar-link" routerLink="/about" mat-button color="accent">About</button>
+        <button class="navbar-link" routerLink="/contact" mat-button color="accent">Contact</button>
+      </div>
+
+    </mat-toolbar>
+  </nav>
+  <br />
+  <br />
+
+  <!-- main content -->
+  <div fxFlex>
+    <main class="main-content" fxFlex="100%;">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+
+  <!-- footer -->
+  <div fxFlex>
+    <footer class="footer">
+      <mat-toolbar class="footer-content" color="primary">
+        <p class="footer-text">
+          &copy; {{year | date: 'yyyy'}} - Bob's Computer Repair Shop - <a href="https://www.bellevue.edu/" class="bu-link" target="_blank">Bellevue University</a>
+        </p>
+      </mat-toolbar>
+    </footer>
+  </div>
+
+</div>

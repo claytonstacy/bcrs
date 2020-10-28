@@ -1,0 +1,13 @@
+<h2 mat-dialog-title> {{ dialogHeader}} </h2>
+
+<div mat-dialog-content>
+  <p> {{dialogBody}}</p>
+  <small style="color: #af546a;">WARNING: This cannot be undone.</small>
+</div>
+
+<hr/>
+
+<div mat-dialog-actions align="end">
+  <button mat-raised-button matDialogClose="cancel" color="primary"> No Thanks</button>
+  <button mat-raised-button matDialogClose="confirm" color="accent" cdkFocusInitial> Accept</button>
+</div>
