@@ -185,7 +185,7 @@ router.delete('/:id', async(req, res) => {
 * FindSecurityQuestionsByIds - Lookup security questions by security question Ids.
 */
 
-router.post('/find-by-ids', function (req, res, next) {
+router.post('/find-by-ids', function (req, res) {
   const question1 = req.body.question1;
   const question2 = req.body.question2;
   const question3 = req.body.question3;
@@ -201,7 +201,7 @@ router.post('/find-by-ids', function (req, res, next) {
   }).exec(function (err, securityQuestions) {
     if (err) {
       console.log(err);
-      return next(err); //return to function
+
     } else {
       console.log(securityQuestions);
       res.json(securityQuestions);
@@ -209,5 +209,5 @@ router.post('/find-by-ids', function (req, res, next) {
   })
  });
 
-
+ 
 module.exports = router;
