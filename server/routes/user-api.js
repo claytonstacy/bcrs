@@ -210,4 +210,32 @@ router.delete('/:id', async (req, res) => {
   }
 })
 
+/*******************************************************************************
+ * FindSelectedSecurityQuestions by username
+ ******************************************************************************/
+router.get('/:username/security-questions', async (req, res) => {
+
+  try {
+    User.findOne({
+      'userName': req.params.username
+    }, function (error, user) {
+
+      if (error) {
+        console.log(error);
+        const errorResponse = new ErrorResponse("500",
+          "find-security-questions error", error);
+        res.status(500).send(errorResponse.toObject());
+      } else {
+        console.log(user);
+        const successResponse = new BaseResponse("200", "success", user.securityQuestions);
+        res.json(successResponse.toObject());
+      }
+    })
+  } catch (e) {
+    console.log(e);
+    res.status(500).send(new ErrorResponse("500",
+      "Internal server error", e.message).toObject());
+  }
+});
+
 module.exports = router;
