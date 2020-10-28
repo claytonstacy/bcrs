@@ -46,13 +46,14 @@ export class UserCreateComponent implements OnInit {
    *****************************************************************************/
   ngOnInit(): void {
     const numberPattern = '^[0-9]*$';
+    const passwordPattern = '^(?=.+[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,}$';
 
     this.form = this.fb.group({
       userName: [null, Validators.compose([Validators.required,
-        Validators.minLength(3)])],
+                Validators.minLength(3)])],
 
       password: [null, Validators.compose([Validators.required,
-        Validators.minLength(8)])],
+                Validators.pattern(passwordPattern)])],
 
       firstName: [null, Validators.compose([Validators.required])],
 
@@ -66,12 +67,18 @@ export class UserCreateComponent implements OnInit {
 
       email: [null, Validators.compose([Validators.required,
         Validators.email])],
-        selectedQuestion1: [null, Validators.compose([Validators.required])],
-        selectedQuestion2: [null, Validators.compose([Validators.required])],
-        selectedQuestion3: [null, Validators.compose([Validators.required])],
-        securityQuestionAnswer1: [null, Validators.compose([Validators.required])],
-        securityQuestionAnswer2: [null, Validators.compose([Validators.required])],
-        securityQuestionAnswer3: [null, Validators.compose([Validators.required])]
+
+      selectedQuestion1: [null, Validators.compose([Validators.required])],
+
+      selectedQuestion2: [null, Validators.compose([Validators.required])],
+
+      selectedQuestion3: [null, Validators.compose([Validators.required])],
+
+      securityQuestionAnswer1: [null, Validators.compose([Validators.required])],
+
+      securityQuestionAnswer2: [null, Validators.compose([Validators.required])],
+
+      securityQuestionAnswer3: [null, Validators.compose([Validators.required])]
 
     });
   }
@@ -80,6 +87,7 @@ export class UserCreateComponent implements OnInit {
     // The 'as' keyword tells TypeScript to ignore type inference and consider,
     // in this case, an empty object named 'newUser' as an object of type User
     const newUser = {} as User;
+
     newUser.userName = this.form.controls.userName.value;
     newUser.password = this.form.controls.password.value;
     newUser.firstName = this.form.controls.firstName.value;
@@ -87,10 +95,16 @@ export class UserCreateComponent implements OnInit {
     newUser.phoneNumber = this.form.controls.phoneNumber.value;
     newUser.address = this.form.controls.address.value;
     newUser.email = this.form.controls.email.value;
+
     newUser.securityQuestions = [
-      {questionText: this.form.controls.selectedQuestion1.value, answerText: this.form.controls.securityQuestionAnswer1.value},
-      {questionText: this.form.controls.selectedQuestion2.value, answerText: this.form.controls.securityQuestionAnswer2.value},
-      {questionText: this.form.controls.selectedQuestion3.value, answerText: this.form.controls.securityQuestionAnswer3.value}]
+      {questionText: this.form.controls.selectedQuestion1.value,
+         answerText: this.form.controls.securityQuestionAnswer1.value},
+
+      {questionText: this.form.controls.selectedQuestion2.value,
+         answerText: this.form.controls.securityQuestionAnswer2.value},
+
+      {questionText: this.form.controls.selectedQuestion3.value,
+         answerText: this.form.controls.securityQuestionAnswer3.value}]
 
       this.userService.createUser(newUser).subscribe(() => {
       console.log('Adding this user', JSON.stringify(newUser));
