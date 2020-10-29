@@ -80,9 +80,9 @@ router.get('/:id', async (req, res) => {
 });
 
 /*******************************************************************************
- * Create user
+ * Create user moved to session api
  ******************************************************************************/
-router.post('/', async (req, res) => {
+/*router.post('/', async (req, res) => {
 
   try {
     let hashedPassword = bcrypt.hashSync(req.body.password, saltRounds);
@@ -118,6 +118,7 @@ router.post('/', async (req, res) => {
     res.status(500).send(catchErrorResponse.toObject());
   }
 })
+*/
 
 /*******************************************************************************
  * Update user

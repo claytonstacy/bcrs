@@ -12,6 +12,8 @@
  const bcrypt = require('bcryptjs');
  const ErrorResponse = require('../services/error-response');
  const BaseResponse = require('../services/base-response');
+const { verify } = require('crypto');
+const { config } = require('karma');
 
  // configure router
 const router = express.Router();
@@ -48,14 +50,88 @@ router.post('/signin', async(req, res) => {
   }
 });
 
-
 //Register User API goes here
+/*******************************************************************************
+ * Register
+ ******************************************************************************/
+router.post('/register', async (req, res) => {
 
+  try {
+    User.findOne({'userName': req.body.userName}, function(err, user) {
+      if (err) {
+        console.log(err);
+        const registerUserMongodbErrorResponse = new ErrorResponse("500", "register-user error", err);
+        res.status(500).send(registerUserMongodbErrorResponse.toObject());
+      } else {
+        if (!user) {
+          let hashedPassword = bcrypt.hashSync(req.body.password, saltRounds); // salt/hash the password
+          standardRole = {
+            role: 'standard'
+          }
+
+          // user object
+          let aUser = {
+            userName: req.body.userName,
+            password: hashedPassword,
+            firstName: req.body.firstName,
+            lastName: req.body.lastName,
+            phoneNumber: req.body.phoneNumber,
+            address: req.body.address,
+            email: req.body.email,
+            role: standardRole,
+            securityQuestions: req.body.securityQuestions
+          };
+
+          User.create(aUser, function (err, user) {
+            if (err) {
+              console.log(err);
+              const errorResponse = new ErrorResponse("500", "create-user error", err);
+              res.status(500).send(errorResponse.toObject());
+            } else {
+              console.log(user);
+              const successResponse = new BaseResponse("200", "success", user);
+              res.json(successResponse.toObject());
+            }
+          })
+        } else {
+          console.log('This user name already exist.');
+          const userExistErrorResponse = new ErrorResponse("500", "user-exist error", null);
+          res.status(500).send(userExistErrorResponse.toObject());
+        }
+      }
+    })
+  } catch (e) {
+    console.log(e);
+    const catchErrorResponse = new ErrorResponse("500",
+      'Internal server error', e.message);
+    res.status(500).send(catchErrorResponse.toObject());
+  }
+});
 
 //Verify User API goes here
+router.get('/verify/users/:userName', async (req, res) => {
+  try {
+    User.findOne({'userName': req.params.userName}, function(err, user) {
+      if (err) {
+        console.log(err);
+        const verifyUserMongodbErrorResponse = new ErrorResponse("500", "verification-user error", err);
+        res.status(500).send(verifyUserMongodbErrorResponse.toObject());
+      } else {
+        console.log(err);
+        const verifyUserResponse = new BaseResponse("200", "success", user);
+        res.json(verifyUserResponse.toObject());
+      }
+    })
+  } catch (e) {
+    console.log(e);
+    const verifyUserCatchErrorResponse = new ErrorResponse("500", "verification-user error", e.message);
+    res.status(500).send(verifyUserCatchErrorResponse.toObject());
+  }
+});
 
 
 //Verify Security Question API
+
 /*
   Verify Security question API is expecting a body with securityQuetion property, the property should be an array as follows:
   {
