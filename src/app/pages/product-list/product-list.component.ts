@@ -23,7 +23,7 @@ export class ProductListComponent implements OnInit {
 
   products: Product[];
 
-  displayedColumns: string[] = ['text', 'price'];
+  displayedColumns: string[] = ['text', 'price', 'functions'];
 
   constructor(private http: HttpClient, private dialog: MatDialog,
               private productService: ProductService) {
@@ -62,5 +62,4 @@ export class ProductListComponent implements OnInit {
       }
     });
   }
-
 }

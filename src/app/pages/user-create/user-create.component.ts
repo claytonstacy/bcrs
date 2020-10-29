@@ -12,7 +12,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {UserService} from '../../shared/user.service';
 import {User} from '../../shared/user.interface';
-import { SecurityQuestion } from 'src/app/shared/security-question.interface';
+import {SecurityQuestion} from 'src/app/shared/security-question.interface';
 import {SecurityQuestionService} from 'src/app/shared/security-question.service';
 
 @Component({

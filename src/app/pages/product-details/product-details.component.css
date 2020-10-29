@@ -1,0 +1,17 @@
+.product-details-container {
+  width: 40%;
+  min-width: 400px;
+  margin: 50px auto 50px;
+}
+
+.mat-raised-button {
+  margin-top: 10px;
+}
+
+.mat-cell {
+  padding-right: 60px;
+}
+
+.mat-header-cell {
+  padding-right: 60px;
+}
