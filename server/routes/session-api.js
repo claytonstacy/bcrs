@@ -79,7 +79,6 @@ router.post('/verify/users/:userName/security-questions', async(req, res) => {
           //Iterate through the supplied responses, find the corresponding DB answers and see if the answers match, if one doesn't exit immediately and set matched to false
            while (i < req.body.securityQuestions.length && matched === true) {
             matched = req.body.securityQuestions[i].answerText === user.securityQuestions.find(q => q.questionText === req.body.securityQuestions[i].questionText).answerText;
-            console.log('This is matched', matched);
             i++
           }
           //If all the answers passed, then send a success message
