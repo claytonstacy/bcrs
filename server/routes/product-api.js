@@ -16,10 +16,10 @@ const ErrorResponse = require('../services/error-response');
 let router = express.Router();
 
 /*******************************************************************************
- * All of these functions work using "app.use('/api/purchasable,
- * PurchasableApi);" in the app.js file.
- * Example: router.get('/:purchasableId') becomes
- * router.get('/api/purchasable/:purchasableId)
+ * All of these functions work using "app.use('/api/product,
+ * ProductApi);" in the app.js file.
+ * Example: router.get('/:productId') becomes
+ * router.get('/api/product/:productId)
  ******************************************************************************/
 
 /*******************************************************************************
@@ -39,7 +39,7 @@ router.get('/', async (req, res) => {
         } else {
           console.log(services);
           const successResponse = new BaseResponse("200",
-            "successful find all", services);
+            "success", services);
           res.json(successResponse.toObject());
         }
       })
@@ -63,7 +63,7 @@ router.get('/:id', async (req, res) => {
       if (error) {
         console.log(error);
         const errorResponse = new ErrorResponse("500",
-          "find-service-by-id error", error);
+          "find-product-by-id error", error);
         res.status(500).send(errorResponse.toObject());
       } else {
         console.log(document);
@@ -91,10 +91,10 @@ router.post('/', async (req, res) => {
       isEnabled: true
     };
 
-    Purchasable.create(aProduct, function (err, product) {
+    Product.create(aProduct, function (err, product) {
       if (err) {
         console.log(err);
-        const errorResponse = new ErrorResponse("500", "create-service error", err);
+        const errorResponse = new ErrorResponse("500", "create-product error", err);
         res.status(500).send(errorResponse.toObject());
       } else {
         console.log(product);
@@ -125,7 +125,7 @@ router.put('/:id', async (req, res) => {
         if (error) {
           console.log(error);
           const errorResponse = new ErrorResponse("500",
-            "update-service error", error);
+            "update-product error", error);
 
           res.status(500).send(errorResponse.toObject());
         } else {
@@ -140,7 +140,7 @@ router.put('/:id', async (req, res) => {
             if (err) {
               console.log(err);
               const errorResponse = new ErrorResponse("500",
-                "Update-service-and-save error", error);
+                "Update-product-and-save error", error);
 
               res.status(500).send(errorResponse.toObject());
             } else {
@@ -180,7 +180,7 @@ router.delete('/:id', async (req, res) => {
           isEnabled: false
         });
 
-        service.save(function (error, updatedProduct) {
+        product.save(function (error, updatedProduct) {
           if (error) {
             console.log(error);
             const errorResponse = new ErrorResponse(500,
@@ -189,7 +189,7 @@ router.delete('/:id', async (req, res) => {
           } else {
             console.log(updatedProduct);
             const successResponse = new BaseResponse(200,
-              'Delete Successful', updatedProduct);
+              'success', updatedProduct);
             res.json(successResponse.toObject());
           }
         })
