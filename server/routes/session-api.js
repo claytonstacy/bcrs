@@ -112,14 +112,14 @@ router.post('/register', async (req, res) => {
 router.get('/verify/users/:userName', async (req, res) => {
   try {
     User.findOne({'userName': req.params.userName}, function(err, user) {
-      if (err) {
+      if (user) {
+        console.log(user);
+        const verifyUserResponse = new BaseResponse("200", "success", user);
+        res.json(verifyUserResponse.toObject());
+      } else {
         console.log(err);
         const verifyUserMongodbErrorResponse = new ErrorResponse("500", "verification-user error", err);
         res.status(500).send(verifyUserMongodbErrorResponse.toObject());
-      } else {
-        console.log(err);
-        const verifyUserResponse = new BaseResponse("200", "success", user);
-        res.json(verifyUserResponse.toObject());
       }
     })
   } catch (e) {
@@ -152,19 +152,19 @@ router.post('/verify/users/:username/security-questions', function (req, res) {
       console.log(err);
     } else {
 
-	  let answer1IsValid = answerToSecurityQuestion1 === user.securityQuestions[0].answerText.trim(); //  valid answer question 1
+	    let answer1IsValid = answerToSecurityQuestion1 === user.securityQuestions[0].answerText.trim(); //  valid answer question 1
       let answer2IsValid = answerToSecurityQuestion2 === user.securityQuestions[1].answerText.trim(); //  valid answer question 2
       let answer3IsValid = answerToSecurityQuestion3 === user.securityQuestions[2].answerText.trim(); //  valid answer question 3
       if (answer1IsValid && answer2IsValid && answer3IsValid) { // ensure answers are valid
 
-        res.status(200).send({
+          res.status(200).send({
           message: 'success', // success
           auth: true
         })
       } else {
 
         res.status(200).send({
-          type: 'error', // error
+          message: 'error', // error
           auth: false
         })
       }
