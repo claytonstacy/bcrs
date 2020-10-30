@@ -142,6 +142,38 @@ router.get('/verify/users/:userName', async (req, res) => {
 	]
 }
 */
+router.post('/verify/users/:username/security-questions', function (req, res) {
+  const answerToSecurityQuestion1 = req.body.answerText1.trim(); // post answer question 1
+  const answerToSecurityQuestion2 = req.body.answerText2.trim(); // post answer question 2
+  const answerToSecurityQuestion3 = req.body.answerText3.trim(); // post answer question 3
+
+  User.findOne({'userName': req.params.username}, function (err, user) {
+    if (err) {
+      console.log(err);
+    } else {
+
+	  let answer1IsValid = answerToSecurityQuestion1 === user.securityQuestions[0].answerText.trim(); //  valid answer question 1
+      let answer2IsValid = answerToSecurityQuestion2 === user.securityQuestions[1].answerText.trim(); //  valid answer question 2
+      let answer3IsValid = answerToSecurityQuestion3 === user.securityQuestions[2].answerText.trim(); //  valid answer question 3
+      if (answer1IsValid && answer2IsValid && answer3IsValid) { // ensure answers are valid
+
+        res.status(200).send({
+          message: 'success', // success
+          auth: true
+        })
+      } else {
+
+        res.status(200).send({
+          type: 'error', // error
+          auth: false
+        })
+      }
+    }
+  })
+});
+
+
+/*
 router.post('/verify/users/:userName/security-questions', async(req, res) => {
   try {
     User.findOne({'userName': req.params.userName}, function(err, user) {  //Find the user object in the DB first
@@ -173,12 +205,12 @@ router.post('/verify/users/:userName/security-questions', async(req, res) => {
 
   }
 });
-
+*/
 //Reset Password API
 /* The Reset API needs a body with a password property
 */
 
-router.put('/users/:userName/reset-password',async(req, res) => {
+router.post('/users/:userName/reset-password',async(req, res) => {
   //hash the password before sending
   let hashedPassword = bcrypt.hashSync(req.body.password, saltRounds);
 

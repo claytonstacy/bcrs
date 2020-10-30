@@ -1,0 +1,55 @@
+<div fxLayout="row wrap" fxLayoutAlign="center start">
+  <div fxFlex.gt-sm="55" fxFlex="100">
+    <mat-card style="width: 80%;" class="mat-card-top pa-0">
+      <mat-card-title style="text-align: center; font-size: 40px; font-weight: lighter;"
+                      class="mat-headline">Verify Security Questions
+      </mat-card-title>
+      <br/> <br/>
+
+      <form *ngIf="selectedSecurityQuestions" [formGroup]="form" (ngSubmit)="verifySecurityQuestions()" #usernameForm>
+        <mat-card-content fxLayout="column">
+
+          <mat-list>
+            <mat-list-item>
+              {{question1}} &nbsp; &nbsp;
+            </mat-list-item>
+            <mat-list-item>
+              <mat-form-field fxFlex>
+                <input matInput
+                       [formControl]="form.controls['answerToSecurityQuestion1']"
+                       placeholder="Answer 1"/>
+              </mat-form-field>
+              </mat-list-item>
+
+              <mat-list-item>
+                {{question2}} &nbsp; &nbsp;
+              </mat-list-item>
+              <mat-list-item>
+                <mat-form-field fxFlex>
+                  <input matInput
+                       [formControl]="form.controls['answerToSecurityQuestion2']"
+                       placeholder="Answer 2"/>
+              </mat-form-field>
+            </mat-list-item>
+
+            <mat-list-item>
+              {{question3}} &nbsp; &nbsp;
+            </mat-list-item>
+            <mat-list-item>
+              <mat-form-field fxFlex>
+                <input matInput
+                       [formControl]="form.controls['answerToSecurityQuestion3']"
+                       placeholder="Answer 3"/>
+              </mat-form-field>
+            </mat-list-item>
+          </mat-list>
+
+          <br/><br/>
+          <div fxFlex fxLayoutAlign="end">
+            <button mat-raised-button color="accent">Submit</button>
+          </div>
+        </mat-card-content>
+      </form>
+    </mat-card>
+  </div>
+</div>

@@ -26,6 +26,9 @@ import { SessionGuard } from './session.guard';
 import { ProductListComponent } from './pages/product-list/product-list.component';
 import { ProductCreateComponent } from './pages/product-create/product-create.component';
 import { ProductDetailsComponent } from './pages/product-details/product-details.component';
+import { VerifyUsernameFormComponent } from './pages/verify-username-form/verify-username-form.component';
+import { VerifySecurityQuestionsFormComponent } from './pages/verify-security-questions-form/verify-security-questions-form.component';
+import { ResetPasswordFormComponent } from './pages/reset-password-form/reset-password-form.component';
 
 
 
@@ -96,7 +99,19 @@ const routes: Routes = [
       {
         path: 'not-found',
         component: NotFoundComponent
-      }
+      },
+      {
+				path: 'forgot',
+				component: VerifyUsernameFormComponent
+			},
+			{
+				path: 'verify-security-questions',
+				component: VerifySecurityQuestionsFormComponent
+			},
+			{
+				path: 'reset-password',
+				component: ResetPasswordFormComponent
+			},
 
     ]
   },
