@@ -3,7 +3,7 @@
 Title: BCRS
 Author: Clayton Stacy, Christine Bohnet, Jeff Shepherd
 Date: 29 Oct 2020
-Description: signin component ts file
+Description: verify-security-questions component ts file
 ============================================
 */
 
@@ -80,7 +80,7 @@ export class VerifySecurityQuestionsFormComponent implements OnInit {
 		}).subscribe(res => {
 
 			if (res['message'] == 'success') {
-    		this.router.navigate(['/session/reset-password'], { queryParams: { username: this.username }, skipLocationChange: true });
+    		this.router.navigate(['/session/reset-password'], { queryParams: { isAuthenticated: true, username: this.username }, skipLocationChange: true });
 
       } else {
         this.error = 'Unable to verify security question answers';

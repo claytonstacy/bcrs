@@ -3,7 +3,7 @@
 Title: BCRS
 Author: Clayton Stacy, Christine Bohnet, Jeff Shepherd
 Date: 29 Oct 2020
-Description: signin component ts file
+Description: reset password component ts file
 ============================================
 */
 
@@ -29,9 +29,6 @@ export class ResetPasswordFormComponent implements OnInit {
     this.isAuthenticated = this.route.snapshot.queryParamMap.get('isAuthenticated');
     this.username = this.route.snapshot.queryParamMap.get('username');
 
-  if (this.isAuthenticated) {
-    this.router.navigate(['/session/sign-in']);
-  }
   }
 
   ngOnInit() {

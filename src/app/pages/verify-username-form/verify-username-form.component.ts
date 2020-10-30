@@ -3,7 +3,7 @@
 Title: BCRS
 Author: Clayton Stacy, Christine Bohnet, Jeff Shepherd
 Date: 29 Oct 2020
-Description: signin component ts file
+Description: verify username form component ts file
 ============================================
 */
 
