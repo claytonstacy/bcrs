@@ -5,7 +5,11 @@
                       class="mat-headline">Verify Security Questions
       </mat-card-title>
       <br/> <br/>
-
+      <small style="color: #df546a" *ngIf="error">
+        {{ error }}
+        <br />
+      </small>
+      <br/>
       <form *ngIf="selectedSecurityQuestions" [formGroup]="form" (ngSubmit)="verifySecurityQuestions()" #usernameForm>
         <mat-card-content fxLayout="column">
 

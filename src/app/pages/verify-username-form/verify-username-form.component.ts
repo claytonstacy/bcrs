@@ -19,6 +19,7 @@ import {Router} from '@angular/router';
 })
 export class VerifyUsernameFormComponent implements OnInit {
   form: FormGroup;
+  error: string;
 
   constructor(private http: HttpClient, private fb: FormBuilder, private router: Router) {
   }
@@ -37,6 +38,7 @@ export class VerifyUsernameFormComponent implements OnInit {
         this.router.navigate(['/session/verify-security-questions'], {queryParams: {username: username}, skipLocationChange: true});
       }
     }, err => {
+      this.error = 'Invalid username';
       console.log(err);
     });
   }

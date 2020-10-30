@@ -6,6 +6,10 @@
       </mat-card-title>
       <br/>
       <br/>
+      <small style="color: #df546a" *ngIf="error">
+        {{ error }}
+        <br />
+      </small>
       <p>Please verify your username </p>
       <br/>
       <form [formGroup]="form" (ngSubmit)="validateUsername()" #usernameForm>
