@@ -8,7 +8,6 @@
 
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {HttpClient} from '@angular/common/http';
 import {ProductService} from '../../shared/product.service';
 import {Router} from '@angular/router';
 import {Product} from '../../shared/product.interface';
@@ -22,8 +21,8 @@ export class ProductCreateComponent implements OnInit {
 
   form: FormGroup;
 
-  constructor(private http: HttpClient, private fb: FormBuilder,
-              private router: Router, private productService: ProductService) { }
+  constructor(private fb: FormBuilder, private router: Router,
+              private productService: ProductService) { }
 
   /******************************************************************************
    * Initializes one form group with two controls
@@ -40,7 +39,7 @@ export class ProductCreateComponent implements OnInit {
 
   createProduct(): void {
     // The 'as' keyword tells TypeScript to ignore type inference and consider,
-    // in this case, an empty object named 'newUser' as an object of type User
+    // in this case, an empty object named 'aProduct' as an object of type Product
     const aProduct = {} as Product;
 
     aProduct.price = this.form.controls.price.value;
@@ -48,7 +47,7 @@ export class ProductCreateComponent implements OnInit {
 
     this.productService.createProduct(aProduct).subscribe(() => {
         console.log(aProduct);
-      this.router.navigate(['/products']);
+        this.router.navigate(['/products']);
     }, err => {
       console.log(err);
     });
@@ -58,10 +57,21 @@ export class ProductCreateComponent implements OnInit {
     this.router.navigate(['/products']);
   }
 
-  getErrorMessage() {
-    if (this.form.controls.text.hasError('required')) {
+  getPriceErrorMessage(): string {
+    if (this.form.controls.price.hasError('pattern')) {
+      return 'The price must be numeric';
+    } else if (this.form.controls.price.hasError('required')) {
       return 'You must enter a value';
+    } else {
+      return '';
     }
   }
 
+  getNameErrorMessage(): string {
+    if (this.form.controls.text.hasError('required')) {
+      return 'You must enter a value';
+    } else {
+      return '';
+      }
+  }
 }

@@ -6,12 +6,11 @@
  * Description: user create component
  *****************************************************************************/
 
-import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-import { User } from 'src/app/shared/user.interface';
-import { UserService } from 'src/app/shared/user.service';
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {ActivatedRoute, Router} from '@angular/router';
+import {User} from 'src/app/shared/user.interface';
+import {UserService} from 'src/app/shared/user.service';
 
 @Component({
   selector: 'app-user-details',
@@ -23,26 +22,26 @@ export class UserDetailsComponent implements OnInit {
   userId: string;
   form: FormGroup;
 
-  constructor(private route: ActivatedRoute, private http: HttpClient,
-              private fb: FormBuilder, private router: Router,
-              private userService: UserService) {
+  constructor(private route: ActivatedRoute, private fb: FormBuilder,
+              private router: Router, private userService: UserService) {
 
-      this.userId = this.route.snapshot.paramMap.get('userId');
+    this.userId = this.route.snapshot.paramMap.get('userId');
 
-      this.userService.findUserById(this.userId).subscribe(res => {
-        this.user = res.data;
-      }, err => {
-        console.log(err);
-      }, () => {
-        this.form.controls.firstName.setValue(this.user.firstName);
-        this.form.controls.lastName.setValue(this.user.lastName);
-        this.form.controls.phoneNumber.setValue(this.user.phoneNumber);
-        this.form.controls.address.setValue(this.user.address);
-        this.form.controls.email.setValue(this.user.email);
-      });
-    }
+    this.userService.findUserById(this.userId).subscribe(res => {
+      this.user = res.data;
+    }, err => {
+      console.log(err);
+    }, () => {
+      this.form.controls.firstName.setValue(this.user.firstName);
+      this.form.controls.lastName.setValue(this.user.lastName);
+      this.form.controls.phoneNumber.setValue(this.user.phoneNumber);
+      this.form.controls.address.setValue(this.user.address);
+      this.form.controls.email.setValue(this.user.email);
+    });
+  }
 
   ngOnInit(): void {
+    // any number of numbers between 0-9
     const numberPattern = '^[0-9]*$';
 
     this.form = this.fb.group({
@@ -62,22 +61,22 @@ export class UserDetailsComponent implements OnInit {
   }
 
   saveUser(): void {
-      // The 'as' keyword tells TypeScript to ignore type inference and consider,
-      // in this case, an empty object named 'newUser' as an object of type User
-      const updatedUser = {} as User;
+    // The 'as' keyword tells TypeScript to ignore type inference and consider,
+    // in this case, an empty object named 'newUser' as an object of type User
+    const updatedUser = {} as User;
 
-      updatedUser.firstName = this.form.controls.firstName.value;
-      updatedUser.lastName = this.form.controls.lastName.value;
-      updatedUser.phoneNumber = this.form.controls.phoneNumber.value;
-      updatedUser.address = this.form.controls.address.value;
-      updatedUser.email = this.form.controls.email.value;
+    updatedUser.firstName = this.form.controls.firstName.value;
+    updatedUser.lastName = this.form.controls.lastName.value;
+    updatedUser.phoneNumber = this.form.controls.phoneNumber.value;
+    updatedUser.address = this.form.controls.address.value;
+    updatedUser.email = this.form.controls.email.value;
 
-      this.userService.updateUser(this.userId, updatedUser).subscribe(() => {
-        this.router.navigate(['/users']);
-      }, err => {
-        console.log(err);
-      });
-    }
+    this.userService.updateUser(this.userId, updatedUser).subscribe(() => {
+      this.router.navigate(['/users']);
+    }, err => {
+      console.log(err);
+    });
+  }
 
   cancel(): void {
     this.router.navigate(['/users']);

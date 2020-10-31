@@ -8,7 +8,6 @@
 
 import {Component, OnInit} from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
-import {HttpClient} from '@angular/common/http';
 import {UserService} from '../../shared/user.service';
 import {User} from '../../shared/user.interface';
 import {DeleteRecordDialogComponent} from '../../shared/delete-record-dialog/delete-record-dialog.component';
@@ -20,15 +19,14 @@ import {DeleteRecordDialogComponent} from '../../shared/delete-record-dialog/del
 })
 export class UserListComponent implements OnInit {
   users: User[];
-  displayedColumns: string[] = ['userName', 'firstName', 'lastName', 'phoneNumber',
-    'address', 'email', 'functions'];
+  displayedColumns: string[] = ['userName', 'firstName', 'lastName',
+    'phoneNumber', 'address', 'email', 'functions'];
 
-  constructor(private http: HttpClient, private dialog: MatDialog,
-              private userService: UserService) {
+  constructor(private dialog: MatDialog, private userService: UserService) {
 
     this.userService.findAllUsers().subscribe(res => {
       this.users = res.data;
-      console.log(JSON.stringify(this.users));
+      // console.log(JSON.stringify(this.users));
     }, err => {
       console.log(err);
     });
@@ -37,12 +35,11 @@ export class UserListComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  delete(userId, recordId): void {
+  delete(userId: string, name: string): void {
     const dialogRef = this.dialog.open(DeleteRecordDialogComponent, {
       data: {
-        recordId,
         dialogHeader: 'Delete Record Dialog',
-        dialogBody: `Are you sure you want to delete user ${recordId}?`
+        dialogBody: `Are you sure you want to delete user ${name}?`
       },
       disableClose: true,
       width: '800px'

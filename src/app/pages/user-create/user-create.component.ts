@@ -6,14 +6,13 @@
  * Description: user create component
  *****************************************************************************/
 
-import {HttpClient} from '@angular/common/http';
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {UserService} from '../../shared/user.service';
 import {User} from '../../shared/user.interface';
-import {SecurityQuestion} from 'src/app/shared/security-question.interface';
-import {SecurityQuestionService} from 'src/app/shared/security-question.service';
+import {SecurityQuestion} from '../../shared/security-question.interface';
+import {SecurityQuestionService} from '../../shared/security-question.service';
 
 @Component({
   selector: 'app-user-create',
@@ -28,15 +27,17 @@ export class UserCreateComponent implements OnInit {
   roles: any;
   securityQuestionOptions: SecurityQuestion[];
 
-  constructor(private http: HttpClient, private fb: FormBuilder,
-              private router: Router, private userService: UserService,
+  constructor(private fb: FormBuilder, private router: Router,
+              private userService: UserService,
               private securityQuestionService: SecurityQuestionService) {
+
     this.securityQuestionService.findAllSecurityQuestions().subscribe(res => {
-      this.securityQuestionOptions = res['data'];
-      console.log('These are the security questions', JSON.stringify(this.securityQuestionOptions))
+      this.securityQuestionOptions = res.data;
+      console.log('These are the security questions',
+        JSON.stringify(this.securityQuestionOptions));
     }, err => {
       console.log(err);
-    })
+    });
   }
 
   /******************************************************************************
@@ -45,15 +46,17 @@ export class UserCreateComponent implements OnInit {
    * value before it can be submitted.
    *****************************************************************************/
   ngOnInit(): void {
+    // any number of numbers between 0-9
     const numberPattern = '^[0-9]*$';
+    // at least one number, at least one upper case letter, and length 8+
     const passwordPattern = '^(?=.+[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,}$';
 
     this.form = this.fb.group({
       userName: [null, Validators.compose([Validators.required,
-                Validators.minLength(3)])],
+        Validators.minLength(3)])],
 
       password: [null, Validators.compose([Validators.required,
-                Validators.pattern(passwordPattern)])],
+        Validators.pattern(passwordPattern)])],
 
       firstName: [null, Validators.compose([Validators.required])],
 
@@ -97,16 +100,22 @@ export class UserCreateComponent implements OnInit {
     newUser.email = this.form.controls.email.value;
 
     newUser.securityQuestions = [
-      {questionText: this.form.controls.selectedQuestion1.value,
-         answerText: this.form.controls.securityQuestionAnswer1.value},
+      {
+        questionText: this.form.controls.selectedQuestion1.value,
+        answerText: this.form.controls.securityQuestionAnswer1.value
+      },
 
-      {questionText: this.form.controls.selectedQuestion2.value,
-         answerText: this.form.controls.securityQuestionAnswer2.value},
+      {
+        questionText: this.form.controls.selectedQuestion2.value,
+        answerText: this.form.controls.securityQuestionAnswer2.value
+      },
 
-      {questionText: this.form.controls.selectedQuestion3.value,
-         answerText: this.form.controls.securityQuestionAnswer3.value}]
+      {
+        questionText: this.form.controls.selectedQuestion3.value,
+        answerText: this.form.controls.securityQuestionAnswer3.value
+      }];
 
-      this.userService.createUser(newUser).subscribe(() => {
+    this.userService.createUser(newUser).subscribe(() => {
       console.log('Adding this user', JSON.stringify(newUser));
       this.router.navigate(['/users']);
     }, err => {
@@ -117,5 +126,4 @@ export class UserCreateComponent implements OnInit {
   cancel(): void {
     this.router.navigate(['/users']);
   }
-
 }
