@@ -1,0 +1,16 @@
+.mat-card {
+  margin-top: 2%;
+  background-color: rgb(161, 160, 160);
+}
+
+.p {
+  text-align: center;
+}
+
+.mat-card-title {
+  text-align: center;
+}
+
+.mat-card-content {
+  margin-left: 8%;
+}
