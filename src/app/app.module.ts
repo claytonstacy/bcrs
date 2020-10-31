@@ -49,7 +49,8 @@ import { VerifyUsernameFormComponent } from './pages/verify-username-form/verify
 import { VerifySecurityQuestionsFormComponent } from './pages/verify-security-questions-form/verify-security-questions-form.component';
 import { ResetPasswordFormComponent } from './pages/reset-password-form/reset-password-form.component';
 import { RegisterComponent } from './pages/register/register.component';
-
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatListModule } from '@angular/material/list';
 
 @NgModule({
   declarations: [
@@ -94,8 +95,8 @@ import { RegisterComponent } from './pages/register/register.component';
     MatTableModule,
     MatDialogModule,
     MatSelectModule,
-    RegisterComponent
-
+    MatStepperModule,
+    MatListModule
   ],
   providers: [],
   bootstrap: [AppComponent]
