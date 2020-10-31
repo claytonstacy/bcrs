@@ -43,6 +43,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { ProductListComponent } from './pages/product-list/product-list.component';
 import { ProductCreateComponent } from './pages/product-create/product-create.component';
 import { ProductDetailsComponent } from './pages/product-details/product-details.component';
+import { RegisterComponent } from './pages/register/register.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +65,8 @@ import { ProductDetailsComponent } from './pages/product-details/product-details
     PhoneFormatPipe,
     ProductListComponent,
     ProductCreateComponent,
-    ProductDetailsComponent
+    ProductDetailsComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -82,7 +84,8 @@ import { ProductDetailsComponent } from './pages/product-details/product-details
     MatFormFieldModule,
     MatTableModule,
     MatDialogModule,
-    MatSelectModule
+    MatSelectModule,
+    RegisterComponent
 
   ],
   providers: [],
