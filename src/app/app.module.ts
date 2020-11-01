@@ -25,7 +25,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AboutComponent } from './pages/about/about.component';
 import { ContactComponent } from './pages/contact/contact.component';
@@ -57,7 +57,12 @@ import { ResetPasswordFormComponent } from './pages/reset-password-form/reset-pa
 import { RegisterComponent } from './pages/register/register.component';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatListModule } from '@angular/material/list';
+<<<<<<< HEAD
 >>>>>>> 1c2a3038e07d549a9b18540da3999731fa70689f
+=======
+import { ErrorComponent } from './pages/error/error.component';
+import { ErrorInterceptor } from './shared/error.interceptor';
+>>>>>>> de903d57dbe8ca517c6bb68b86bdc487ee991a3d
 
 @NgModule({
   declarations: [
@@ -85,8 +90,13 @@ import { MatListModule } from '@angular/material/list';
     VerifyUsernameFormComponent,
     VerifySecurityQuestionsFormComponent,
     ResetPasswordFormComponent,
+<<<<<<< HEAD
 >>>>>>> 1c2a3038e07d549a9b18540da3999731fa70689f
     RegisterComponent
+=======
+    RegisterComponent,
+    ErrorComponent
+>>>>>>> de903d57dbe8ca517c6bb68b86bdc487ee991a3d
   ],
   imports: [
     BrowserModule,
@@ -112,7 +122,11 @@ import { MatListModule } from '@angular/material/list';
 =======
 >>>>>>> 1c2a3038e07d549a9b18540da3999731fa70689f
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

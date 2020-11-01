@@ -33,6 +33,7 @@ import { VerifyUsernameFormComponent } from './pages/verify-username-form/verify
 import { VerifySecurityQuestionsFormComponent } from './pages/verify-security-questions-form/verify-security-questions-form.component';
 import { ResetPasswordFormComponent } from './pages/reset-password-form/reset-password-form.component';
 import { RegisterComponent } from './pages/register/register.component';
+import { ErrorComponent } from './pages/error/error.component'
 
 >>>>>>> 1c2a3038e07d549a9b18540da3999731fa70689f
 
@@ -107,7 +108,18 @@ const routes: Routes = [
       },
       {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+        path: '404',
+        component: NotFoundComponent
+      },
+      {
+        path: '500',
+        component: ErrorComponent
+      },
+      {
+>>>>>>> de903d57dbe8ca517c6bb68b86bdc487ee991a3d
 				path: 'forgot',
 				component: VerifyUsernameFormComponent
 			},
