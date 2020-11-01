@@ -55,7 +55,6 @@ router.post('/signin', async(req, res) => {
  * Register
  ******************************************************************************/
 router.post('/register', async (req, res) => {
-
   try {
     User.findOne({'userName': req.body.userName}, function(err, user) {
       if (err) {
@@ -82,7 +81,7 @@ router.post('/register', async (req, res) => {
             securityQuestions: req.body.securityQuestions
           };
 
-          User.create(aUser, function (err, user) {
+          User.create(aUser, function(err, user) {
             if (err) {
               console.log(err);
               const errorResponse = new ErrorResponse("500", "create-user error", err);

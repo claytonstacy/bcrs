@@ -123,5 +123,8 @@
       }
     }
   },
-  "defaultProject": "bcrs"
+  "defaultProject": "bcrs",
+  "cli": {
+    "analytics": false
+  }
 }

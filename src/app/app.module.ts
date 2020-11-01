@@ -36,13 +36,17 @@ import { SecurityQuestionListComponent } from './pages/security-question-list/se
 import { SecurityQuestionCreateComponent } from './pages/security-question-create/security-question-create.component';
 import { SecurityQuestionDetailsComponent } from './pages/security-question-details/security-question-details.component';
 import { MatTableModule } from '@angular/material/table';
-import {MatDialogModule} from '@angular/material/dialog';
+import { MatDialogModule } from '@angular/material/dialog';
 import { DeleteRecordDialogComponent } from './shared/delete-record-dialog/delete-record-dialog.component';
 import { PhoneFormatPipe } from './shared/phone-format.pipe';
 import { MatSelectModule } from '@angular/material/select';
 import { ProductListComponent } from './pages/product-list/product-list.component';
 import { ProductCreateComponent } from './pages/product-create/product-create.component';
 import { ProductDetailsComponent } from './pages/product-details/product-details.component';
+import { RegisterComponent } from './pages/register/register.component';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatListModule } from '@angular/material/list';
+
 
 @NgModule({
   declarations: [
@@ -64,7 +68,8 @@ import { ProductDetailsComponent } from './pages/product-details/product-details
     PhoneFormatPipe,
     ProductListComponent,
     ProductCreateComponent,
-    ProductDetailsComponent
+    ProductDetailsComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -82,7 +87,9 @@ import { ProductDetailsComponent } from './pages/product-details/product-details
     MatFormFieldModule,
     MatTableModule,
     MatDialogModule,
-    MatSelectModule
+    MatSelectModule,
+    MatStepperModule,
+    MatListModule
 
   ],
   providers: [],

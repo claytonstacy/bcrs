@@ -26,7 +26,7 @@ import { SessionGuard } from './session.guard';
 import { ProductListComponent } from './pages/product-list/product-list.component';
 import { ProductCreateComponent } from './pages/product-create/product-create.component';
 import { ProductDetailsComponent } from './pages/product-details/product-details.component';
-
+import { RegisterComponent } from './pages/register/register.component';
 
 
 const routes: Routes = [
@@ -96,8 +96,11 @@ const routes: Routes = [
       {
         path: 'not-found',
         component: NotFoundComponent
+      },
+      {
+        path: 'register',
+        component: RegisterComponent
       }
-
     ]
   },
   {
