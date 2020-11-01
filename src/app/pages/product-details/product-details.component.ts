@@ -6,11 +6,11 @@
  * Description: product details
  *****************************************************************************/
 
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Product } from '../../shared/product.interface';
-import { ProductService } from '../../shared/product.service';
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {ActivatedRoute, Router} from '@angular/router';
+import {Product} from '../../shared/product.interface';
+import {ProductService} from '../../shared/product.service';
 
 @Component({
   selector: 'app-product-details',
@@ -25,7 +25,7 @@ export class ProductDetailsComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
               private fb: FormBuilder, private router: Router,
-              private productService: ProductService ) {
+              private productService: ProductService) {
 
     this.productId = this.route.snapshot.paramMap.get('productId');
 
@@ -46,33 +46,46 @@ export class ProductDetailsComponent implements OnInit {
       text: [null, Validators.compose([Validators.required])],
 
       price: [null, Validators.compose([Validators.required,
-                    Validators.pattern(decimalPattern)])]
+        Validators.pattern(decimalPattern)])]
     });
   }
 
   saveProduct(): void {
-      // The 'as' keyword tells TypeScript to ignore type inference and consider,
-      // in this case, an empty object named 'newUser' as an object of type User
-      const updatedProduct = {} as Product;
+    // The 'as' keyword tells TypeScript to ignore type inference and consider,
+    // in this case, an empty object named 'newUser' as an object of type User
+    const updatedProduct = {} as Product;
 
-      updatedProduct.text = this.form.controls.text.value;
-      updatedProduct.price = this.form.controls.price.value;
+    updatedProduct.text = this.form.controls.text.value;
+    updatedProduct.price = this.form.controls.price.value;
 
-      this.productService.updateProduct(this.productId, updatedProduct)
-                         .subscribe(() => {
-                            this.router.navigate(['/products']);
+    this.productService.updateProduct(this.productId, updatedProduct)
+      .subscribe(() => {
+        this.router.navigate(['/products']);
       }, err => {
         console.log(err);
       });
-    }
+  }
 
   cancel(): void {
     this.router.navigate(['/products']);
   }
 
-  getErrorMessage() {
-    if (this.form.controls.text.hasError('required')) {
+  getPriceErrorMessage(): string {
+    if (this.form.controls.price.hasError('pattern')) {
+      return 'The price must be numeric';
+    } else if (this.form.controls.price.hasError('required')) {
       return 'You must enter a value';
+    } else {
+      return '';
     }
   }
+
+  getNameErrorMessage(): string {
+    if (this.form.controls.text.hasError('required')) {
+      return 'You must enter a value';
+    } else {
+      return '';
+    }
+  }
+
 }

@@ -8,11 +8,9 @@
 
 import {Component, OnInit} from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
-import {HttpClient} from '@angular/common/http';
 import {Product} from '../../shared/product.interface';
 import {ProductService} from '../../shared/product.service';
-import {DeleteRecordDialogComponent} from
-        '../../shared/delete-record-dialog/delete-record-dialog.component';
+import {DeleteRecordDialogComponent} from '../../shared/delete-record-dialog/delete-record-dialog.component';
 
 @Component({
   selector: 'app-product-list',
@@ -25,7 +23,7 @@ export class ProductListComponent implements OnInit {
 
   displayedColumns: string[] = ['text', 'price', 'functions'];
 
-  constructor(private http: HttpClient, private dialog: MatDialog,
+  constructor(private dialog: MatDialog,
               private productService: ProductService) {
 
     this.productService.findAllProducts().subscribe(res => {
@@ -51,13 +49,9 @@ export class ProductListComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result === 'confirm') {
-        this.productService.deleteProduct(productId)
-                               .subscribe(res => {
-
+        this.productService.deleteProduct(productId).subscribe(res => {
           console.log('Product deleted');
-
-          this.products = this.products
-                                  .filter(item => item._id !== productId);
+          this.products = this.products.filter(item => item._id !== productId);
         });
       }
     });

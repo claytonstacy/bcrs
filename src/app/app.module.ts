@@ -17,12 +17,14 @@ import { HomeComponent } from './pages/home/home.component';
 import { BaseLayoutComponent } from './shared/base-layout/base-layout.component';
 import { AuthLayoutComponent } from './shared/auth-layout/auth-layout.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
+
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
+
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AboutComponent } from './pages/about/about.component';
@@ -43,10 +45,19 @@ import { MatSelectModule } from '@angular/material/select';
 import { ProductListComponent } from './pages/product-list/product-list.component';
 import { ProductCreateComponent } from './pages/product-create/product-create.component';
 import { ProductDetailsComponent } from './pages/product-details/product-details.component';
+<<<<<<< HEAD
 import { RegisterComponent } from './pages/register/register.component';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatListModule } from '@angular/material/list';
 
+=======
+import { VerifyUsernameFormComponent } from './pages/verify-username-form/verify-username-form.component';
+import { VerifySecurityQuestionsFormComponent } from './pages/verify-security-questions-form/verify-security-questions-form.component';
+import { ResetPasswordFormComponent } from './pages/reset-password-form/reset-password-form.component';
+import { RegisterComponent } from './pages/register/register.component';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatListModule } from '@angular/material/list';
+>>>>>>> 1c2a3038e07d549a9b18540da3999731fa70689f
 
 @NgModule({
   declarations: [
@@ -69,6 +80,12 @@ import { MatListModule } from '@angular/material/list';
     ProductListComponent,
     ProductCreateComponent,
     ProductDetailsComponent,
+<<<<<<< HEAD
+=======
+    VerifyUsernameFormComponent,
+    VerifySecurityQuestionsFormComponent,
+    ResetPasswordFormComponent,
+>>>>>>> 1c2a3038e07d549a9b18540da3999731fa70689f
     RegisterComponent
   ],
   imports: [
@@ -90,7 +107,10 @@ import { MatListModule } from '@angular/material/list';
     MatSelectModule,
     MatStepperModule,
     MatListModule
+<<<<<<< HEAD
 
+=======
+>>>>>>> 1c2a3038e07d549a9b18540da3999731fa70689f
   ],
   providers: [],
   bootstrap: [AppComponent]

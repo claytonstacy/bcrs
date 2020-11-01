@@ -14,7 +14,7 @@
                    [formControl]="form.controls.text"
                    placeholder="Product name">
             <mat-error *ngIf="form.controls.text.invalid">
-                   {{getErrorMessage()}}</mat-error>
+                   {{getNameErrorMessage()}}</mat-error>
           </mat-form-field>
 
           <mat-form-field>
@@ -24,7 +24,7 @@
                    [formControl]="form.controls.price"
                    placeholder="Price">
             <mat-error *ngIf="form.controls.price.invalid">
-                   {{getErrorMessage()}}</mat-error>
+                   {{getPriceErrorMessage()}}</mat-error>
           </mat-form-field>
         </div>
       </mat-card-content>

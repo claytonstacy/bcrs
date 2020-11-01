@@ -31,15 +31,15 @@ router.get('/', async (req, res) => {
     Product.find({})
       .where('isEnabled')
       .equals(true)
-      .exec(function (error, services) {
+      .exec(function (error, products) {
         if (error) {
           console.log(error);
           const errorResponse = new ErrorResponse("500", "error", error);
           res.status(500).send(errorResponse.toObject());
         } else {
-          console.log(services);
+          console.log(products);
           const successResponse = new BaseResponse("200",
-            "success", services);
+            "success", products);
           res.json(successResponse.toObject());
         }
       })
