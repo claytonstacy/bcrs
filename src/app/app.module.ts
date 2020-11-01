@@ -39,6 +39,7 @@ import { SecurityQuestionCreateComponent } from './pages/security-question-creat
 import { SecurityQuestionDetailsComponent } from './pages/security-question-details/security-question-details.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatMenuModule } from '@angular/material/menu';
 import { DeleteRecordDialogComponent } from './shared/delete-record-dialog/delete-record-dialog.component';
 import { PhoneFormatPipe } from './shared/phone-format.pipe';
 import { MatSelectModule } from '@angular/material/select';
@@ -89,6 +90,7 @@ import { ErrorInterceptor } from './shared/error.interceptor';
     MatToolbarModule,
     MatButtonModule,
     MatIconModule,
+    MatMenuModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
