@@ -6,14 +6,14 @@
  * Description: Interceptor to redirect 404 and 500
  *****************************************************************************/
 
-/*  import { Injectable } from '@angular/core';
+ import { Injectable } from '@angular/core';
  import {
   HttpRequest,
   HttpHandler,
   HttpEvent,
   HttpInterceptor
 } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { Router } from '@angular/router';
 import { catchError } from 'rxjs/operators';
 
@@ -22,7 +22,16 @@ export class ErrorInterceptor implements HttpInterceptor {
 
   constructor(private router: Router) {}
 
-  intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    return next.handle(request);
+  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    return next.handle(req).pipe(catchError( err => {
+      if ([404].indexOf(err.status) !== -1) {
+        this.router.navigate(['/session/404']);
+      }
+      if ([500].indexOf(err.status) !== -1) {
+        this.router.navigate(['/session/500']);
+      }
+      const error = err.error.message || err.statusText;
+      return throwError(error);
+    }));
   }
-} */
+}

@@ -30,6 +30,7 @@ import { VerifyUsernameFormComponent } from './pages/verify-username-form/verify
 import { VerifySecurityQuestionsFormComponent } from './pages/verify-security-questions-form/verify-security-questions-form.component';
 import { ResetPasswordFormComponent } from './pages/reset-password-form/reset-password-form.component';
 import { RegisterComponent } from './pages/register/register.component';
+import { ErrorComponent } from './pages/error/error.component'
 
 
 
@@ -100,6 +101,14 @@ const routes: Routes = [
       {
         path: 'not-found',
         component: NotFoundComponent
+      },
+      {
+        path: '404',
+        component: NotFoundComponent
+      },
+      {
+        path: '500',
+        component: ErrorComponent
       },
       {
 				path: 'forgot',
