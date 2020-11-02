@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../../shared/user.service';
 import { User } from '../../shared/user.interface';
+import { UserDataService } from '../../shared/user-data.service';
 
 @Component({
   selector: 'app-user-profile',
@@ -17,9 +18,11 @@ export class UserProfileComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private http: HttpClient,
     private fb: FormBuilder, private router: Router,
-    private userService: UserService) {
+    private userService: UserService, private userData: UserDataService) {
 
-        this.userId = this.route.snapshot.paramMap.get('userId');
+        //this.userId = this.route.snapshot.paramMap.get('userId');
+        console.log('ID: ' + userData.id);
+        this.userId = userData.id;
 
         this.userService.findUserById(this.userId).subscribe(res => {
           this.user = res.data;
