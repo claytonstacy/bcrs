@@ -4,21 +4,42 @@
   <nav fxFlex>
     <mat-toolbar color="primary">
       <!-- navbar container -->
-      <div class="navbar-container">
-        <!-- logo -->
+      <div class="navbar-container" fxLayout="row">
+        <div fxFlex fxLayoutAlign="start center">
+                  <!-- logo -->
         <button class="logo" routerLink="/" mat-button color="accent">
-        <img src="../../../assets/BRCSLogo160x160.png" alt="Bob's Computer Repair Shop Logo" height="55"/>
-        </button>
-
-        <button class="navbar-link" routerLink="/" mat-button color="accent">Home</button>
-        <button class="navbar-link" routerLink="/about" mat-button color="accent">About</button>
-        <button class="navbar-link" routerLink="/contact" mat-button color="accent">Contact</button>
-        <button class="navbar-link" routerLink="/users" mat-button color="accent">User Config</button>
-        <button class="navbar-link" routerLink="/security-questions" mat-button color="accent">SQ Config</button>
-        <button class="navbar-link" routerLink="/products" mat-button color="accent">Product Config</button>
-        <button class="navbar-link" mat-button color="accent" (click)="logout()">Logout</button>
+          <img src="../../../assets/BRCSLogo160x160.png" alt="Bob's Computer Repair Shop Logo" height="55"/>
+          </button>
+          <button class="navbar-link" routerLink="/" mat-button color="accent">Home</button>
+          <button class="navbar-link" routerLink="/about" mat-button color="accent">About</button>
+          <button class="navbar-link" routerLink="/contact" mat-button color="accent">Contact</button>
+        </div>
+        <div fxFlex fxLayoutAlign="end center">
+          <button class="navbar-link" mat-button color="accent" (click)="logout()">Logout</button>
+          <button [matMenuTriggerFor]="userOptions" class="user-options-menu" color="accent" mat-icon-button>
+            <mat-icon>account_circle</mat-icon>
+            <mat-menu #userOptions="matMenu" x-position="before">
+              <button mat-menu-item>
+                Profile Settings
+              </button>
+              <button mat-menu-item [matMenuTriggerFor]="adminOptions">
+                Administrator Options
+              </button>
+              </mat-menu>
+              <mat-menu #adminOptions="matMenu">
+              <button mat-menu-item routerLink="/users">
+                Configure Users
+              </button>
+              <button mat-menu-item routerLink="/security-questions">
+                Configure Security Questions
+              </button>
+              <button mat-menu-item routerLink="/products">
+                Configure Products
+              </button>
+            </mat-menu>
+          </button>
+        </div>
       </div>
-
     </mat-toolbar>
   </nav>
 </div>

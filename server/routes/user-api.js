@@ -80,47 +80,6 @@ router.get('/:id', async (req, res) => {
 });
 
 /*******************************************************************************
- * Create user moved to session api
- ******************************************************************************/
-/*router.post('/', async (req, res) => {
-
-  try {
-    let hashedPassword = bcrypt.hashSync(req.body.password, saltRounds);
-
-    let aUser = {
-      userName: req.body.userName,
-      password: hashedPassword,
-      firstName: req.body.firstName,
-      lastName: req.body.lastName,
-      phoneNumber: req.body.phoneNumber,
-      address: req.body.address,
-      email: req.body.email,
-      role: {role: 'standard'},
-      securityQuestions: req.body.securityQuestions
-    };
-
-    User.create(aUser, function (err, user) {
-      if (err) {
-        console.log(err);
-        const errorResponse = new ErrorResponse("500", "create-user error", err);
-        res.status(500).send(errorResponse.toObject());
-      } else {
-        console.log(user);
-        const successResponse = new BaseResponse("200", "success", user);
-        res.json(successResponse.toObject());
-      }
-    })
-
-  } catch (e) {
-    console.log(e);
-    const catchErrorResponse = new ErrorResponse("500",
-      'Internal server error', e.message);
-    res.status(500).send(catchErrorResponse.toObject());
-  }
-})
-*/
-
-/*******************************************************************************
  * Update user
  * All five fields in the set method must be included. Otherwise, the related
  * field will become undefined after this is executed.

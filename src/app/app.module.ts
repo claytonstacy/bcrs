@@ -39,30 +39,23 @@ import { SecurityQuestionCreateComponent } from './pages/security-question-creat
 import { SecurityQuestionDetailsComponent } from './pages/security-question-details/security-question-details.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatMenuModule } from '@angular/material/menu';
 import { DeleteRecordDialogComponent } from './shared/delete-record-dialog/delete-record-dialog.component';
 import { PhoneFormatPipe } from './shared/phone-format.pipe';
 import { MatSelectModule } from '@angular/material/select';
 import { ProductListComponent } from './pages/product-list/product-list.component';
 import { ProductCreateComponent } from './pages/product-create/product-create.component';
 import { ProductDetailsComponent } from './pages/product-details/product-details.component';
-<<<<<<< HEAD
-import { RegisterComponent } from './pages/register/register.component';
-import { MatStepperModule } from '@angular/material/stepper';
-import { MatListModule } from '@angular/material/list';
-
-=======
 import { VerifyUsernameFormComponent } from './pages/verify-username-form/verify-username-form.component';
 import { VerifySecurityQuestionsFormComponent } from './pages/verify-security-questions-form/verify-security-questions-form.component';
 import { ResetPasswordFormComponent } from './pages/reset-password-form/reset-password-form.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatListModule } from '@angular/material/list';
-<<<<<<< HEAD
->>>>>>> 1c2a3038e07d549a9b18540da3999731fa70689f
-=======
 import { ErrorComponent } from './pages/error/error.component';
 import { ErrorInterceptor } from './shared/error.interceptor';
->>>>>>> de903d57dbe8ca517c6bb68b86bdc487ee991a3d
+import { UserProfileComponent } from './pages/user-profile/user-profile.component';
+
 
 @NgModule({
   declarations: [
@@ -85,18 +78,12 @@ import { ErrorInterceptor } from './shared/error.interceptor';
     ProductListComponent,
     ProductCreateComponent,
     ProductDetailsComponent,
-<<<<<<< HEAD
-=======
     VerifyUsernameFormComponent,
     VerifySecurityQuestionsFormComponent,
     ResetPasswordFormComponent,
-<<<<<<< HEAD
->>>>>>> 1c2a3038e07d549a9b18540da3999731fa70689f
-    RegisterComponent
-=======
     RegisterComponent,
-    ErrorComponent
->>>>>>> de903d57dbe8ca517c6bb68b86bdc487ee991a3d
+    ErrorComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -106,6 +93,7 @@ import { ErrorInterceptor } from './shared/error.interceptor';
     MatToolbarModule,
     MatButtonModule,
     MatIconModule,
+    MatMenuModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
@@ -117,10 +105,6 @@ import { ErrorInterceptor } from './shared/error.interceptor';
     MatSelectModule,
     MatStepperModule,
     MatListModule
-<<<<<<< HEAD
-
-=======
->>>>>>> 1c2a3038e07d549a9b18540da3999731fa70689f
   ],
   providers: [
     {

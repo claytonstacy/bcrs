@@ -21,7 +21,7 @@ import {SecurityQuestionService} from '../../shared/security-question.service';
 })
 
 export class UserCreateComponent implements OnInit {
-  user: any;
+  user: User;
   userId: string;
   form: FormGroup;
   roles: any;
