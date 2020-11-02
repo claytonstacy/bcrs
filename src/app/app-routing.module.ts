@@ -31,8 +31,7 @@ import { VerifySecurityQuestionsFormComponent } from './pages/verify-security-qu
 import { ResetPasswordFormComponent } from './pages/reset-password-form/reset-password-form.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { ErrorComponent } from './pages/error/error.component'
-
-
+import { UserProfileComponent } from './pages/user-profile/user-profile.component';
 
 const routes: Routes = [
   {
@@ -86,6 +85,10 @@ const routes: Routes = [
       {
         path: 'products/create/new',
         component: ProductCreateComponent
+      },
+      {
+        path: 'profile',
+        component: UserProfileComponent
       }
     ],
     canActivate: [SessionGuard]

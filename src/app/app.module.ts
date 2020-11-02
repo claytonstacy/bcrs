@@ -54,6 +54,7 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { MatListModule } from '@angular/material/list';
 import { ErrorComponent } from './pages/error/error.component';
 import { ErrorInterceptor } from './shared/error.interceptor';
+import { UserProfileComponent } from './pages/user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
@@ -80,7 +81,8 @@ import { ErrorInterceptor } from './shared/error.interceptor';
     VerifySecurityQuestionsFormComponent,
     ResetPasswordFormComponent,
     RegisterComponent,
-    ErrorComponent
+    ErrorComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,
