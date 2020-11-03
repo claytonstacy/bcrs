@@ -1,5 +1,5 @@
 /******************************************************************************
- * Title: purchasable-service.js
+ * Title: product.js
  * Author: Jeff Shepherd
  * Modified by:
  * Date: 10/27/2020
@@ -10,10 +10,10 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const serviceSchema = new Schema({
+const productSchema = new Schema({
   price: Number,
   text: {type: String, lowercase: true, trim: true},
   isEnabled: {type: Boolean, default: true}
 }, { collection: 'service' });
 
-module.exports = mongoose.model('PurchasableService', serviceSchema);
+module.exports = mongoose.model('Product', productSchema);

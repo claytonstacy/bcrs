@@ -1,5 +1,5 @@
 /******************************************************************************
- * Title: user-interface.ts
+ * Title: user.interface.ts
  * Author: Jeff Shepherd, Clayton Stacy, Chris Bohnet
  * Modified by:
  * Date: 10/22/2020

@@ -1,17 +1,17 @@
 <div fxLayout="row" fxLayoutAlign="center start" >
   <mat-card fxFlex="50" class="mat-card-top pa-0">
       <mat-card-title style="text-align: center; font-size: 48px; font-weight: lighter;" class="mat-headline">
-        User Sign-in Page
+        Signin
       </mat-card-title>
       <br />
+
       <mat-card-subtitle style="text-align: center; font-weight: lighter;">
-        <a routerLink="/" class="register-link">or click here to register </a>
+        <a routerLink="/session/forgot" class="register-link">Click here to reset password </a>
       </mat-card-subtitle>
+
+      <mat-card-subtitle style="text-align: center;">Please enter a valid username and password to proceed.</mat-card-subtitle>
+
       <mat-card-content>
-        <small style="color: #df546a" *ngIf="error">
-          {{ error }}
-          <br />
-        </small>
         <mat-card mat-elevation-z0>
       <form [formGroup]="form" (ngSubmit)="login(); form.reset();" #loginForm="ngForm">
         <mat-card-content fxLayout="column" fxLayoutGap="10px">
@@ -32,14 +32,24 @@
             [formControl]="form.controls['password']"
             placeholder="Password" />
           </mat-form-field>
+          <small style="color: #df546a" *ngIf="error">
+            {{ error }}
+            <br />
+          </small>
       </mat-card-content>
 
       <mat-card-actions class="submit-button">
         <button type="submit" fxFlex mat-raised-button class="submit-button" color="accent" mat-raised-button [disabled]="!form.valid">Sign-in</button>
       </mat-card-actions>
       </form>
+      <mat-card-subtitle style="text-align: end; font-weight: lighter;">
+        <a routerLink="/session/forgot" class="register-link">Reset password </a>
+      </mat-card-subtitle>
     </mat-card>
     </mat-card-content>
+    <mat-card-subtitle style="text-align: center; font-weight: lighter;">
+      <span>Don't have an account?  </span><a routerLink="/session/register" class="register-link">Click here  </a> <span>to register</span>
+    </mat-card-subtitle>
   </mat-card>
 
   </div>

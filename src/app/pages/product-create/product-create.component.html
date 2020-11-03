@@ -1,0 +1,45 @@
+<div class="product-create-container" fxLayout="column">
+  <mat-card class="mat-elevation-z8">
+    <mat-card-title>Product Create</mat-card-title>
+
+    <br>
+
+    <form [formGroup]="form" (ngSubmit)="createProduct()" #productForm="ngForm">
+      <mat-card-content>
+        <div fxLayout="row" fxLayoutGap="10px">
+
+          <mat-form-field>
+            <input type="text"
+                   matInput
+                   [formControl]="form.controls.text"
+                   placeholder="Product name">
+            <mat-error *ngIf="form.controls.text.invalid">
+                   {{getNameErrorMessage()}}</mat-error>
+          </mat-form-field>
+
+          <mat-form-field>
+            <span matPrefix>$&nbsp;</span>
+            <input type="text"
+                   matInput
+                   [formControl]="form.controls.price"
+                   placeholder="Price">
+            <mat-error *ngIf="form.controls.price.invalid">
+                   {{getPriceErrorMessage()}}</mat-error>
+          </mat-form-field>
+        </div>
+      </mat-card-content>
+
+      <mat-card-actions align="end">
+        <button mat-raised-button
+                (click)="cancel()"
+                color="primary">Cancel</button>
+
+        <button type="submit"
+                mat-raised-button
+                [disabled]="!productForm.form.valid"
+                color="accent">Submit</button>
+      </mat-card-actions>
+
+    </form>
+  </mat-card>
+</div>

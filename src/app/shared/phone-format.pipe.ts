@@ -18,7 +18,8 @@ export class PhoneFormatPipe implements PipeTransform {
 
   transform(value: string): string {
     let formattedPhone;
-    let pattern = new RegExp('^[0-9]*$');
+
+    let pattern = new RegExp('^[0-9]{10}$');
 
     if (value.match(pattern)) {
       let areaCode = value.substring(0, 3);

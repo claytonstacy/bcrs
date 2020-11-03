@@ -1,9 +1,9 @@
 /******************************************************************************
- * Title: purchasable-service-item.js
+ * Title: selected-product.js
  * Author: Jeff Shepherd
  * Modified by:
  * Date: 10/27/2020
- * Description: Schema for service items to be used with the invoice
+ * Description: Schema for products to be used with the invoice
  *****************************************************************************/
 
 "use strict";
@@ -11,9 +11,9 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-let purchasableServiceItem = new Schema({
+let selectedProduct = new Schema({
   text: String,
   price: Number
 });
 
-module.exports = purchasableServiceItem;
+module.exports = selectedProduct;

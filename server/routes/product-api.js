@@ -1,45 +1,45 @@
 /******************************************************************************
- * Title: purchasable-service-api.js
+ * Title: product-api.js
  * Author: Jeff Shepherd
  * Modified by:
  * Date: 10/27/2020
- * Description: purchasable service api
+ * Description: product api
  *****************************************************************************/
 
 "use strict";
 
 const express = require('express');
-const PurchasableService = require('../models/purchasable-service');
+const Product = require('../models/product');
 const BaseResponse = require('../services/base-response');
 const ErrorResponse = require('../services/error-response');
 
 let router = express.Router();
 
 /*******************************************************************************
- * All of these functions work using "app.use('/api/purchasableService,
- * PurchasableServiceApi);" in the app.js file.
- * Example: router.get('/:serviceId') becomes
- * router.get('/api/purchasableService/:serviceId)
+ * All of these functions work using "app.use('/api/product,
+ * ProductApi);" in the app.js file.
+ * Example: router.get('/:productId') becomes
+ * router.get('/api/product/:productId)
  ******************************************************************************/
 
 /*******************************************************************************
- * Find all services
+ * Find all products
  ******************************************************************************/
 router.get('/', async (req, res) => {
 
   try {
-    PurchasableService.find({})
+    Product.find({})
       .where('isEnabled')
       .equals(true)
-      .exec(function (error, services) {
+      .exec(function (error, products) {
         if (error) {
           console.log(error);
           const errorResponse = new ErrorResponse("500", "error", error);
           res.status(500).send(errorResponse.toObject());
         } else {
-          console.log(services);
+          console.log(products);
           const successResponse = new BaseResponse("200",
-            "successful find all", services);
+            "success", products);
           res.json(successResponse.toObject());
         }
       })
@@ -51,19 +51,19 @@ router.get('/', async (req, res) => {
 });
 
 /*******************************************************************************
- * Find service by ID
+ * Find product by ID
  ******************************************************************************/
 router.get('/:id', async (req, res) => {
 
   try {
-    PurchasableService.findOne({
+    Product.findOne({
       '_id': req.params.id
     }, function (error, document) {
 
       if (error) {
         console.log(error);
         const errorResponse = new ErrorResponse("500",
-          "find-service-by-id error", error);
+          "find-product-by-id error", error);
         res.status(500).send(errorResponse.toObject());
       } else {
         console.log(document);
@@ -79,26 +79,26 @@ router.get('/:id', async (req, res) => {
 });
 
 /*******************************************************************************
- * Create service
+ * Create product
  ******************************************************************************/
 router.post('/', async (req, res) => {
 
   try {
 
-    let aService = {
+    let aProduct = {
       price: req.body.price,
       text: req.body.text,
       isEnabled: true
     };
 
-    PurchasableService.create(aService, function (err, service) {
+    Product.create(aProduct, function (err, product) {
       if (err) {
         console.log(err);
-        const errorResponse = new ErrorResponse("500", "create-service error", err);
+        const errorResponse = new ErrorResponse("500", "create-product error", err);
         res.status(500).send(errorResponse.toObject());
       } else {
-        console.log(service);
-        const successResponse = new BaseResponse("200", "success", service);
+        console.log(product);
+        const successResponse = new BaseResponse("200", "success", product);
         res.json(successResponse.toObject());
       }
     })
@@ -112,41 +112,41 @@ router.post('/', async (req, res) => {
 })
 
 /*******************************************************************************
- * Update service
+ * Update product
  ******************************************************************************/
 router.put('/:id', async (req, res) => {
 
   try {
-    PurchasableService.findOne({
+    Product.findOne({
         '_id': req.params.id
       },
-      function (error, service) {
+      function (error, product) {
 
         if (error) {
           console.log(error);
           const errorResponse = new ErrorResponse("500",
-            "update-service error", error);
+            "update-product error", error);
 
           res.status(500).send(errorResponse.toObject());
         } else {
-          console.log(service);
+          console.log(product);
 
-          service.set({
+          product.set({
             price: req.body.price,
             text: req.body.text
           })
 
-          service.save(function (err, updatedService) {
+          product.save(function (err, updatedProduct) {
             if (err) {
               console.log(err);
               const errorResponse = new ErrorResponse("500",
-                "Update-service-and-save error", error);
+                "Update-product-and-save error", error);
 
               res.status(500).send(errorResponse.toObject());
             } else {
-              console.log(updatedService);
+              console.log(updatedProduct);
               const successResponse = new BaseResponse("200",
-                "success", updatedService);
+                "success", updatedProduct);
               res.json(successResponse.toObject());
             }
           })
@@ -162,12 +162,12 @@ router.put('/:id', async (req, res) => {
 })
 
 /*******************************************************************************
- * Delete service
+ * Delete product
  ******************************************************************************/
 router.delete('/:id', async (req, res) => {
 
   try {
-    PurchasableService.findOne({'_id': req.params.id}, function (err, service) {
+    Product.findOne({'_id': req.params.id}, function (err, product) {
       if (err) {
         console.log(err);
         const errorResponse = new ErrorResponse(500,
@@ -175,21 +175,21 @@ router.delete('/:id', async (req, res) => {
         res.status(500).send(errorResponse.toObject());
 
       } else {
-        console.log(service);
-        service.set({
+        console.log(product);
+        product.set({
           isEnabled: false
         });
 
-        service.save(function (error, updatedService) {
+        product.save(function (error, updatedProduct) {
           if (error) {
             console.log(error);
             const errorResponse = new ErrorResponse(500,
               'Internal Server Error', error);
             res.status(500).send(errorResponse.toObject());
           } else {
-            console.log(updatedService);
+            console.log(updatedProduct);
             const successResponse = new BaseResponse(200,
-              'Delete Successful', updatedService);
+              'success', updatedProduct);
             res.json(successResponse.toObject());
           }
         })

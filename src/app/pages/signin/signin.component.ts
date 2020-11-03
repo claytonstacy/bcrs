@@ -12,6 +12,7 @@ import { HttpClient } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
+import { UserDataService } from '../../shared/user-data.service';
 
 @Component({
   selector: 'app-signin',
@@ -23,7 +24,7 @@ export class SigninComponent implements OnInit {
   form: FormGroup;
   error: string;
 
-  constructor(private router: Router, private cookieService: CookieService, private fb: FormBuilder, private http: HttpClient) { }
+  constructor(private router: Router, private cookieService: CookieService, private fb: FormBuilder, private http: HttpClient, private userData: UserDataService) { }
 
   ngOnInit(): void {
     this.form = this.fb.group({
@@ -44,11 +45,12 @@ export class SigninComponent implements OnInit {
       console.log(res['data']);
       if (res['data'].userName) {
         this.cookieService.set('session_user', res['data'].userName, 1);
+        this.cookieService.set('session_id', res['data']._id);
         this.router.navigate(['/']);
       }
     }, err => {
       console.log(err)
-      this.error = err.error.message;
+      this.error = err;
     })
 
 

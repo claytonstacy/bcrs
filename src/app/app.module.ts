@@ -17,13 +17,15 @@ import { HomeComponent } from './pages/home/home.component';
 import { BaseLayoutComponent } from './shared/base-layout/base-layout.component';
 import { AuthLayoutComponent } from './shared/auth-layout/auth-layout.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
+
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+
+import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AboutComponent } from './pages/about/about.component';
 import { ContactComponent } from './pages/contact/contact.component';
@@ -36,10 +38,24 @@ import { SecurityQuestionListComponent } from './pages/security-question-list/se
 import { SecurityQuestionCreateComponent } from './pages/security-question-create/security-question-create.component';
 import { SecurityQuestionDetailsComponent } from './pages/security-question-details/security-question-details.component';
 import { MatTableModule } from '@angular/material/table';
-import {MatDialogModule} from '@angular/material/dialog';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatMenuModule } from '@angular/material/menu';
 import { DeleteRecordDialogComponent } from './shared/delete-record-dialog/delete-record-dialog.component';
 import { PhoneFormatPipe } from './shared/phone-format.pipe';
 import { MatSelectModule } from '@angular/material/select';
+import { ProductListComponent } from './pages/product-list/product-list.component';
+import { ProductCreateComponent } from './pages/product-create/product-create.component';
+import { ProductDetailsComponent } from './pages/product-details/product-details.component';
+import { VerifyUsernameFormComponent } from './pages/verify-username-form/verify-username-form.component';
+import { VerifySecurityQuestionsFormComponent } from './pages/verify-security-questions-form/verify-security-questions-form.component';
+import { ResetPasswordFormComponent } from './pages/reset-password-form/reset-password-form.component';
+import { RegisterComponent } from './pages/register/register.component';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatListModule } from '@angular/material/list';
+import { ErrorComponent } from './pages/error/error.component';
+import { ErrorInterceptor } from './shared/error.interceptor';
+import { UserProfileComponent } from './pages/user-profile/user-profile.component';
+
 
 @NgModule({
   declarations: [
@@ -58,7 +74,16 @@ import { MatSelectModule } from '@angular/material/select';
     SecurityQuestionCreateComponent,
     SecurityQuestionDetailsComponent,
     DeleteRecordDialogComponent,
-    PhoneFormatPipe
+    PhoneFormatPipe,
+    ProductListComponent,
+    ProductCreateComponent,
+    ProductDetailsComponent,
+    VerifyUsernameFormComponent,
+    VerifySecurityQuestionsFormComponent,
+    ResetPasswordFormComponent,
+    RegisterComponent,
+    ErrorComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -68,6 +93,7 @@ import { MatSelectModule } from '@angular/material/select';
     MatToolbarModule,
     MatButtonModule,
     MatIconModule,
+    MatMenuModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
@@ -76,10 +102,15 @@ import { MatSelectModule } from '@angular/material/select';
     MatFormFieldModule,
     MatTableModule,
     MatDialogModule,
-    MatSelectModule
-
+    MatSelectModule,
+    MatStepperModule,
+    MatListModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

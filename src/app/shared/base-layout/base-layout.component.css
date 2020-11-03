@@ -5,11 +5,12 @@
 .logo {
     margin-left: 75px;
     font-size: 24px;
-    font-weight: lighter;;
+    font-weight: lighter;
   }
 
   .navbar-container {
     padding: 5px;
+    width: 95%
   }
 
   .navbar-link {
