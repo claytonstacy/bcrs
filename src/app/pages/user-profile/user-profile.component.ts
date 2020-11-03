@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../../shared/user.service';
 import { User } from '../../shared/user.interface';
-import { UserDataService } from '../../shared/user-data.service';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-user-profile',
@@ -18,15 +18,15 @@ export class UserProfileComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private http: HttpClient,
     private fb: FormBuilder, private router: Router,
-    private userService: UserService, private userData: UserDataService) {
+    private userService: UserService, private cookieService: CookieService) {
 
-        //this.userId = this.route.snapshot.paramMap.get('userId');
-        console.log('ID: ' + userData.id);
-        this.userId = userData.id;
+        this.userId = this.cookieService.get('session_id');
+        console.log("User ID: " + this.userId);
 
         this.userService.findUserById(this.userId).subscribe(res => {
           this.user = res.data;
         }, err => {
+          this.router.navigate(['/signin']);
           console.log(err);
         }, () => {
           this.form.controls.firstName.setValue(this.user.firstName);
@@ -74,6 +74,6 @@ export class UserProfileComponent implements OnInit {
         }
 
       cancel(): void {
-        this.router.navigate(['/users']);
+        this.router.navigate(['/']);
       }
     }
