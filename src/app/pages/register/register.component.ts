@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 /*
 ============================================
 Title: BCRS
@@ -8,8 +7,6 @@ Description: App routing file
 ============================================
 */
 
-=======
->>>>>>> 1c2a3038e07d549a9b18540da3999731fa70689f
 import { Component, OnInit } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
@@ -92,16 +89,9 @@ export class RegisterComponent implements OnInit {
       email: contactInfo.email,
       selectedSecurityQuestions: selectedSecurityQuestions
     }).subscribe(res => {
-<<<<<<< HEAD
-      console.log(res['data']);
       if (res['data']) {
         // user is authenticated and access is granted
         this.cookieService.set('session_user', credentials.userName, 1);
-=======
-      if (res['data']) {
-        // user is authenticated and access is granted
-        this.cookieService.set('sessionuser', credentials.userName, 1);
->>>>>>> 1c2a3038e07d549a9b18540da3999731fa70689f
         this.router.navigate(['/']);
       } else {
         // user is not authenticated, return error message

@@ -1,17 +1,7 @@
 <mat-card class="mat-elevation-z8" fxLayout="column" style="width: 98%;" fxLayoutAlign="center">
-  <mat-card-title>User Profile</mat-card-title>
-  <mat-card-title align="end">Update Profile</mat-card-title>
+  <mat-card-title>Update User</mat-card-title>
   <br>
-
   <div fxLayout="row" fxLayoutGap="20px">
-
-    <mat-card class="mat-elevation-z0">
-
-
-        <mat-card-actions align="end">
-          <button mat-raised-button color="primary">Back</button>
-        </mat-card-actions>
-    </mat-card>
 
     <mat-card class="mat-elevation-z0" fxLayoutAlign="end">
         <form [formGroup]="form" (ngSubmit)="saveUser()" #userForm="ngForm">

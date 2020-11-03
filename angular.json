@@ -123,13 +123,5 @@
       }
     }
   },
-<<<<<<< HEAD
-  "defaultProject": "bcrs",
-  "cli": {
-    "analytics": false
-  }
-}
-=======
   "defaultProject": "bcrs"
 }
->>>>>>> 1c2a3038e07d549a9b18540da3999731fa70689f

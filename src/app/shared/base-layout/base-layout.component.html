@@ -13,7 +13,9 @@
           <button class="navbar-link" routerLink="/" mat-button color="accent">Home</button>
           <button class="navbar-link" routerLink="/about" mat-button color="accent">About</button>
           <button class="navbar-link" routerLink="/contact" mat-button color="accent">Contact</button>
+          <button class="navbar-link" routerLink="/profile" mat-button color="accent">Profile</button>
         </div>
+
         <div fxFlex fxLayoutAlign="end center">
           <button class="navbar-link" mat-button color="accent" (click)="logout()">Logout</button>
           <button [matMenuTriggerFor]="userOptions" class="user-options-menu" color="accent" mat-icon-button>
