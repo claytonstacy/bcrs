@@ -78,16 +78,16 @@ router.post('/register', async (req, res) => {
             address: req.body.address,
             email: req.body.email,
             role: standardRole,
-            securityQuestions: req.body.securityQuestions
+            securityQuestions: req.body.selectedSecurityQuestions
           };
-
-          User.create(aUser, function(err, user) {
+          console.log('This is what is sent', JSON.stringify(aUser));
+          User.create(aUser, function (err, user) {
             if (err) {
               console.log(err);
               const errorResponse = new ErrorResponse("500", "create-user error", err);
               res.status(500).send(errorResponse.toObject());
             } else {
-              console.log(user);
+              console.log('This is what was received', JSON.stringify(user));
               const successResponse = new BaseResponse("200", "success", user);
               res.json(successResponse.toObject());
             }
@@ -142,6 +142,7 @@ router.get('/verify/users/:userName', async (req, res) => {
 }
 */
 router.post('/verify/users/:username/security-questions', function (req, res) {
+  console.log('These are the answers', req.body)
   const answerToSecurityQuestion1 = req.body.answerText1.trim(); // post answer question 1
   const answerToSecurityQuestion2 = req.body.answerText2.trim(); // post answer question 2
   const answerToSecurityQuestion3 = req.body.answerText3.trim(); // post answer question 3

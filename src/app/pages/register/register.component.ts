@@ -58,6 +58,7 @@ export class RegisterComponent implements OnInit {
   }
 
   register(form) {
+    console.log('In the register method', form);
     const contactInfo = form.contactInfo;
     const securityQuestions = form.securityQuestions;
     const credentials = form.credentials;
@@ -77,7 +78,7 @@ export class RegisterComponent implements OnInit {
       }
     ];
 
-    console.log(selectedSecurityQuestions);
+    console.log('These are the selected questions', JSON.stringify(selectedSecurityQuestions));
 
     this.http.post('/api/session/register', {
       userName: credentials.userName,
