@@ -27,10 +27,13 @@
     "bcryptjs": "^2.4.3",
     "bluebird": "^3.7.2",
     "body-parser": "^1.19.0",
+    "chart.js": "^2.9.4",
     "express": "^4.17.1",
     "mongoose": "^5.10.5",
     "morgan": "^1.10.0",
     "ngx-cookie-service": "^10.0.1",
+    "primeicons": "^4.0.0",
+    "primeng": "^10.0.3",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"
