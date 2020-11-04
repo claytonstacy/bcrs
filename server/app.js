@@ -20,6 +20,8 @@ const SecurityQuestionApi = require('./routes/security-question.api'); //sets up
 const UserApi = require('./routes/user-api');
 const SessionApi = require('./routes/session-api');
 const ProductApi = require('./routes/product-api');
+const RoleApi = require('./routes/role-api');
+
 
 /**
  * App configurations
@@ -30,6 +32,7 @@ app.use(bodyParser.urlencoded({'extended': true}));
 app.use(morgan('dev'));
 app.use(express.static(path.join(__dirname, '../dist/bcrs')));
 app.use('/', express.static(path.join(__dirname, '../dist/bcrs')));
+
 
 /**
  * Variables
@@ -61,6 +64,8 @@ app.use('/api/security-questions', SecurityQuestionApi);
 app.use('/api/users', UserApi);
 app.use('/api/session', SessionApi);
 app.use('/api/product', ProductApi);
+app.use('/api/roles', RoleApi);
+
 
 /**
  * Create and start server
