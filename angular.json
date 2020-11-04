@@ -31,7 +31,10 @@
               "node_modules/primeng/resources/primeng.min.css"
             ],
             "scripts": [
+<<<<<<< HEAD
               "../node_modules/chart.js/dist/chart.js"
+=======
+>>>>>>> b6f79c00cd89ed9046b8b4dea2d47c59cce00fd2
             ]
           },
           "configurations": {
