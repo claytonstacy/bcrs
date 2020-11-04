@@ -9,7 +9,7 @@
 "use strict";
 
 const express = require('express');
-const Invoice = require('../models/invoice');
+//const Invoice = require('../models/invoice');
 const BaseResponse = require('../services/base-response');
 const ErrorResponse = require('../services/error-response');
 
@@ -33,30 +33,30 @@ let router = express.Router();
 
 router.get('/purchases-graph', async (req, res) => {
 
-  Invoice.aggregate([
-    {$match: {}}, //match all, find all
-    {$project: {
-      _id: 0,
-      items: 1 // instruction to return items. 1 is true, 0 would be false
-    }}
-  ])
+  // Invoice.aggregate([
+  //   {$match: {}}, //match all, find all
+  //   {$project: {
+  //     _id: 0,
+  //     items: 1 // instruction to return items. 1 is true, 0 would be false
+  //   }}
+  // ])
 
   try {
     // First match the desired field
-    let productsCountArray = await Invoice.aggregate([
-      { $match: { items: {} } }, //this line says to match all items
-      {
-        // second group instances of product names
-        $group: {
-          //here is where you would specify the name of the product
-          text: 'password reset',
-          // third count the number of each product
-          count: { $sum: 1}
-        }
-      }
-    ])
+    // let productsCountArray = await Invoice.aggregate([
+    //   { $match: { items: {} } }, //this line says to match all items
+    //   {
+    //     // second group instances of product names
+    //     $group: {
+    //       //here is where you would specify the name of the product
+    //       text: 'password reset',
+    //       // third count the number of each product
+    //       count: { $sum: 1}
+    //     }
+    //   }
+    // ])
 
-    console.log(productsCountArray);
+    // console.log(productsCountArray);
     /*
       items array should look like this:
       [

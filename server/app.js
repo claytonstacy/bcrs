@@ -65,7 +65,7 @@ app.use('/api/security-questions', SecurityQuestionApi);
 app.use('/api/users', UserApi);
 app.use('/api/session', SessionApi);
 app.use('/api/product', ProductApi);
-app.use('/api/invoice', InvoiceApi);
+//app.use('/api/invoice', InvoiceApi);
 app.use('/api/roles', RoleApi);
 
 
