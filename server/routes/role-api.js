@@ -40,7 +40,7 @@ router.get('/:id', async(req, res) => {
   })
 
 /*
-* FindAll - Finds all security questions not marked disabled.
+* FindAll - Finds all roles not marked disabled.
 */
 router.get('/', async(req, res) => {
   try {
@@ -65,7 +65,7 @@ router.get('/', async(req, res) => {
 })
 
 /*
-* CreateRole - Creates a new security question.
+* CreateRole - Creates a new role.
 */
 router.post('/', async(req, res) => {
   try {
@@ -73,15 +73,15 @@ router.post('/', async(req, res) => {
       text: req.body.text
      };
 
-     Role.create(sq, function(err,updatedRole){
+     Role.create(sq, function(err,createdRole){
        if (err) {
           console.log(err);
           const CreateRoleOnSaveMongoDbErrorResponse= new ErrorResponse('500', 'internal error', err);
           res.status(500).send(CreateRoleOnSaveMongoDbErrorResponse.toObject());
 
        } else {
-          console.log(updatedRole);
-          const CreateRoleResponse= new BaseResponse('200', 'Query Successful', updatedRole);
+          console.log(createdRole);
+          const CreateRoleResponse= new BaseResponse('200', 'Query Successful', createdRole);
           res.json(CreateRoleResponse.toObject());
        }
     }) //save end
@@ -95,7 +95,7 @@ router.post('/', async(req, res) => {
 })
 
 /*
-* UpdateRole - Updates a security question.
+* UpdateRole - Updates a role.
 */
  router.put('/:id', async(req, res) => {
 
@@ -137,7 +137,7 @@ router.post('/', async(req, res) => {
   })
 
 /*
-* DeleteRole - Delete a security question which means setting isEnabled to false.
+* DeleteRole - Delete a role which means setting isEnabled to false.
 */
 router.delete('/:id', async(req, res) => {
    try {
@@ -163,7 +163,7 @@ router.delete('/:id', async(req, res) => {
 
               } else {
                   console.log(disableRole);
-                  const DeleteRoleSuccessResponse= new BaseResponse('200', 'Disable security question', disableRole);
+                  const DeleteRoleSuccessResponse= new BaseResponse('200', 'Disable role', disableRole);
                   res.json(DeleteRoleSuccessResponse.toObject());
 
               }
