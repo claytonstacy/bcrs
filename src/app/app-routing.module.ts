@@ -32,6 +32,7 @@ import { ResetPasswordFormComponent } from './pages/reset-password-form/reset-pa
 import { RegisterComponent } from './pages/register/register.component';
 import { ErrorComponent } from './pages/error/error.component'
 import { UserProfileComponent } from './pages/user-profile/user-profile.component';
+import {RoleListComponent} from './pages/role-list/role-list.component';
 
 const routes: Routes = [
   {
@@ -73,6 +74,10 @@ const routes: Routes = [
       {
         path: 'security-questions/create/new',
         component: SecurityQuestionCreateComponent
+      },
+      {
+        path: 'roles',
+        component: RoleListComponent
       },
       {
         path: 'products',

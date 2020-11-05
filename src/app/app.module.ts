@@ -55,6 +55,9 @@ import { MatListModule } from '@angular/material/list';
 import { ErrorComponent } from './pages/error/error.component';
 import { ErrorInterceptor } from './shared/error.interceptor';
 import { UserProfileComponent } from './pages/user-profile/user-profile.component';
+import { RoleListComponent } from './pages/role-list/role-list.component';
+import { RoleCreateComponent } from './pages/role-create/role-create.component';
+import { RoleDetailsComponent } from './pages/role-details/role-details.component';
 
 
 @NgModule({
@@ -83,7 +86,10 @@ import { UserProfileComponent } from './pages/user-profile/user-profile.componen
     ResetPasswordFormComponent,
     RegisterComponent,
     ErrorComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    RoleListComponent,
+    RoleCreateComponent,
+    RoleDetailsComponent
   ],
   imports: [
     BrowserModule,
