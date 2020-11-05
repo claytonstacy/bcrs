@@ -15,7 +15,7 @@ const ErrorResponse = require('../services/error-response');
 
 let router = express.Router();
 
-// temporary schmea and model
+// temporary schema and model
 const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
@@ -32,7 +32,7 @@ let invoiceSchema = new Schema({
   lineItemTotal: Number,
   total: Number,
   orderDate: {type: Date, default: new Date()}
-});
+}, {collection: 'invoice'});
 
 // when this moves to a separate file, assign right side to module.exports
 const Invoice = mongoose.model('Invoice', invoiceSchema);
@@ -40,7 +40,7 @@ const Invoice = mongoose.model('Invoice', invoiceSchema);
 /*******************************************************************************
  * Find purchases by product API
  *
- * FindPurchasesByProduct: /api/invoices/purchases-graph
+ * FindPurchasesByProduct: /api/invoice/purchases-graph
  * This API will return an aggregate collection of all purchases by product
  * Hint: review the format primeNG is expecting for the graph's data source
  ******************************************************************************/
@@ -49,38 +49,34 @@ router.get('/purchases-graph', async (req, res) => {
   try {
     Invoice.aggregate([
       {
-        $unwind: '$lineItems' //$lineItems is a field path operand
-      },
-      {
-        $group:
-        {
-          '_id':
-          {
+        '$unwind': '$lineItems'
+      }, {
+        '$group': {
+          '_id': {
             'title': '$lineItems.title',
             'price': '$lineItems.price'
           },
           'count': {
-            $sum: 1
+            '$sum': 1
           }
         }
-      },
-      {
-        $sort:
-        {
+      }, {
+        '$sort': {
           '_id.title': 1
         }
       }
-    ], function(err, purchaseGraph)
-    {
-     if (err) {
-       console.log(err);
-       const errorResponse = new ErrorResponse('500', 'Internal server error', err);
-       res.status(500).send(errorResponse.toObject());
-     } else {
-       console.log(purchaseGraph);
-       const successResponse = new BaseResponse('200', 'Query successful', purchaseGraph);
-       res.json(successResponse.toObject());
-     }
+    ], function (err, purchaseGraph) {
+      if (err) {
+        console.log(err);
+        const errorResponse = new ErrorResponse('500',
+          'Internal server error', err);
+        res.status(500).send(errorResponse.toObject());
+      } else {
+        console.log(purchaseGraph);
+        const successResponse = new BaseResponse('200',
+          'Query successful', purchaseGraph);
+        res.json(successResponse.toObject());
+      }
     })
 
   } catch (e) {
@@ -93,6 +89,10 @@ router.get('/purchases-graph', async (req, res) => {
 
 /*******************************************************************************
  * Create invoice API
- * CreateInvoice: /api/invoices/:username
+ * CreateInvoice: /api/invoice/:username
  * This API will create a new invoice document by username
  ******************************************************************************/
+
+
+/******************************************************************************/
+module.exports = router;
