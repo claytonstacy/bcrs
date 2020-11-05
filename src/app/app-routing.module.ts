@@ -33,6 +33,7 @@ import { RegisterComponent } from './pages/register/register.component';
 import { ErrorComponent } from './pages/error/error.component'
 import { UserProfileComponent } from './pages/user-profile/user-profile.component';
 import {RoleListComponent} from './pages/role-list/role-list.component';
+import {RoleCreateComponent} from './pages/role-create/role-create.component';
 
 const routes: Routes = [
   {
@@ -79,6 +80,11 @@ const routes: Routes = [
         path: 'roles',
         component: RoleListComponent
       },
+			{
+				path: "roles/create/new",
+				component: RoleCreateComponent
+
+			},
       {
         path: 'products',
         component: ProductListComponent

@@ -21,7 +21,7 @@ import { Role } from '../../shared/role.interface';
 })
 export class RoleListComponent implements OnInit {
 	roles: Role[];
-  displayedColumns = ['text', 'functions'];
+  displayedColumns = ['role', 'functions'];
 
 	constructor(private http: HttpClient, private roleService: RoleService, private dialog: MatDialog) {
 		this.http.get('/api/roles').subscribe(res => {
@@ -36,10 +36,10 @@ export class RoleListComponent implements OnInit {
 	}
 
 
-  delete(recordId: string, role: string, ) {
+  delete(roleId: string, role: string, ) {
     const dialogRef = this.dialog.open(DeleteRecordDialogComponent, {
       data: {
-        recordId,
+        roleId,
         dialogHeader: 'Delete Record Dialog',
         dialogBody: `Are you sure you want to delete role, "${role}" ?`
       },
@@ -49,9 +49,9 @@ export class RoleListComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result == 'confirm') {
-        this.roleService.deleteRole(recordId).subscribe(res => {
+        this.roleService.deleteRole(roleId).subscribe(res => {
           console.log('Security question deleted');
-          this.roles = this.roles.filter(q => q._id !== recordId);
+          this.roles = this.roles.filter(role => role._id !== roleId);
         })
       }
     })

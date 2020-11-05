@@ -1,1 +1,23 @@
-<p>role-create works!</p>
+<div fxLayout="column" fxLayoutAlign="center center">
+	<mat-card  class="mat-elevation-z8">
+		<mat-card-title>Create Role</mat-card-title>
+
+		<br />
+		<form [formGroup]="form" (ngSubmit)="create()" #roleForm>
+			<mat-card-content>
+				<div fxLayout="column" fxLayoutGap="10px">
+					<mat-form-field>
+						<input type="text" matInput [formControl]="form.controls['text']" placeholder="Role">
+					</mat-form-field>
+				</div>
+			</mat-card-content>
+
+			<br />
+			<mat-card-actions align="end">
+				<button mat-raised-button (click)="cancel()" color="primary">Cancel</button>
+				<button mat-raised-button color="accent">Submit</button>
+			</mat-card-actions>
+		</form>
+	</mat-card>
+</div>
+
