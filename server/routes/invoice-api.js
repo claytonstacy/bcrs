@@ -15,58 +15,73 @@ const ErrorResponse = require('../services/error-response');
 
 let router = express.Router();
 
+// temporary schmea and model
+const mongoose = require('mongoose');
+
+const Schema = mongoose.Schema;
+const LineItemSchema = new Schema({
+  title: String,
+  price: Number
+});
+
+let invoiceSchema = new Schema({
+  userName: String,
+  lineItems: [LineItemSchema],
+  partsAmount: Number,
+  laborAmount: Number,
+  lineItemTotal: Number,
+  total: Number,
+  orderDate: {type: Date, default: new Date()}
+});
+
+// when this moves to a separate file, assign right side to module.exports
+const Invoice = mongoose.model('Invoice', invoiceSchema);
+
 /*******************************************************************************
  * Find purchases by product API
  *
  * FindPurchasesByProduct: /api/invoices/purchases-graph
  * This API will return an aggregate collection of all purchases by product
- * Hint: use MongoDB's built-in 'unwind, group, count, and sort' aggregate
- * functions to build an array of objects with the product name and purchase
- * count totals
  * Hint: review the format primeNG is expecting for the graph's data source
  ******************************************************************************/
-
-// db.mycol.aggregate([{$group : {_id : "$by_user", num_tutorial : {$sum : 1}}}])
-// { "_id" : "tutorials point", "num_tutorial" : 2 }
-// { "_id" : "Neo4j", "num_tutorial" : 1 }
-
-
 router.get('/purchases-graph', async (req, res) => {
 
-  // Invoice.aggregate([
-  //   {$match: {}}, //match all, find all
-  //   {$project: {
-  //     _id: 0,
-  //     items: 1 // instruction to return items. 1 is true, 0 would be false
-  //   }}
-  // ])
-
   try {
-    // First match the desired field
-    // let productsCountArray = await Invoice.aggregate([
-    //   { $match: { items: {} } }, //this line says to match all items
-    //   {
-    //     // second group instances of product names
-    //     $group: {
-    //       //here is where you would specify the name of the product
-    //       text: 'password reset',
-    //       // third count the number of each product
-    //       count: { $sum: 1}
-    //     }
-    //   }
-    // ])
-
-    // console.log(productsCountArray);
-    /*
-      items array should look like this:
-      [
-        [{"price": 99.99, "text": "password reset", "isEnabled": true}, {}],
-        [{}, {}],
-        [{}, {}]
-      ]
-    */
-
-
+    Invoice.aggregate([
+      {
+        $unwind: '$lineItems' //$lineItems is a field path operand
+      },
+      {
+        $group:
+        {
+          '_id':
+          {
+            'title': '$lineItems.title',
+            'price': '$lineItems.price'
+          },
+          'count': {
+            $sum: 1
+          }
+        }
+      },
+      {
+        $sort:
+        {
+          '_id.title': 1
+        }
+      }
+    ], function(err, purchaseGraph)
+    {
+     if (err) {
+       console.log(err);
+       const errorResponse = new ErrorResponse('500', 'Internal server error', err);
+       res.status(500).send(errorResponse.toObject());
+     } else {
+       console.log(purchaseGraph);
+       const successResponse = new BaseResponse('200', 'Query successful', purchaseGraph);
+       res.json(successResponse.toObject());
+     }
+    })
 
   } catch (e) {
     console.log(e);

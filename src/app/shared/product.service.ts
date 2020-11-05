@@ -35,7 +35,7 @@ export class ProductService {
     return this.http.post('/api/product', {
       // req body
       price: product.price,
-      text: product.text
+      title: product.title
     });
   }
 
@@ -43,7 +43,7 @@ export class ProductService {
     return this.http.put('/api/product/' + productId, {
       // req body
       price: product.price,
-      text: product.text
+      title: product.title
     });
   }
 

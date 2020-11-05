@@ -21,7 +21,7 @@ export class ProductListComponent implements OnInit {
 
   products: Product[];
 
-  displayedColumns: string[] = ['text', 'price', 'functions'];
+  displayedColumns: string[] = ['title', 'price', 'functions'];
 
   constructor(private dialog: MatDialog,
               private productService: ProductService) {

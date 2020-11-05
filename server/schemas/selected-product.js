@@ -12,7 +12,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 let selectedProduct = new Schema({
-  text: String,
+  title: String,
   price: Number
 });
 

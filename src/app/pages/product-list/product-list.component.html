@@ -6,10 +6,10 @@
 
     <mat-card-content *ngIf="products">
       <table mat-table [dataSource]="products">
-        <ng-container matColumnDef="text">
+        <ng-container matColumnDef="title">
           <th mat-header-cell *matHeaderCellDef>Service</th>
           <td mat-cell *matCellDef="let element">
-            {{element.text}}
+            {{element.title}}
           </td>
         </ng-container>
 

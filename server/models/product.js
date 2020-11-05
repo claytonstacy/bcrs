@@ -12,7 +12,7 @@ const Schema = mongoose.Schema;
 
 const productSchema = new Schema({
   price: Number,
-  text: {type: String, lowercase: true, trim: true},
+  title: {type: String, lowercase: true, trim: true},
   isEnabled: {type: Boolean, default: true}
 }, { collection: 'service' });
 

@@ -33,7 +33,7 @@ export class ProductCreateComponent implements OnInit {
     this.form = this.fb.group ({
       price: [null, Validators.compose([Validators.required,
                     Validators.pattern(decimalPattern)])],
-      text: [null, Validators.compose([Validators.required])]
+      title: [null, Validators.compose([Validators.required])]
     });
   }
 
@@ -43,7 +43,7 @@ export class ProductCreateComponent implements OnInit {
     const aProduct = {} as Product;
 
     aProduct.price = this.form.controls.price.value;
-    aProduct.text = this.form.controls.text.value;
+    aProduct.title = this.form.controls.title.value;
 
     this.productService.createProduct(aProduct).subscribe(() => {
         console.log(aProduct);
@@ -68,7 +68,7 @@ export class ProductCreateComponent implements OnInit {
   }
 
   getNameErrorMessage(): string {
-    if (this.form.controls.text.hasError('required')) {
+    if (this.form.controls.title.hasError('required')) {
       return 'You must enter a value';
     } else {
       return '';
