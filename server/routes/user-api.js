@@ -201,4 +201,29 @@ router.get('/:username/security-questions', async (req, res) => {
   }
 });
 
+//FindUserRole API: returns role as object with role and _id properties
+  router.get('/:username/role', async (req, res) => {
+    try {
+      User.findOne({
+        'userName': req.params.username
+      }, function (error, user) {
+
+        if (error) {
+          console.log(error);
+          const findUserRoleErrorResponse = new ErrorResponse("500",
+            "find-user-role error", error);
+          res.status(500).send(findUserRoleErrorResponse.toObject());
+        } else {
+          console.log(user);
+          const successUserRoleResponse = new BaseResponse("200", "success", user.role);
+          res.json(successUserRoleResponse.toObject());
+        }
+      })
+    } catch (e) {
+      console.log(e);
+      res.status(500).send(new ErrorResponse("500",
+        "Internal server error", e.message).toObject());
+    }
+  })
+
 module.exports = router;
