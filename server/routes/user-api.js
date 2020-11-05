@@ -9,6 +9,7 @@
 "use strict";
 
 const User = require('../models/user');
+const Role = require('../schemas/user-role');
 const express = require('express');
 const bcrypt = require('bcryptjs');
 const BaseResponse = require('../services/base-response');
@@ -106,9 +107,11 @@ router.put('/:id', async (req, res) => {
               lastName: req.body.lastName,
               phoneNumber: req.body.phoneNumber,
               address: req.body.address,
-              email: req.body.email
+              email: req.body.email,
             })
-
+            user.role.set({
+              role: req.body.role
+            })
           user.save(function (err, updatedUser) {
             if (err) {
               console.log(err);

@@ -11,6 +11,8 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {User} from 'src/app/shared/user.interface';
 import {UserService} from 'src/app/shared/user.service';
+import {RoleService} from 'src/app/shared/role.service';
+import {Role} from 'src/app/shared/role.interface';
 
 @Component({
   selector: 'app-user-details',
@@ -21,9 +23,10 @@ export class UserDetailsComponent implements OnInit {
   user: User;
   userId: string;
   form: FormGroup;
+  roles: Role[];
 
   constructor(private route: ActivatedRoute, private fb: FormBuilder,
-              private router: Router, private userService: UserService) {
+              private router: Router, private userService: UserService, private roleService: RoleService) {
 
     this.userId = this.route.snapshot.paramMap.get('userId');
 
@@ -37,7 +40,15 @@ export class UserDetailsComponent implements OnInit {
       this.form.controls.phoneNumber.setValue(this.user.phoneNumber);
       this.form.controls.address.setValue(this.user.address);
       this.form.controls.email.setValue(this.user.email);
+      if (this.user.role) this.form.controls.role.setValue(this.user.role['role']);
     });
+    this.roleService.findAllRoles().subscribe(res => {
+      console.log('Here are the roles',res.data)
+      this.roles = res['data'];
+    }, err => {
+      console.log(err);
+    })
+
   }
 
   ngOnInit(): void {
@@ -56,7 +67,9 @@ export class UserDetailsComponent implements OnInit {
       address: [null, Validators.compose([Validators.required])],
 
       email: [null, Validators.compose([Validators.required,
-        Validators.email])]
+        Validators.email])],
+
+      role: [null]
     });
   }
 
@@ -70,6 +83,7 @@ export class UserDetailsComponent implements OnInit {
     updatedUser.phoneNumber = this.form.controls.phoneNumber.value;
     updatedUser.address = this.form.controls.address.value;
     updatedUser.email = this.form.controls.email.value;
+    updatedUser.role = this.form.controls.role.value;
 
     this.userService.updateUser(this.userId, updatedUser).subscribe(() => {
       this.router.navigate(['/users']);
