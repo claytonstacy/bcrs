@@ -10,7 +10,6 @@ Description: base layout component ts file
 import { Component, OnInit } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
-import { UserDataService } from '../user-data.service';
 
 @Component({
   selector: 'app-base-layout',
@@ -23,7 +22,7 @@ export class BaseLayoutComponent implements OnInit {
   sessionUser: string;
   sessionId: string;
 
-  constructor(private cookieService: CookieService, private router: Router, private userData: UserDataService) {
+  constructor(private cookieService: CookieService, private router: Router) {
     this.sessionUser = this.cookieService.get('session_user');
     this.sessionId = this.cookieService.get('session_id');
    }

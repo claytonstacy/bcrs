@@ -1,6 +1,6 @@
 /******************************************************************************
  * Title: user-details.component.ts
- * Author: Jeff Shepherd
+ * Author: Jeff Shepherd, Clayton Stacy
  * Modified by:
  * Date: 10/23/2020
  * Description: user create component
