@@ -20,7 +20,7 @@ import {DeleteRecordDialogComponent} from '../../shared/delete-record-dialog/del
 export class UserListComponent implements OnInit {
   users: User[];
   displayedColumns: string[] = ['userName', 'firstName', 'lastName',
-    'phoneNumber', 'address', 'email', 'functions'];
+    'phoneNumber', 'address', 'email', 'role', 'functions'];
 
   constructor(private dialog: MatDialog, private userService: UserService) {
 

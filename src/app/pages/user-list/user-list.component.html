@@ -47,6 +47,14 @@
             {{element.email}}
           </td>
         </ng-container>
+        <ng-container matColumnDef="role">
+          <th mat-header-cell *matHeaderCellDef>Role</th>
+          <td mat-cell *matCellDef="let element">
+            <ng-container *ngIf="element.role">
+              {{element.role.role}}
+            </ng-container>
+          </td>
+        </ng-container>
 
         <ng-container matColumnDef="functions">
           <th mat-header-cell *matHeaderCellDef>Functions</th>

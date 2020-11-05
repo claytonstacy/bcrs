@@ -7,6 +7,7 @@
  *****************************************************************************/
 
 import { SecurityQuestion } from './security-question.interface';
+import { Role } from './role.interface';
  export interface User {
    _id: string;
    userName: string;
@@ -17,4 +18,5 @@ import { SecurityQuestion } from './security-question.interface';
    address: string;
    email: string;
    securityQuestions: SecurityQuestion[];
+  role: Role;
  }
