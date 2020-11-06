@@ -35,6 +35,7 @@ import { UserProfileComponent } from './pages/user-profile/user-profile.componen
 import {RoleListComponent} from './pages/role-list/role-list.component';
 import {RoleCreateComponent} from './pages/role-create/role-create.component';
 import {RoleDetailsComponent} from './pages/role-details/role-details.component';
+import { InvoiceListComponent } from './pages/invoice-list/invoice-list.component';
 
 const routes: Routes = [
   {
@@ -43,7 +44,7 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component: HomeComponent
+        component: InvoiceListComponent
       },
       {
         path: 'about',
