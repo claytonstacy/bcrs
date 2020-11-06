@@ -16,26 +16,26 @@ const ErrorResponse = require('../services/error-response');
 let router = express.Router();
 
 // temporary schema and model
-const mongoose = require('mongoose');
+// const mongoose = require('mongoose');
 
-const Schema = mongoose.Schema;
-const LineItemSchema = new Schema({
-  title: String,
-  price: Number
-});
+// const Schema = mongoose.Schema;
+// const LineItemSchema = new Schema({
+//   title: String,
+//   price: Number
+// });
 
-let invoiceSchema = new Schema({
-  userName: String,
-  lineItems: [LineItemSchema],
-  partsAmount: Number,
-  laborAmount: Number,
-  lineItemTotal: Number,
-  total: Number,
-  orderDate: {type: Date, default: new Date()}
-}, {collection: 'invoice'});
+// let invoiceSchema = new Schema({
+//   userName: String,
+//   lineItems: [LineItemSchema],
+//   partsAmount: Number,
+//   laborAmount: Number,
+//   lineItemTotal: Number,
+//   total: Number,
+//   orderDate: {type: Date, default: new Date()}
+// }, {collection: 'invoice'});
 
 // when this moves to a separate file, assign right side to module.exports
-const Invoice = mongoose.model('Invoice', invoiceSchema);
+//const Invoice = mongoose.model('Invoice', invoiceSchema);
 
 /*******************************************************************************
  * Find purchases by product API
@@ -49,8 +49,16 @@ router.get('/purchases-graph', async (req, res) => {
   try {
     Invoice.aggregate([
       {
+        // unwind affects 'deconstructs' arrays in a document.
+        // The following:
+        // {"_id": 1, "item": "ABC1", sizes: ["S", "M", "L"] }
+        // becomes:
+        // {"_id": 1, "item": "ABC1", "sizes": "S" }
+        // {"_id": 1, "item": "ABC1", "sizes": "M" }
+        // {"_id": 1, "item": "ABC1", "sizes": "L" }
         '$unwind': '$lineItems'
       }, {
+
         '$group': {
           '_id': {
             'title': '$lineItems.title',
