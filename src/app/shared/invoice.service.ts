@@ -8,8 +8,7 @@
 import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
-
-// import Invoice interface once it is written
+import {Invoice} from './invoice.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -19,8 +18,7 @@ export class InvoiceService {
   constructor(private http: HttpClient) {
   }
 
-  // Once the invoice interface is made, change the type of invoice to Invoice
-  createInvoice(userName: string, invoice: any): Observable<any> {
+  createInvoice(userName: string, invoice: Invoice): Observable<any> {
     return this.http.post('/api/invoice/' + userName, {
       userName,
       lineItems: invoice.lineItems,
@@ -31,7 +29,7 @@ export class InvoiceService {
     });
   }
 
-  findPurchasesByServiceGraph(): object {
+  findPurchasesByServiceGraph(): Observable<any> {
     return this.http.get('/api/invoice/purchases-graph');
   }
 

@@ -12,31 +12,8 @@ const express = require('express');
 const BaseResponse = require('../services/base-response');
 const ErrorResponse = require('../services/error-response');
 const Invoice = require('../models/invoice');
-/* const LineItemSchema = require('../schemas/line-item'); */
 
 let router = express.Router();
-
-// temporary schema and model
-// const mongoose = require('mongoose');
-
-// const Schema = mongoose.Schema;
-// const LineItemSchema = new Schema({
-//   title: String,
-//   price: Number
-// });
-
-// let invoiceSchema = new Schema({
-//   userName: String,
-//   lineItems: [LineItemSchema],
-//   partsAmount: Number,
-//   laborAmount: Number,
-//   lineItemTotal: Number,
-//   total: Number,
-//   orderDate: {type: Date, default: new Date()}
-// }, {collection: 'invoice'});
-
-// when this moves to a separate file, assign right side to module.exports
-//const Invoice = mongoose.model('Invoice', invoiceSchema);
 
 /*******************************************************************************
  * Find purchases by product API
@@ -50,8 +27,8 @@ router.get('/purchases-graph', async (req, res) => {
   try {
     Invoice.aggregate([
       {
-        // unwind affects 'deconstructs' arrays in a document.
-        // The following:
+        // Unwind 'deconstructs' arrays in a document.
+        // For example, the following:
         // {"_id": 1, "item": "ABC1", sizes: ["S", "M", "L"] }
         // becomes:
         // {"_id": 1, "item": "ABC1", "sizes": "S" }
@@ -60,16 +37,23 @@ router.get('/purchases-graph', async (req, res) => {
         '$unwind': '$lineItems'
       }, {
 
+        // The group stage groups items by title. Price is included
+        // so that value can be used by any function calling the api
         '$group': {
           '_id': {
             'title': '$lineItems.title',
             'price': '$lineItems.price'
           },
           'count': {
+            // $sum: 1 applies the value 1 to each item that shares the
+            // same title and sums. The result is the number of documents with
+            // that title, in other words, the count.
             '$sum': 1
           }
         }
       }, {
+        // Typical sort method applied to the results. 1 sorts ascending
+        // and -1 sorts descending.
         '$sort': {
           '_id.title': 1
         }

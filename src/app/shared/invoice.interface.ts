@@ -12,7 +12,7 @@ import { LineItem } from './line-item.interface';
     userName: string;
     lineItems: LineItem[];
     partsAmount: number;
-    laborAmout: number;
+    laborAmount: number;
     lineItemTotal: number;
     total: number;
     orderDate: Date;
