@@ -1,0 +1,22 @@
+.container {
+  max-width: 1200px;
+  width: 1200px;
+  margin: 0 auto;
+}
+
+.invoice-list-container {
+  min-width: 1000px;
+  margin: 50px auto 50px;
+}
+
+.mat-raised-button {
+  margin-top: 10px;
+}
+
+.mat-cell {
+  padding-right: 30px;
+}
+
+.mat-header-cell {
+  padding-right: 30px;
+}

@@ -34,4 +34,8 @@ export class InvoiceService {
   findPurchasesByServiceGraph(): object {
     return this.http.get('/api/invoice/purchases-graph');
   }
+
+  findAllInvoices(): Observable<any> {
+    return this.http.get('api/invoice');
+  }
 }

@@ -9,9 +9,10 @@
 "use strict";
 
 const express = require('express');
-//const Invoice = require('../models/invoice');
 const BaseResponse = require('../services/base-response');
 const ErrorResponse = require('../services/error-response');
+const Invoice = require('../models/invoice');
+/* const LineItemSchema = require('../schemas/line-item'); */
 
 let router = express.Router();
 
@@ -101,6 +102,39 @@ router.get('/purchases-graph', async (req, res) => {
  * This API will create a new invoice document by username
  ******************************************************************************/
 
+
+/******************************************************************************/
+
+
+
+
+/*******************************************************************************
+ * FindAllInvoices API
+ * FindALl: /api/invoice/
+ * This API will retreive all invoices
+ ******************************************************************************/
+router.get('/', async (req, res) => {
+
+  try {
+    Invoice.find({})
+      .exec(function (error, invoices) {
+        if (error) {
+          console.log(error);
+          const findAllErrorResponse = new ErrorResponse("500", "error", error);
+          res.status(500).send(findAllErrorResponse.toObject());
+        } else {
+          console.log(invoices);
+          const findAllSuccessResponse = new BaseResponse("200",
+            "Found all invoices", invoices);
+          res.json(findAllSuccessResponse.toObject());
+      }
+    })
+  } catch (e) {
+    console.log(e);
+    res.status(500).send(new ErrorResponse("500",
+      "Internal server error", e.message).toObject());
+  }
+});
 
 /******************************************************************************/
 module.exports = router;

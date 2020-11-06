@@ -59,6 +59,7 @@ import { RoleListComponent } from './pages/role-list/role-list.component';
 import { RoleCreateComponent } from './pages/role-create/role-create.component';
 import { RoleDetailsComponent } from './pages/role-details/role-details.component';
 import { ChartModule } from 'primeng/chart';
+import { InvoiceListComponent } from './pages/invoice-list/invoice-list.component';
 
 @NgModule({
   declarations: [
@@ -89,7 +90,8 @@ import { ChartModule } from 'primeng/chart';
     UserProfileComponent,
     RoleListComponent,
     RoleCreateComponent,
-    RoleDetailsComponent
+    RoleDetailsComponent,
+    InvoiceListComponent
   ],
   imports: [
     BrowserModule,
