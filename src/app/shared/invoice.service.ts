@@ -20,7 +20,7 @@ export class InvoiceService {
 
   createInvoice(userName: string, invoice: Invoice): Observable<any> {
     return this.http.post('/api/invoice/' + userName, {
-      userName,
+      userName: userName,
       lineItems: invoice.lineItems,
       partsAmount: invoice.partsAmount,
       laborAmount: invoice.laborAmount,

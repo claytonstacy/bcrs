@@ -18,9 +18,6 @@ import { CookieService } from 'ngx-cookie-service';
 import { LineItem } from '../../shared/line-item.interface';
 import { Product } from '../../shared/product.interface';
 import { ProductService } from '../../shared/product.service';
-import { ServiceRepairService } from '../../shared/service-repair.service';
-import { ServiceRepairItem } from 'src/app/shared/service-repair-item.interface';
-
 
 
 @Component({
@@ -31,27 +28,24 @@ import { ServiceRepairItem } from 'src/app/shared/service-repair-item.interface'
 export class HomeComponent implements OnInit {
   form: FormGroup;
   userName: string;
-  //products: Product[];
-  products: ServiceRepairItem[];
+  products: Product[];
   lineItems: LineItem[];
 
   constructor(private cookieService: CookieService, private fb: FormBuilder,
               private dialog: MatDialog, private router: Router,
               private productService: ProductService,
-              private serviceRepairService: ServiceRepairService,
               private invoiceService: InvoiceService) {
 
       // get the username
-      this.userName = this.cookieService.get('sessionuser');
+      this.userName = this.cookieService.get('session_user');
 
       // get the service repair items
-      this.products = serviceRepairService.getServiceRepairItems();
-    //   this.productService.findAllProducts().subscribe(res => {
-    //     this.products = res.data;
-    //     console.log(this.products);
-    //   }, err => {
-    //     console.log(err);
-    //   });
+      this.productService.findAllProducts().subscribe(res => {
+        this.products = res.data;
+        console.log(this.products);
+      }, err => {
+        console.log(err);
+      });
 
     }
 
@@ -67,7 +61,7 @@ export class HomeComponent implements OnInit {
     for (const [key, value] of Object.entries(form.checkGroup)) {
       if (value) { // iterate over checkboxes and give me the id
         selectedProductIds.push({
-          id: key
+          _id: key
         });
       }
     }
@@ -77,7 +71,7 @@ export class HomeComponent implements OnInit {
     // build the invoice object
     for (const savedProduct of this.products) {
       for (const selectedProduct of selectedProductIds) {
-        if (savedProduct.id === selectedProduct.id) {
+        if (savedProduct._id === selectedProduct._id) {
           this.lineItems.push({
             title: savedProduct.title,
             price: savedProduct.price
