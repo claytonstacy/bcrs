@@ -1,7 +1,7 @@
 /*
 ============================================
 Title: BCRS
-Author: Clayton Stacy, Christine Bohnet, Jeff Shepherd
+Author: Clayton Stacy, Christine Bohnet, Jeff Shepherd, Verlee Washington
 Date: 20 Oct 2020
 Description: Role list component
 ============================================
@@ -50,7 +50,7 @@ export class RoleListComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result == 'confirm') {
         this.roleService.deleteRole(roleId).subscribe(res => {
-          console.log('Security question deleted');
+          console.log('Role deleted');
           this.roles = this.roles.filter(role => role._id !== roleId);
         })
       }

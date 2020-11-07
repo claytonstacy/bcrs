@@ -61,6 +61,7 @@ import { RoleDetailsComponent } from './pages/role-details/role-details.componen
 import { ChartModule } from 'primeng/chart';
 import { InvoiceListComponent } from './pages/invoice-list/invoice-list.component';
 import { PurchasesByServiceGraphComponent } from './pages/purchases-by-service-graph/purchases-by-service-graph.component';
+import { InvoiceSummaryDialogComponent } from './shared/invoice-summary-dialog/invoice-summary-dialog.component';
 
 @NgModule({
   declarations: [
@@ -93,7 +94,8 @@ import { PurchasesByServiceGraphComponent } from './pages/purchases-by-service-g
     RoleCreateComponent,
     RoleDetailsComponent,
     InvoiceListComponent,
-    PurchasesByServiceGraphComponent
+    PurchasesByServiceGraphComponent,
+    InvoiceSummaryDialogComponent
   ],
   imports: [
     BrowserModule,

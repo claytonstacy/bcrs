@@ -91,8 +91,8 @@ router.get('/purchases-graph', async (req, res) => {
 /******************************************************************************/
 router.post('/:userName', async(req, res) => {
   try {
-    const userName = req.params.userName;
-
+    const userName = req.params.userName; // pass over the fields of the request data
+    // create new invoice
     const newInvoice = {
       username: userName,
       lineItems: req.body.lineItems,
@@ -104,7 +104,7 @@ router.post('/:userName', async(req, res) => {
 
     console.log(newInvoice);
 
-    Invoice.create(newInvoice, function(err, invoice) {
+    Invoice.create(newInvoice, function(err, invoice) { // pass over invoice
       if (err) {
         console.log(err);
         const createInvoiceMongodbErrorResponse = new ErrorResponse("500", "Internal server error", err);
@@ -127,7 +127,7 @@ router.post('/:userName', async(req, res) => {
 /*******************************************************************************
  * FindAllInvoices API
  * FindALl: /api/invoice/
- * This API will retreive all invoices
+ * This API will retrieve all invoices
  ******************************************************************************/
 router.get('/', async (req, res) => {
 

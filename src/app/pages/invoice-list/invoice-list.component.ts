@@ -3,7 +3,7 @@
  * Author: Jeff Shepherd
  * Modified by:
  * Date: 11/5/2020
- * Description: Typescript file for invoice list comonent
+ * Description: Typescript file for invoice list component
  *****************************************************************************/
 
  import { Component, OnInit } from '@angular/core';
@@ -21,7 +21,7 @@ export class InvoiceListComponent implements OnInit {
   displayedColumns: string[] = [
     'userName',
     'partsAmount',
-    'laborAmout',
+    'laborAmount',
     'lineItemTotal',
     'total',
     'orderDate'];
