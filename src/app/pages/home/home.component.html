@@ -8,7 +8,7 @@
 </div>
 
 <mat-card class="mat-elevation-z0" style="width: 65%; margin: 0 auto;">
-  <form ngForm #serviceRepairForm="ngForm" (ngSubmit)="submit(serviceRepairForm.value); serviceRepairForm.reset();">
+  <form #serviceRepairForm="ngForm" (ngSubmit)="submit(serviceRepairForm.value); serviceRepairForm.reset();">
     <mat-card-content>
 
       <!-- service repair -->
@@ -16,7 +16,7 @@
         <h4 fxFlex>Services</h4>
 
         <div ngModelGroup="checkGroup" *ngFor="let product of products">
-          <mat-checkbox name="{{product._id}}" ngModel>
+          <mat-checkbox name="{{product.id}}" ngModel>
             {{product.title}} ({{product.price | currency}})
           </mat-checkbox>
           <br/>

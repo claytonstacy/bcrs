@@ -18,6 +18,8 @@ import { CookieService } from 'ngx-cookie-service';
 import { LineItem } from '../../shared/line-item.interface';
 import { Product } from '../../shared/product.interface';
 import { ProductService } from '../../shared/product.service';
+import { ServiceRepairService } from '../../shared/service-repair.service';
+import { ServiceRepairItem } from 'src/app/shared/service-repair-item.interface';
 
 
 
@@ -29,24 +31,28 @@ import { ProductService } from '../../shared/product.service';
 export class HomeComponent implements OnInit {
   form: FormGroup;
   userName: string;
-  products: Product[];
+  //products: Product[];
+  products: ServiceRepairItem[];
   lineItems: LineItem[];
 
   constructor(private cookieService: CookieService, private fb: FormBuilder,
               private dialog: MatDialog, private router: Router,
               private productService: ProductService,
+              private serviceRepairService: ServiceRepairService,
               private invoiceService: InvoiceService) {
 
       // get the username
       this.userName = this.cookieService.get('sessionuser');
-      // get the service repair items
 
-      this.productService.findAllProducts().subscribe(res => {
-        this.products = res.data;
-        console.log(this.products);
-      }, err => {
-        console.log(err);
-      });
+      // get the service repair items
+      this.products = serviceRepairService.getServiceRepairItems();
+    //   this.productService.findAllProducts().subscribe(res => {
+    //     this.products = res.data;
+    //     console.log(this.products);
+    //   }, err => {
+    //     console.log(err);
+    //   });
+
     }
 
   ngOnInit() {
@@ -61,7 +67,7 @@ export class HomeComponent implements OnInit {
     for (const [key, value] of Object.entries(form.checkGroup)) {
       if (value) { // iterate over checkboxes and give me the id
         selectedProductIds.push({
-          _id: key
+          id: key
         });
       }
     }
@@ -71,7 +77,7 @@ export class HomeComponent implements OnInit {
     // build the invoice object
     for (const savedProduct of this.products) {
       for (const selectedProduct of selectedProductIds) {
-        if (savedProduct._id === selectedProduct._id) {
+        if (savedProduct.id === selectedProduct.id) {
           this.lineItems.push({
             title: savedProduct.title,
             price: savedProduct.price
