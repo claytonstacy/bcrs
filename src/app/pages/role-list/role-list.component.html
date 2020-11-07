@@ -1,9 +1,8 @@
-<div fxLayout="column" fxLayoutAlign="center center">
+<div fxLayout="column" fxLayoutAlign="center center" class="role-list-container">
 	<mat-card class="mat-elevation-z8">
     <mat-card-title>Role Configuration</mat-card-title>
     <br/>
-
-		<div class="btn-create"><button mat-raised-button routerLink="/roles/create/new" color="primary">Create</button></div>
+     <div class="btn-create"><button mat-raised-button routerLink="/roles/create/new" color="primary">Create New</button></div>
 
 		<div *ngIf="roles">
 			<table mat-table [dataSource]="roles">
