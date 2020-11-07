@@ -1,14 +1,23 @@
-.main-welcome {
-    margin-top: 30px;
+
+  .container {
+    max-width: 1200px;
+    width: 1200px;
+    margin: 0 auto;
   }
-  
-  .title {
-    text-align: center;
-    font-weight: lighter;
+
+  .invoice-list-container {
+    min-width: 1000px;
+    margin: 30px auto 50px;
   }
-  
-  .subtitle {
-    text-align: center;
-    font-size: 14px;
+
+  .mat-raised-button {
+    margin-top: 10px;
   }
-  
+
+  .mat-cell {
+    padding-right: 30px;
+  }
+
+  .mat-header-cell {
+    padding-right: 30px;
+  }
