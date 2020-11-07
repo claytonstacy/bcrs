@@ -3,7 +3,9 @@
     <mat-card-title style="text-align: center;">Invoices</mat-card-title>
 
     <mat-card-subtitle>
-      <button mat-raised-button color="accent">Create New Invoice</button>
+      <button mat-raised-button
+              [routerLink]="'/home'"
+              color="accent">Create New Invoice</button>
     </mat-card-subtitle>
 
     <mat-card-content *ngIf="invoices">
@@ -22,7 +24,7 @@
           </td>
         </ng-container>
 
-        <ng-container matColumnDef="laborAmout">
+        <ng-container matColumnDef="laborAmount">
           <th mat-header-cell *matHeaderCellDef>Labor Total</th>
           <td mat-cell *matCellDef="let element">
             {{element.laborAmout}}

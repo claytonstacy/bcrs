@@ -86,15 +86,12 @@ router.get('/purchases-graph', async (req, res) => {
  * CreateInvoice: /api/invoice/:username
  * This API will create a new invoice document by username
  ******************************************************************************/
-
-
-/******************************************************************************/
 router.post('/:userName', async(req, res) => {
   try {
     const userName = req.params.userName; // pass over the fields of the request data
     // create new invoice
     const newInvoice = {
-      username: userName,
+      userName,
       lineItems: req.body.lineItems,
       partsAmount: req.body.partsAmount,
       laborAmount: req.body.laborAmount,

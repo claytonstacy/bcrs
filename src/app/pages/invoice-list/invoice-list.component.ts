@@ -1,6 +1,6 @@
 /******************************************************************************
  * Title: invoice-list.component.ts
- * Author: Jeff Shepherd
+ * Author: Clayton Stacy
  * Modified by:
  * Date: 11/5/2020
  * Description: Typescript file for invoice list component

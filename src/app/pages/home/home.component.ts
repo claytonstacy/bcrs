@@ -10,16 +10,14 @@ Description: home component ts file
 import { Component, OnInit } from '@angular/core';
 import { Invoice } from '../../shared/invoice.interface';
 import { InvoiceService } from 'src/app/shared/invoice.service';
-import { ServiceRepairItem } from './../../shared/service-repair-item.interface';
 import { InvoiceSummaryDialogComponent } from '../../shared/invoice-summary-dialog/invoice-summary-dialog.component';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { CookieService } from 'ngx-cookie-service';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { ServiceRepairService } from '../../shared/service-repair.service';
 import { LineItem } from '../../shared/line-item.interface';
-import { subscribeOn } from 'rxjs/operators';
+import { Product } from '../../shared/product.interface';
+import { ProductService } from '../../shared/product.service';
 
 
 
@@ -31,33 +29,39 @@ import { subscribeOn } from 'rxjs/operators';
 export class HomeComponent implements OnInit {
   form: FormGroup;
   userName: string;
-  services: ServiceRepairItem[];
+  products: Product[];
   lineItems: LineItem[];
 
-  constructor(private http: HttpClient, private cookieService: CookieService, private fb: FormBuilder,
-    private dialog: MatDialog, private router: Router, private serviceRepairService: ServiceRepairService,
-    private invoiceService: InvoiceService) {
+  constructor(private cookieService: CookieService, private fb: FormBuilder,
+              private dialog: MatDialog, private router: Router,
+              private productService: ProductService,
+              private invoiceService: InvoiceService) {
 
       // get the username
       this.userName = this.cookieService.get('sessionuser');
       // get the service repair items
-      this.services = this.serviceRepairService.getServiceRepairItems();
+
+      this.productService.findAllProducts().subscribe(res => {
+        this.products = res.data;
+        console.log(this.products);
+      }, err => {
+        console.log(err);
+      });
     }
 
   ngOnInit() {
     this.form = this.fb.group({
       parts: [null, Validators.compose([Validators.required])],
-      labor: [null, Validators.compose([Validators.required])],
-      alternator: [null, null]
+      labor: [null, Validators.compose([Validators.required])]
     });
   }
 
   submit(form) {
-    const selectedServiceIds = [];
+    const selectedProductIds = [];
     for (const [key, value] of Object.entries(form.checkGroup)) {
       if (value) { // iterate over checkboxes and give me the id
-        selectedServiceIds.push({
-          id: key
+        selectedProductIds.push({
+          _id: key
         });
       }
     }
@@ -65,12 +69,12 @@ export class HomeComponent implements OnInit {
     this.lineItems = [];
 
     // build the invoice object
-    for (const savedService of this.services) {
-      for (const selectedService of selectedServiceIds) {
-        if (savedService.id === selectedService.id) {
+    for (const savedProduct of this.products) {
+      for (const selectedProduct of selectedProductIds) {
+        if (savedProduct._id === selectedProduct._id) {
           this.lineItems.push({
-            title: savedService.title,
-            price: savedService.price
+            title: savedProduct.title,
+            price: savedProduct.price
           });
         }
       }

@@ -47,6 +47,12 @@ const routes: Routes = [
         path: '',
         component: InvoiceListComponent
       },
+
+      {
+      // we may want to change the name of home component
+        path: 'home',
+        component: HomeComponent
+      },
       {
         path: 'about',
         component: AboutComponent
