@@ -27,21 +27,21 @@
         <ng-container matColumnDef="laborAmount">
           <th mat-header-cell *matHeaderCellDef>Labor Total</th>
           <td mat-cell *matCellDef="let element">
-            {{element.laborAmout}}
+            {{element.laborAmount | currency}}
           </td>
         </ng-container>
 
         <ng-container matColumnDef="lineItemTotal">
           <th mat-header-cell *matHeaderCellDef># Line Items</th>
           <td mat-cell *matCellDef="let element">
-            {{element.lineItemTotal}}
+            {{element.lineItemTotal | currency}}
           </td>
         </ng-container>
 
         <ng-container matColumnDef="total">
           <th mat-header-cell *matHeaderCellDef>Total</th>
           <td mat-cell *matCellDef="let element">
-            {{element.total}}
+            {{element.total | currency}}
           </td>
         </ng-container>
 
