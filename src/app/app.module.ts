@@ -62,6 +62,7 @@ import { ChartModule } from 'primeng/chart';
 import { InvoiceListComponent } from './pages/invoice-list/invoice-list.component';
 import { PurchasesByServiceGraphComponent } from './pages/purchases-by-service-graph/purchases-by-service-graph.component';
 import { InvoiceSummaryDialogComponent } from './shared/invoice-summary-dialog/invoice-summary-dialog.component';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [
@@ -117,7 +118,8 @@ import { InvoiceSummaryDialogComponent } from './shared/invoice-summary-dialog/i
     MatSelectModule,
     MatStepperModule,
     MatListModule,
-    ChartModule
+    ChartModule,
+    MatCheckboxModule
   ],
   providers: [
     {
