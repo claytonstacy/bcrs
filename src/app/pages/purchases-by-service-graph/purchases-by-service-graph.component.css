@@ -1,8 +1,7 @@
-.chart-container {
-    width: 80%;
-    min-width: 600px;
-    max-width: 800px;
-    margin: 50px auto 50px;
+.graph-list-container {
+  width: 80%;
+  min-width: 600px;
+  max-width: 800px;
+  margin: 50px auto 50px;
 }
-
 
