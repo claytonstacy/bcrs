@@ -8,7 +8,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { User } from './user.interface';
+import { User } from '../interfaces/user.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -59,6 +59,10 @@ export class UserService {
 
   deleteUser(userId: string): Observable<any> {
     return this.http.delete('/api/users/' + userId);
+  }
+
+  findUserRole(userName: string): Observable<any> {
+    return this.http.get(`/api/users/${userName}/roles`);
   }
 
 }

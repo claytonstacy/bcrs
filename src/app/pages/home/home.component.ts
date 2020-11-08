@@ -8,16 +8,16 @@ Description: home component ts file
 */
 
 import { Component, OnInit } from '@angular/core';
-import { Invoice } from '../../shared/invoice.interface';
-import { InvoiceService } from 'src/app/shared/invoice.service';
+import { Invoice } from '../../shared/interfaces/invoice.interface';
+import { InvoiceService } from 'src/app/shared/services/invoice.service';
 import { InvoiceSummaryDialogComponent } from '../../shared/invoice-summary-dialog/invoice-summary-dialog.component';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { CookieService } from 'ngx-cookie-service';
-import { LineItem } from '../../shared/line-item.interface';
-import { Product } from '../../shared/product.interface';
-import { ProductService } from '../../shared/product.service';
+import { LineItem } from '../../shared/interfaces/line-item.interface';
+import { Product } from '../../shared/interfaces/product.interface';
+import { ProductService } from '../../shared/services/product.service';
 
 
 @Component({

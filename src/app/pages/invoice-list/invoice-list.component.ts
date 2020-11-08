@@ -7,8 +7,8 @@
  *****************************************************************************/
 
  import { Component, OnInit } from '@angular/core';
- import { InvoiceService } from '../../shared/invoice.service';
- import { Invoice } from '../../shared/invoice.interface';
+ import { InvoiceService } from '../../shared/services/invoice.service';
+ import { Invoice } from '../../shared/interfaces/invoice.interface';
 
 @Component({
   selector: 'app-invoice-list',

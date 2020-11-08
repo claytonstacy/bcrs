@@ -10,8 +10,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { RoleService } from '../../shared/role.service';
-import { Role } from '../../shared/role.interface';
+import { RoleService } from '../../shared/services/role.service';
+import { Role } from '../../shared/interfaces/role.interface';
 
 @Component({
 	selector: 'app-role-create',

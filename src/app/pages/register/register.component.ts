@@ -12,7 +12,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { SecurityQuestion } from '../../shared/security-question.interface';
+import { SecurityQuestion } from '../../shared/interfaces/security-question.interface';
 
 @Component({
   selector: 'app-register',

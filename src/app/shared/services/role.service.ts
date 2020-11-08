@@ -10,7 +10,7 @@ Description:
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Role } from './role.interface';
+import { Role } from '../interfaces/role.interface';
 
 @Injectable({
   providedIn: 'root'

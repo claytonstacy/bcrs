@@ -11,8 +11,8 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { UserService } from '../../shared/user.service';
-import { User } from '../../shared/user.interface';
+import { UserService } from '../../shared/services/user.service';
+import { User } from '../../shared/interfaces/user.interface';
 import { CookieService } from 'ngx-cookie-service';
 
 @Component({

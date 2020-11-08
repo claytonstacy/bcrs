@@ -202,7 +202,7 @@ router.get('/:username/security-questions', async (req, res) => {
 });
 
 //FindUserRole API: returns role as object with role and _id properties
-  router.get('/:username/role', async (req, res) => {
+  router.get('/:username/roles', async (req, res) => {
     try {
       User.findOne({
         'userName': req.params.username
