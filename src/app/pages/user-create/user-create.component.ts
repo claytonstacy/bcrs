@@ -9,10 +9,10 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
-import {UserService} from '../../shared/user.service';
-import {User} from '../../shared/user.interface';
-import {SecurityQuestion} from '../../shared/security-question.interface';
-import {SecurityQuestionService} from '../../shared/security-question.service';
+import {UserService} from '../../shared/services/user.service';
+import {User} from '../../shared/interfaces/user.interface';
+import {SecurityQuestion} from '../../shared/interfaces/security-question.interface';
+import {SecurityQuestionService} from '../../shared/services/security-question.service';
 
 @Component({
   selector: 'app-user-create',

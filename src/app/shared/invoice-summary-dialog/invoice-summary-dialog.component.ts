@@ -8,7 +8,7 @@
 
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { Invoice } from '../invoice.interface';
+import { Invoice } from '../interfaces/invoice.interface';
 
 @Component({
   selector: 'app-invoice-summary-dialog',

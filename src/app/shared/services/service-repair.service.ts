@@ -6,7 +6,7 @@
  * Description: Service repair services for service items
  *****************************************************************************/
 
-import { ServiceRepairItem } from './../shared/service-repair-item.interface';
+import { ServiceRepairItem } from '../interfaces/service-repair-item.interface';
 import { Injectable } from '@angular/core';
 
 @Injectable({

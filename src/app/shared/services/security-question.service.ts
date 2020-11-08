@@ -10,7 +10,7 @@ Description:
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { SecurityQuestion } from './security-question.interface';
+import { SecurityQuestion } from '../interfaces/security-question.interface';
 
 @Injectable({
   providedIn: 'root'

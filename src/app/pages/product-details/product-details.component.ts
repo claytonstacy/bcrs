@@ -9,8 +9,8 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
-import {Product} from '../../shared/product.interface';
-import {ProductService} from '../../shared/product.service';
+import {Product} from '../../shared/interfaces/product.interface';
+import {ProductService} from '../../shared/services/product.service';
 
 @Component({
   selector: 'app-product-details',

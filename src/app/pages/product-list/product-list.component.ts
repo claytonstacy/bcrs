@@ -8,8 +8,8 @@
 
 import {Component, OnInit} from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
-import {Product} from '../../shared/product.interface';
-import {ProductService} from '../../shared/product.service';
+import {Product} from '../../shared/interfaces/product.interface';
+import {ProductService} from '../../shared/services/product.service';
 import {DeleteRecordDialogComponent} from '../../shared/delete-record-dialog/delete-record-dialog.component';
 
 @Component({
