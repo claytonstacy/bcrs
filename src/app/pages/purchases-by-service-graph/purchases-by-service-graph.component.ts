@@ -38,35 +38,23 @@ export class PurchasesByServiceGraphComponent implements OnInit {
         legend: {
           display: true,
           position: "right",
-          align: "center",
+          align: "right",
           labels: {
             fontColor: "Gray",
-            fontSize: 15,
-            padding: 30
+            fontSize: 16,
+            padding: 20
           }
         },
-
-      layout: {
-        padding: {
-            left: 350,
-            right: 350,
-            top: 40,
-            bottom: 0
-        }
-    }
-      };
-
-
-      this.options = {
         title: {
           display: true,
           text: "Purchases by Product",
-          fontSize: 24
-        },
-        legend: {
-          position: 'right'
+          fontColor: "Gray",
+          fontSize: 44,
+          position: "top",
+          fontWeight: "lighter"
         }
       };
+
 
       this.data = {
         labels: this.labels,
