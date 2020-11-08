@@ -80,7 +80,6 @@ router.get('/purchases-graph', async (req, res) => {
   }
 });
 
-
 /*******************************************************************************
  * Create invoice API
  * CreateInvoice: /api/invoice/:username
@@ -89,7 +88,7 @@ router.get('/purchases-graph', async (req, res) => {
 router.post('/:userName', async(req, res) => {
   try {
     const userName = req.params.userName; // pass over the fields of the request data
-    // create new invoice
+
     const newInvoice = {
       userName,
       lineItems: req.body.lineItems,
@@ -101,6 +100,7 @@ router.post('/:userName', async(req, res) => {
 
     console.log(newInvoice);
 
+    // create new invoice
     Invoice.create(newInvoice, function(err, invoice) { // pass over invoice
       if (err) {
         console.log(err);
@@ -118,8 +118,6 @@ router.post('/:userName', async(req, res) => {
     res.status(500).send(createInvoiceCatchErrorResponse.toObject());
   }
 });
-
-
 
 /*******************************************************************************
  * FindAllInvoices API

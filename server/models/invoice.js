@@ -1,7 +1,7 @@
 /*
 ============================================
 Title: BRCS
-Author: Clayton Stacy, Christine Bohnet, Jeff Shepherd
+Author: Clayton Stacy, Christine Bohnet, Jeff Shepherd, Verlee Washington
 Date: 5 November 2020
 Description: Model for BRCS Invoices
 ============================================
@@ -12,9 +12,9 @@ const Schema = mongoose.Schema;
 const LineItemSchema = require('../schemas/line-item');
 
 
-const invoiceSchema = new Schema({
+const invoiceSchema = new Schema({ // invoice collection
   userName: String,
-  lineItems: [LineItemSchema],
+  lineItems: [LineItemSchema], // array of line items
   partsAmount: Number,
   laborAmount: Number,
   lineItemTotal: Number,

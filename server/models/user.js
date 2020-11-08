@@ -1,7 +1,7 @@
 /*
 ============================================
 Title: BRCS
-Author: Clayton Stacy, Christine Bohnet, Jeff Shepherd
+Author: Clayton Stacy, Christine Bohnet, Jeff Shepherd, Verlee Washington
 Date: 19 Oct 2020
 Description: Model for BRCS Users
 ============================================
@@ -12,7 +12,7 @@ const Schema = mongoose.Schema;
 const SelectedSecurityQuestionSchema = require('../schemas/selected-security-question');
 const UserRoleSchema = require('../schemas/user-role');
 
-
+// user model
 const userSchema = new Schema({
   userName: {type: String, unique: true, dropDups: true },
   password: {type: String, required: true },

@@ -1,7 +1,7 @@
 /*
 ============================================
 Title: BCRS
-Author: Clayton Stacy, Christine Bohnet, Jeff Shepherd
+Author: Clayton Stacy, Christine Bohnet, Jeff Shepherd, Verlee Washington
 Date: 20 Oct 2020
 Description: APIs for BCRS Role
 ============================================
@@ -36,8 +36,7 @@ router.get('/:id', async(req, res) => {
     const findByIdCathErrorResponse = new ErrorResponse(500, 'Internal Server Error', e.message);
     res.status(500).send(findByIdCathErrorResponse.toObject());
   }
-
-  })
+})
 
 /*
 * FindAll - Finds all roles not marked disabled.
@@ -90,7 +89,6 @@ router.post('/', async(req, res) => {
       console.log(e);
       const createRoleErrorCatchResponse= new ErrorResponse('500', 'internal error', e.message);
       res.status(500).send(createRoleErrorCatchResponse.toObject());
-
   }
 })
 
@@ -122,7 +120,6 @@ router.post('/', async(req, res) => {
                console.log(updatedRole);
                const UpdateRoleOnSaveResponse= new BaseResponse('200', 'Query Successful', updatedRole);
                res.json(UpdateRoleOnSaveResponse.toObject());
-
             }
           }) //end save
 
@@ -132,7 +129,6 @@ router.post('/', async(req, res) => {
       console.log(e);
       const updateRoleErrorCatchResponse= new ErrorResponse('500', 'internal error', e.message);
       res.status(500).send(updateRoleErrorCatchResponse.toObject());
-
     }
   })
 
@@ -141,6 +137,7 @@ router.post('/', async(req, res) => {
 */
 router.delete('/:id', async(req, res) => {
    try {
+          // find the role by document id
           Role.findOne({'_id': req.params.id}, function(err, role) {
             if (err) {
               console.log(err);
@@ -150,7 +147,7 @@ router.delete('/:id', async(req, res) => {
             } else {
               console.log(role);
 
-          if (role) {
+            if (role) {
               role.set({
                 isEnabled: false
               });
@@ -165,10 +162,8 @@ router.delete('/:id', async(req, res) => {
                   console.log(disableRole);
                   const DeleteRoleSuccessResponse= new BaseResponse('200', 'Disable role', disableRole);
                   res.json(DeleteRoleSuccessResponse.toObject());
-
               }
-              }) //end save
-
+            }) //end save
           }
         }
       })
@@ -177,10 +172,7 @@ router.delete('/:id', async(req, res) => {
        console.log(e);
        const deleteRoleErrorCatchResponse= new ErrorResponse('500', 'internal error', e.message);
       res.status(500).send(deleteRoleErrorCatchResponse.toObject());
-
     }
 })
-
-
 
 module.exports = router;
