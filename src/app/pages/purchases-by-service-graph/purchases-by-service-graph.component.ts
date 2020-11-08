@@ -17,11 +17,12 @@ import { InvoiceService } from '../../shared/services/invoice.service';
 export class PurchasesByServiceGraphComponent implements OnInit {
   purchases: any[];
   data: object;
+  options: object;
   // consider itemCount, labels, totals as parallel arrays
   itemCount: number[] = [];
   labels: string[] = [];
   totals: number[] = [];
-
+  legend: any;
   constructor(private invoiceService: InvoiceService) {
 
     this.invoiceService.findPurchasesByServiceGraph().subscribe(res => {
@@ -31,7 +32,30 @@ export class PurchasesByServiceGraphComponent implements OnInit {
         this.labels.push(item._id.title);
         this.itemCount.push(item.count);
         this.totals.push(item.count * item.price);
-      }
+      };
+
+      this.options = {
+        legend: {
+          display: true,
+          position: "right",
+          align: "center",
+          labels: {
+            fontColor: "Gray",
+            fontSize: 15,
+            padding: 30
+          }
+        },
+
+      layout: {
+        padding: {
+            left: 350,
+            right: 350,
+            top: 40,
+            bottom: 0
+        }
+    }
+      };
+
 
       this.data = {
         labels: this.labels,
@@ -56,6 +80,7 @@ export class PurchasesByServiceGraphComponent implements OnInit {
             ],
             data: this.itemCount
           }
+
         ]
       };
 
