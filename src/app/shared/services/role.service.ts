@@ -40,8 +40,4 @@ export class RoleService {
     return this.http.delete('/api/roles/' + roleId);
   }
 
-  findUserRole(userName: string): Observable<any> {
-    return this.http.get(`/api/${userName}/roles`);
-  }
-
 }
