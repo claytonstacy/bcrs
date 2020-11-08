@@ -17,6 +17,7 @@ import { InvoiceService } from '../../shared/invoice.service';
 export class PurchasesByServiceGraphComponent implements OnInit {
   purchases: any[];
   data: object;
+  options: object;
   // consider itemCount, labels, totals as parallel arrays
   itemCount: number[] = [];
   labels: string[] = [];
@@ -32,6 +33,17 @@ export class PurchasesByServiceGraphComponent implements OnInit {
         this.itemCount.push(item.count);
         this.totals.push(item.count * item.price);
       }
+
+      this.options = {
+        title: {
+          display: true,
+          text: "Purchases by Product",
+          fontSize: 24
+        },
+        legend: {
+          position: 'right'
+        }
+      };
 
       this.data = {
         labels: this.labels,

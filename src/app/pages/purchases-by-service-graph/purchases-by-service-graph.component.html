@@ -1,2 +1,10 @@
-<h1>Purchases By Product</h1>
-<p-chart type='pie' [data]='data'></p-chart>
+<mat-card fxLayout="column" class="chart-container">
+  <div fxFlex>
+    <p-chart type='pie'
+           [data]='data'
+           [options]='options'
+           width='600px'
+           height='600px'>
+    </p-chart>
+  </div>
+</mat-card>
