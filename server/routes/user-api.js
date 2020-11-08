@@ -102,14 +102,14 @@ router.put('/:id', async (req, res) => {
         } else {
             console.log(user);
 
-            user.set({
+            user.set({ // set the role to a new body
               firstName: req.body.firstName,
               lastName: req.body.lastName,
               phoneNumber: req.body.phoneNumber,
               address: req.body.address,
               email: req.body.email,
             })
-            user.role.set({
+            user.role.set({ // update the role value referencing the role object
               role: req.body.role
             })
           user.save(function (err, updatedUser) {

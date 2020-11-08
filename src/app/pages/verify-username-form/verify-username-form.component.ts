@@ -1,7 +1,7 @@
 /*
 ============================================
 Title: BCRS
-Author: Clayton Stacy, Christine Bohnet, Jeff Shepherd
+Author: Clayton Stacy, Christine Bohnet, Jeff Shepherd, Verlee Washington
 Date: 29 Oct 2020
 Description: verify username form component ts file
 ============================================
