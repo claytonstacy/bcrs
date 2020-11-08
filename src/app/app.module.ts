@@ -63,6 +63,7 @@ import { InvoiceListComponent } from './pages/invoice-list/invoice-list.componen
 import { PurchasesByServiceGraphComponent } from './pages/purchases-by-service-graph/purchases-by-service-graph.component';
 import { InvoiceSummaryDialogComponent } from './shared/invoice-summary-dialog/invoice-summary-dialog.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -119,7 +120,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     MatStepperModule,
     MatListModule,
     ChartModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatSnackBarModule
   ],
   providers: [
     {
