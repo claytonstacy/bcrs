@@ -26,7 +26,8 @@ export class UserDetailsComponent implements OnInit {
   roles: Role[];
 
   constructor(private route: ActivatedRoute, private fb: FormBuilder,
-              private router: Router, private userService: UserService, private roleService: RoleService) {
+              private router: Router, private userService: UserService,
+              private roleService: RoleService) {
 
     this.userId = this.route.snapshot.paramMap.get('userId');
 

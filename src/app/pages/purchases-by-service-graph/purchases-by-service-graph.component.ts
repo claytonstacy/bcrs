@@ -23,6 +23,7 @@ export class PurchasesByServiceGraphComponent implements OnInit {
   labels: string[] = [];
   totals: number[] = [];
   legend: any;
+
   constructor(private invoiceService: InvoiceService) {
 
     this.invoiceService.findPurchasesByServiceGraph().subscribe(res => {
@@ -66,6 +67,7 @@ export class PurchasesByServiceGraphComponent implements OnInit {
               '#FF8833',
               '#5FA777',
               '#0066CC',
+              '#6B3FA0',
               '#AF593E',
               '#6CDAE7'
             ],
@@ -74,6 +76,7 @@ export class PurchasesByServiceGraphComponent implements OnInit {
               '#FF8833',
               '#5FA777',
               '#0066CC',
+              '#6B3FA0',
               '#AF593E',
               '#6CDAE7'
             ],
