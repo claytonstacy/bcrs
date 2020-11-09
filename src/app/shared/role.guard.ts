@@ -1,3 +1,12 @@
+/*
+============================================
+Title: BRCS
+Author: Clayton Stacy, Christine Bohnet, Jeff Shepherd, Verlee Washington
+Date: 5 November 2020
+Description: RoleGuardd for BCRS
+============================================
+*/
+
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
 import { UserService } from './services/user.service';
@@ -13,7 +22,8 @@ export class RoleGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot) {
-    return this.userService.findUserRole(this.cookieService.get('session_user')).pipe(map(res => {
+// Get user role from the db then check for admin role, return true if found
+      return this.userService.findUserRole(this.cookieService.get('session_user')).pipe(map(res => {
       console.log('Checking role', res['data'])
        if (res['data'].role === 'admin') {
         return true;
