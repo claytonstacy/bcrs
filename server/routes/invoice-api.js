@@ -40,6 +40,8 @@ router.get('/purchases-graph', async (req, res) => {
 
         // The group stage groups items by title. Price is included
         // so that value can be used by any function calling the api
+        // Also, if you have two items named "password reset" but the prices
+        // differ, they will be counted as separate items.
         '$group': {
           '_id': {
             'title': '$lineItems.title',
