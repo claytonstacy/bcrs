@@ -1,15 +1,9 @@
-<div fxLayout="column" fxLayoutAlign="center center">
-  <div fxFlex>
+<div fxLayout="column"  fxLayoutAlign="center center" class="profile-list-container">
     <mat-card class="mat-elevation-z8" style="width: 75%;">
-      <div fxLayout="column" fxLayoutAlign="center center">
-        <div fxFlex>
           <mat-card-title>Update User</mat-card-title>
-        </div>
-        <div fxFlex>
+          <br/>
           <mat-card-subtitle>or <a routerLink="/session/forgot">click here</a> to change your password.</mat-card-subtitle>
-        </div>
-        <div fxFlex>
-            <mat-card class="mat-elevation-z0">
+
                 <form [formGroup]="form" (ngSubmit)="saveUser()" #userForm="ngForm">
                   <mat-card-content>
                       <mat-form-field>
@@ -38,9 +32,7 @@
                   <button type="submit" mat-raised-button color="accent">Submit</button>
                 </mat-card-actions>
               </form>
-             </mat-card>
-        </div>
-      </div>
+
     </mat-card>
-  </div>
+
   </div>
