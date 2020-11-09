@@ -25,7 +25,14 @@ export class RegisterComponent implements OnInit {
   registrationForm: FormGroup;
   errorMessage: string;
 
-  constructor(private http: HttpClient, private router: Router, private fb: FormBuilder, private cookieService: CookieService) {
+  // any number of numbers between 0-9
+  readonly NUMBER = '^[0-9]*$';
+  // at least one number, at least one upper case letter, and length 8+
+  readonly PASSWORD = '^(?=.+[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,}$';
+
+  constructor(private http: HttpClient, private router: Router,
+              private fb: FormBuilder, private cookieService: CookieService) {
+
     this.http.get('/api/security-questions').subscribe(res => {
       this.securityQuestions = res['data'];
     }, err => {
@@ -34,13 +41,22 @@ export class RegisterComponent implements OnInit {
    }
 
   ngOnInit(): void {
+
+
     this.registrationForm = new FormGroup({
       contactInfo: new FormGroup({
         firstName: new FormControl(null, Validators.required),
+
         lastName: new FormControl(null, Validators.required),
-        phoneNumber: new FormControl(null, Validators.required),
+
+        phoneNumber: new FormControl(null, Validators.compose([Validators.required,
+          Validators.pattern(this.NUMBER),
+          Validators.minLength(10), Validators.maxLength(10)])),
+
         address: new FormControl(null, Validators.required),
-        email: new FormControl(null, Validators.required),
+
+        email: new FormControl(null, Validators.compose([Validators.required,
+          Validators.email])),
       }),
       securityQuestions: new FormGroup({
         securityQuestion1: new FormControl(null, Validators.required),
@@ -52,7 +68,9 @@ export class RegisterComponent implements OnInit {
       }),
       credentials: new FormGroup({
         userName: new FormControl(null, Validators.required),
-        password: new FormControl(null, Validators.required)
+
+        password: new FormControl(null, Validators.compose([Validators.required,
+          Validators.pattern(this.PASSWORD)]))
       })
     });
   }
