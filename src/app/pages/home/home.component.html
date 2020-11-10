@@ -1,14 +1,15 @@
 <div fxLayout="column"  fxLayoutAlign="center center" class="invoice-list-container">
-  <mat-card class="mat-elevation-z8">
-    <mat-card-title style="text-align: center;">Welcome to Bob's Computer Repair Shop</mat-card-title>
+  <mat-card class="mat-elevation-z8 product-card" fxLayout="column" fxLayoutAlign="center center">
+    <mat-card-title style="text-align: center;">Please select services and Fees</mat-card-title>
+    <br />
+    <br />
 
-<mat-card class="mat-elevation-z0" style="width: 65%; margin: 0 auto;">
   <form #serviceRepairForm="ngForm" (ngSubmit)="submit(serviceRepairForm.value); serviceRepairForm.reset();">
     <mat-card-content>
 
       <!-- service repair -->
       <div fxLayout="column">
-        <h4 fxFlex>Services</h4>
+
 
         <div ngModelGroup="checkGroup" *ngFor="let product of products">
           <mat-checkbox name="{{product._id}}" ngModel>
@@ -17,10 +18,9 @@
           <br/>
         </div>
       </div>
-
-      <br/><br/>
+      <br/>
       <mat-divider></mat-divider>
-      <br/><br/>
+      <br/>
 
       <!-- parts & labor -->
       <div fxLayout="column">
@@ -47,11 +47,10 @@
     <br/>
 
     <mat-card-actions align="end">
-      <button mat-raised-button type="reset" color="primary">Cancel</button>
+      <button mat-raised-button type="reset" color="primary" routerLink="/">Cancel</button>
       <button mat-raised-button color="accent">Submit</button>
     </mat-card-actions>
 
   </form>
-</mat-card>
 </mat-card>
 </div>

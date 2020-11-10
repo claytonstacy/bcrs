@@ -63,11 +63,13 @@ const routes: Routes = [
       },
       {
         path: 'users',
-        component: UserListComponent
+        component: UserListComponent,
+        canActivate: [RoleGuard]
       },
       {
         path: 'users/:userId',
-        component: UserDetailsComponent
+        component: UserDetailsComponent,
+        canActivate: [RoleGuard]
       },
       /*       {
               path: 'users/create/new',
@@ -75,39 +77,48 @@ const routes: Routes = [
             }, */
       {
         path: 'security-questions',
-        component: SecurityQuestionListComponent
+        component: SecurityQuestionListComponent,
+        canActivate: [RoleGuard]
       },
       {
         path: 'security-questions/:questionId',
-        component: SecurityQuestionDetailsComponent
+        component: SecurityQuestionDetailsComponent,
+        canActivate: [RoleGuard]
       },
       {
         path: 'security-questions/create/new',
-        component: SecurityQuestionCreateComponent
+        component: SecurityQuestionCreateComponent,
+        canActivate: [RoleGuard]
       },
       {
         path: 'roles',
-        component: RoleListComponent
+        component: RoleListComponent,
+        canActivate: [RoleGuard]
       },
       {
         path: 'roles/create/new',
-        component: RoleCreateComponent
+        component: RoleCreateComponent,
+        canActivate: [RoleGuard]
       },
       {
         path: 'roles/:roleId',
-        component: RoleDetailsComponent
+        component: RoleDetailsComponent,
+        canActivate: [RoleGuard]
       },
       {
         path: 'products',
-        component: ProductListComponent
+        component: ProductListComponent,
+        canActivate: [RoleGuard]
       },
       {
         path: 'products/:productId',
-        component: ProductDetailsComponent
+        component: ProductDetailsComponent,
+        canActivate: [RoleGuard]
       },
       {
         path: 'products/create/new',
-        component: ProductCreateComponent
+        component: ProductCreateComponent,
+        canActivate: [RoleGuard]
       },
       {
         path: 'profile',
