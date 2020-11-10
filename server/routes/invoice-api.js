@@ -12,7 +12,6 @@ const express = require('express');
 const BaseResponse = require('../services/base-response');
 const ErrorResponse = require('../services/error-response');
 const Invoice = require('../models/invoice');
-const { Error } = require('mongoose');
 
 let router = express.Router();
 

@@ -41,14 +41,16 @@ export class UserDetailsComponent implements OnInit {
       this.form.controls.phoneNumber.setValue(this.user.phoneNumber);
       this.form.controls.address.setValue(this.user.address);
       this.form.controls.email.setValue(this.user.email);
-      if (this.user.role) this.form.controls.role.setValue(this.user.role['role']);
+      if (this.user.role) {
+        this.form.controls.role.setValue(this.user.role['role']);
+      }
     });
     this.roleService.findAllRoles().subscribe(res => {
-      console.log('Here are the roles',res.data)
+      console.log('Here are the roles', res.data);
       this.roles = res['data'];
     }, err => {
       console.log(err);
-    })
+    });
 
   }
 

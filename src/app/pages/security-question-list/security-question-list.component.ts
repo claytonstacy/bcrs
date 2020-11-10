@@ -6,12 +6,12 @@ Date: 20 Oct 2020
 Description: security-question-list-component
 ============================================
 */
-import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import {Component, OnInit} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
 import {MatDialog} from '@angular/material/dialog';
-import { SecurityQuestionService } from '../../shared/services/security-question.service';
-import { SecurityQuestion } from '../../shared/interfaces/security-question.interface';
-import { DeleteRecordDialogComponent } from 'src/app/shared/delete-record-dialog/delete-record-dialog.component';
+import {SecurityQuestionService} from '../../shared/services/security-question.service';
+import {SecurityQuestion} from '../../shared/interfaces/security-question.interface';
+import {DeleteRecordDialogComponent} from 'src/app/shared/delete-record-dialog/delete-record-dialog.component';
 
 @Component({
   selector: 'app-security-question-list',
@@ -21,23 +21,24 @@ import { DeleteRecordDialogComponent } from 'src/app/shared/delete-record-dialog
 export class SecurityQuestionListComponent implements OnInit {
 
   securityQuestions: SecurityQuestion[];
-  displayedColumns: string[] = ['question', 'functions']
+  displayedColumns: string[] = ['question', 'functions'];
 
-  //constructor(private http: HttpClient, private securityQuestionService: SecurityQuestionService) {
+  constructor(private http: HttpClient,
+              private securityQuestionService: SecurityQuestionService,
+              private dialog: MatDialog) {
 
-  constructor(private http: HttpClient, private securityQuestionService: SecurityQuestionService, private dialog: MatDialog) {
     this.securityQuestionService.findAllSecurityQuestions().subscribe(res => {
       this.securityQuestions = res['data'];
-      console.log('These are the security questions', JSON.stringify(this.securityQuestions))
+      console.log('These are the security questions', JSON.stringify(this.securityQuestions));
     }, err => {
       console.log(err);
-    })
-   }
-
-  ngOnInit() {
+    });
   }
 
-  delete(recordId: string, question: string, ) {
+  ngOnInit(): void {
+  }
+
+  delete(recordId: string, question: string): void {
     const dialogRef = this.dialog.open(DeleteRecordDialogComponent, {
       data: {
         recordId,
@@ -49,13 +50,13 @@ export class SecurityQuestionListComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result == 'confirm') {
+      if (result === 'confirm') {
         this.securityQuestionService.deleteSecurityQuestion(recordId).subscribe(res => {
           console.log('Security question deleted');
           this.securityQuestions = this.securityQuestions.filter(q => q._id !== recordId);
-        })
+        });
       }
-    })
+    });
   }
 
 }

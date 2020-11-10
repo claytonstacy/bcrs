@@ -49,14 +49,14 @@ export class HomeComponent implements OnInit {
 
     }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.form = this.fb.group({
       parts: [null, Validators.compose([Validators.required])],
       labor: [null, Validators.compose([Validators.required])]
     });
   }
 
-  submit(form) {
+  submit(form): void {
     const selectedProductIds = [];
     for (const [key, value] of Object.entries(form.checkGroup)) {
       if (value) { // iterate over checkboxes and give me the id
@@ -92,10 +92,10 @@ export class HomeComponent implements OnInit {
     const invoice = {
       userName: this.userName,
       lineItems: this.lineItems,
-      partsAmount: partsAmount,
-      laborAmount: laborAmount,
-      lineItemTotal: lineItemTotal,
-      total: total,
+      partsAmount,
+      laborAmount,
+      lineItemTotal,
+      total,
       orderDate: new Date()
     } as Invoice;
 
@@ -103,7 +103,7 @@ export class HomeComponent implements OnInit {
 
     const dialogRef = this.dialog.open(InvoiceSummaryDialogComponent, {
       data: {
-        invoice: invoice
+        invoice
       },
       disableClose: true,
       width: '800px'
@@ -117,7 +117,7 @@ export class HomeComponent implements OnInit {
           this.router.navigate(['/']);
         }, err => {
           console.log(err);
-        })
+        });
       }
     });
   }

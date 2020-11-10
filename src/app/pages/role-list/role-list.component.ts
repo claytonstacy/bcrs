@@ -7,36 +7,36 @@ Description: Role list component
 ============================================
 */
 
-import { Component, OnInit } from '@angular/core';
-import { DeleteRecordDialogComponent } from 'src/app/shared/delete-record-dialog/delete-record-dialog.component';
-import { MatDialog } from '@angular/material/dialog';
-import { HttpClient } from '@angular/common/http';
-import { RoleService } from '../../shared/services/role.service';
-import { Role } from '../../shared/interfaces/role.interface';
+import {Component, OnInit} from '@angular/core';
+import {DeleteRecordDialogComponent} from 'src/app/shared/delete-record-dialog/delete-record-dialog.component';
+import {MatDialog} from '@angular/material/dialog';
+import {HttpClient} from '@angular/common/http';
+import {RoleService} from '../../shared/services/role.service';
+import {Role} from '../../shared/interfaces/role.interface';
 
 @Component({
-	selector: 'app-role-list',
-	templateUrl: './role-list.component.html',
-	styleUrls: ['./role-list.component.css']
+  selector: 'app-role-list',
+  templateUrl: './role-list.component.html',
+  styleUrls: ['./role-list.component.css']
 })
 export class RoleListComponent implements OnInit {
-	roles: Role[];
+  roles: Role[];
   displayedColumns = ['role', 'functions'];
 
-	constructor(private http: HttpClient, private roleService: RoleService, private dialog: MatDialog) {
-		this.http.get('/api/roles').subscribe(res => {
-			this.roles = res['data'];
-			console.log(this.roles);
-		}, err => {
-			console.log(err);
-		});
-	}
+  constructor(private http: HttpClient, private roleService: RoleService, private dialog: MatDialog) {
+    this.http.get('/api/roles').subscribe(res => {
+      this.roles = res['data'];
+      console.log(this.roles);
+    }, err => {
+      console.log(err);
+    });
+  }
 
-	ngOnInit() {
-	}
+  ngOnInit(): void {
+  }
 
 
-  delete(roleId: string, role: string, ) {
+  delete(roleId: string, role: string): void {
     const dialogRef = this.dialog.open(DeleteRecordDialogComponent, {
       data: {
         roleId,
@@ -48,12 +48,12 @@ export class RoleListComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result == 'confirm') {
+      if (result === 'confirm') {
         this.roleService.deleteRole(roleId).subscribe(res => {
           console.log('Role deleted');
           this.roles = this.roles.filter(role => role._id !== roleId);
-        })
+        });
       }
-    })
+    });
   }
 }

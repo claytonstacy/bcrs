@@ -19,18 +19,18 @@ export class PhoneFormatPipe implements PipeTransform {
   transform(value: string): string {
     let formattedPhone;
 
-    let pattern = new RegExp('^[0-9]{10}$');
+    const pattern = new RegExp('^[0-9]{10}$');
 
     if (value.match(pattern)) {
-      let areaCode = value.substring(0, 3);
-      let prefix = value.substring(3, 6);
-      let lastFour = value.substring(6);
+      const areaCode = value.substring(0, 3);
+      const prefix = value.substring(3, 6);
+      const lastFour = value.substring(6);
       formattedPhone = `(${areaCode}) ${prefix}-${lastFour}`;
     } else {
       return value;
     }
 
-      return formattedPhone;
+    return formattedPhone;
     }
 
 }

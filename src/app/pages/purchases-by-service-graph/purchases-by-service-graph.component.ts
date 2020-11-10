@@ -33,26 +33,26 @@ export class PurchasesByServiceGraphComponent implements OnInit {
         this.labels.push(item._id.title);
         this.itemCount.push(item.count);
         this.totals.push(item.count * item.price);
-      };
+      }
 
       this.options = {
         legend: {
           display: true,
-          position: "right",
-          align: "right",
+          position: 'right',
+          align: 'right',
           labels: {
-            fontColor: "Gray",
+            fontColor: 'Gray',
             fontSize: 16,
             padding: 20
           }
         },
         title: {
           display: true,
-          text: "Purchases by Product",
-          fontColor: "Gray",
+          text: 'Purchases by Product',
+          fontColor: 'Gray',
           fontSize: 44,
-          position: "top",
-          fontWeight: "lighter"
+          position: 'top',
+          fontWeight: 'lighter'
         }
       };
 
@@ -62,7 +62,7 @@ export class PurchasesByServiceGraphComponent implements OnInit {
         datasets: [
           {
             backgroundColor: [
-              //need one color per product, so 7
+              // need one color per product, so 7
               '#ED0A3F',
               '#FF8833',
               '#5FA777',
@@ -88,7 +88,7 @@ export class PurchasesByServiceGraphComponent implements OnInit {
 
       console.log('Data object');
       console.log(this.data);
-    })
+    });
    }
 
   ngOnInit(): void {

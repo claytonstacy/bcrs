@@ -9,14 +9,11 @@
 "use strict";
 
 const User = require('../models/user');
-const Role = require('../schemas/user-role');
 const express = require('express');
-const bcrypt = require('bcryptjs');
 const BaseResponse = require('../services/base-response');
 const ErrorResponse = require('../services/error-response');
 
 let router = express.Router();
-const saltRounds = 10;
 
 /*******************************************************************************
  * All of these functions work using "app.use('/api/users, UserApi);" in the

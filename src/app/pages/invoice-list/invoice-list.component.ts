@@ -10,7 +10,7 @@
  import { InvoiceService } from '../../shared/services/invoice.service';
  import { Invoice } from '../../shared/interfaces/invoice.interface';
 
-@Component({
+ @Component({
   selector: 'app-invoice-list',
   templateUrl: './invoice-list.component.html',
   styleUrls: ['./invoice-list.component.css']
@@ -30,7 +30,7 @@ export class InvoiceListComponent implements OnInit {
 
     this.invoiceService.findAllInvoices().subscribe(res => {
       this.invoices = res.data;
-      console.log('Got the invoices', this.invoices)
+      console.log('Got the invoices', this.invoices);
       // console.log(JSON.stringify(this.users));
     }, err => {
       console.log(err);

@@ -7,11 +7,11 @@ Description: signin component ts file
 ============================================
 */
 
-import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { CookieService } from 'ngx-cookie-service';
+import {Component, OnInit} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {Router} from '@angular/router';
+import {CookieService} from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-signin',
@@ -23,17 +23,19 @@ export class SigninComponent implements OnInit {
   form: FormGroup;
   error: string;
 
-  constructor(private router: Router, private cookieService: CookieService, private fb: FormBuilder, private http: HttpClient) { }
+  constructor(private router: Router, private cookieService: CookieService,
+              private fb: FormBuilder, private http: HttpClient) {
+  }
 
   ngOnInit(): void {
     this.form = this.fb.group({
       userName: [null, Validators.compose([Validators.required])],
       password: [null, Validators.compose([Validators.required])] // Validators.pattern('^[a-zA-Z]\d+$')
-    })
+    });
   }
 
 
-  login() {
+  login(): void {
     const userName = this.form.controls.userName.value;
     const password = this.form.controls.password.value;
 
@@ -48,10 +50,9 @@ export class SigninComponent implements OnInit {
         this.router.navigate(['/']);
       }
     }, err => {
-      console.log(err)
+      console.log(err);
       this.error = err;
-    })
-
+    });
 
 
   }

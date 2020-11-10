@@ -75,7 +75,7 @@ export class RegisterComponent implements OnInit {
     });
   }
 
-  register(form) {
+  register(form): void {
     const contactInfo = form.contactInfo;
     const securityQuestions = form.securityQuestions;
     const credentials = form.credentials;
@@ -103,7 +103,7 @@ export class RegisterComponent implements OnInit {
       phoneNumber: contactInfo.phoneNumber,
       address: contactInfo.address,
       email: contactInfo.email,
-      selectedSecurityQuestions: selectedSecurityQuestions
+      selectedSecurityQuestions
     }).subscribe(res => {
       if (res['data']) {
         // user is authenticated and access is granted

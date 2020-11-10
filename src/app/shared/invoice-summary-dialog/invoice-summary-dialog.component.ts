@@ -6,9 +6,9 @@
  * Description: Dialog for the invoice summary dialog
  *****************************************************************************/
 
-import { Component, Inject, OnInit } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { Invoice } from '../interfaces/invoice.interface';
+import {Component, Inject, OnInit} from '@angular/core';
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
+import {Invoice} from '../interfaces/invoice.interface';
 
 @Component({
   selector: 'app-invoice-summary-dialog',
@@ -18,7 +18,8 @@ import { Invoice } from '../interfaces/invoice.interface';
 export class InvoiceSummaryDialogComponent implements OnInit {
   invoice: Invoice;
 
-  constructor(private dialogRef: MatDialogRef<InvoiceSummaryDialogComponent>, @Inject(MAT_DIALOG_DATA) data) {
+  constructor(private dialogRef: MatDialogRef<InvoiceSummaryDialogComponent>,
+              @Inject(MAT_DIALOG_DATA) data) {
     this.invoice = data.invoice;
   }
 

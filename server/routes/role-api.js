@@ -6,7 +6,6 @@ Date: 20 Oct 2020
 Description: APIs for BCRS Role
 ============================================
 */
-const { FlexAlignStyleBuilder } = require('@angular/flex-layout');
 const express = require('express');
 const Role = require('../models/role');
 const BaseResponse = require('../services/base-response');
@@ -33,8 +32,8 @@ router.get('/:id', async(req, res) => {
 
   } catch (e) {
     console.log(e);
-    const findByIdCathErrorResponse = new ErrorResponse(500, 'Internal Server Error', e.message);
-    res.status(500).send(findByIdCathErrorResponse.toObject());
+    const findByIdCatchErrorResponse = new ErrorResponse(500, 'Internal Server Error', e.message);
+    res.status(500).send(findByIdCatchErrorResponse.toObject());
   }
 })
 

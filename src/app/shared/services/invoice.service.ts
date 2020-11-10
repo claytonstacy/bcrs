@@ -8,7 +8,7 @@
 import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
-import {Invoice} from '../../shared/interfaces/invoice.interface';
+import {Invoice} from '../interfaces/invoice.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +20,7 @@ export class InvoiceService {
 
   createInvoice(userName: string, invoice: Invoice): Observable<any> {
     return this.http.post('/api/invoice/' + userName, {
-      userName: userName,
+      userName,
       lineItems: invoice.lineItems,
       partsAmount: invoice.partsAmount,
       laborAmount: invoice.laborAmount,
