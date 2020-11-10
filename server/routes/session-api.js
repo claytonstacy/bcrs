@@ -12,8 +12,6 @@
  const bcrypt = require('bcryptjs');
  const ErrorResponse = require('../services/error-response');
  const BaseResponse = require('../services/base-response');
-const { verify } = require('crypto');
-const { config } = require('karma');
 
  // configure router
 const router = express.Router();
@@ -64,7 +62,7 @@ router.post('/register', async (req, res) => {
       } else {
         if (!user) {
           let hashedPassword = bcrypt.hashSync(req.body.password, saltRounds); // salt/hash the password
-          standardRole = {
+          const standardRole = {
             role: 'standard'
           }
 
@@ -130,7 +128,7 @@ router.get('/verify/users/:userName', async (req, res) => {
 //Verify Security Question API
 
 /*
-  Verify Security question API is expecting a body with securityQuetion property, the property should be an array as follows:
+  Verify Security question API is expecting a body with securityQuestion property, the property should be an array as follows:
   {
 	"securityQuestions": [
 	{"questionText": "What is your favorite candy and ice cream for a blizzard?", "answerText": "Answer1"},

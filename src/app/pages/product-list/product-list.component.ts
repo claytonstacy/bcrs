@@ -8,8 +8,8 @@
 
 import {Component, OnInit} from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
-import {Product} from '../../shared/product.interface';
-import {ProductService} from '../../shared/product.service';
+import {Product} from '../../shared/interfaces/product.interface';
+import {ProductService} from '../../shared/services/product.service';
 import {DeleteRecordDialogComponent} from '../../shared/delete-record-dialog/delete-record-dialog.component';
 
 @Component({
@@ -21,7 +21,7 @@ export class ProductListComponent implements OnInit {
 
   products: Product[];
 
-  displayedColumns: string[] = ['text', 'price', 'functions'];
+  displayedColumns: string[] = ['title', 'price', 'functions'];
 
   constructor(private dialog: MatDialog,
               private productService: ProductService) {

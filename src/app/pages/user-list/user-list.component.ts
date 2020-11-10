@@ -8,8 +8,8 @@
 
 import {Component, OnInit} from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
-import {UserService} from '../../shared/user.service';
-import {User} from '../../shared/user.interface';
+import {UserService} from '../../shared/services/user.service';
+import {User} from '../../shared/interfaces/user.interface';
 import {DeleteRecordDialogComponent} from '../../shared/delete-record-dialog/delete-record-dialog.component';
 
 @Component({
@@ -20,7 +20,7 @@ import {DeleteRecordDialogComponent} from '../../shared/delete-record-dialog/del
 export class UserListComponent implements OnInit {
   users: User[];
   displayedColumns: string[] = ['userName', 'firstName', 'lastName',
-    'phoneNumber', 'address', 'email', 'functions'];
+    'phoneNumber', 'address', 'email', 'role', 'functions'];
 
   constructor(private dialog: MatDialog, private userService: UserService) {
 

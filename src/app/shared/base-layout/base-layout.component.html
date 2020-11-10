@@ -13,7 +13,6 @@
           <button class="navbar-link" routerLink="/" mat-button color="accent">Home</button>
           <button class="navbar-link" routerLink="/about" mat-button color="accent">About</button>
           <button class="navbar-link" routerLink="/contact" mat-button color="accent">Contact</button>
-          <button class="navbar-link" routerLink="/profile" mat-button color="accent">Profile</button>
         </div>
 
         <div fxFlex fxLayoutAlign="end center">
@@ -21,10 +20,10 @@
           <button [matMenuTriggerFor]="userOptions" class="user-options-menu" color="accent" mat-icon-button>
             <mat-icon>account_circle</mat-icon>
             <mat-menu #userOptions="matMenu" x-position="before">
-              <button mat-menu-item>
+              <button mat-menu-item routerLink="/profile">
                 Profile Settings
               </button>
-              <button mat-menu-item [matMenuTriggerFor]="adminOptions">
+              <button mat-menu-item [matMenuTriggerFor]="adminOptions" *ngIf="userRole === 'admin'">
                 Administrator Options
               </button>
               </mat-menu>
@@ -37,6 +36,12 @@
               </button>
               <button mat-menu-item routerLink="/products">
                 Configure Products
+              </button>
+              <button mat-menu-item routerLink="/roles">
+                Configure Roles
+              </button>
+              <button mat-menu-item routerLink="/purchases-by-service-graph">
+                Purchases Graph
               </button>
             </mat-menu>
           </button>

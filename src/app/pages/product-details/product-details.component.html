@@ -9,9 +9,9 @@
           <mat-form-field>
             <input type="text"
                    matInput
-                   [formControl]="form.controls.text"
+                   [formControl]="form.controls.title"
                    placeholder="Product name">
-            <mat-error *ngIf="form.controls.text.invalid">
+            <mat-error *ngIf="form.controls.title.invalid">
                    {{getNameErrorMessage()}}</mat-error>
           </mat-form-field>
 
@@ -24,8 +24,6 @@
             <mat-error *ngIf="form.controls.price.invalid">
                    {{getPriceErrorMessage()}}</mat-error>
           </mat-form-field>
-
-
         </div>
       </mat-card-content>
 

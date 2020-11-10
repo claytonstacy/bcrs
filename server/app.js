@@ -1,7 +1,7 @@
 /*
 ============================================
 Title: BCRS
-Author: Clayton Stacy, Christine Bohnet, Jeff Shepherd
+Author: Clayton Stacy, Christine Bohnet, Jeff Shepherd, Verlee Washington
 Date: 20 Oct 2020
 Description: Routes for BCRS
 ============================================
@@ -20,6 +20,7 @@ const SecurityQuestionApi = require('./routes/security-question.api'); //sets up
 const UserApi = require('./routes/user-api');
 const SessionApi = require('./routes/session-api');
 const ProductApi = require('./routes/product-api');
+const InvoiceApi = require('./routes/invoice-api');
 const RoleApi = require('./routes/role-api');
 
 
@@ -64,6 +65,7 @@ app.use('/api/security-questions', SecurityQuestionApi);
 app.use('/api/users', UserApi);
 app.use('/api/session', SessionApi);
 app.use('/api/product', ProductApi);
+app.use('/api/invoice', InvoiceApi);
 app.use('/api/roles', RoleApi);
 
 

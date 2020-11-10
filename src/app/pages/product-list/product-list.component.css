@@ -1,6 +1,7 @@
 .product-list-container {
-  width: 40%;
+  width: 50%;
   min-width: 400px;
+  max-width: 500px;
   margin: 50px auto 50px;
 }
 

@@ -9,8 +9,8 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
-import {Product} from '../../shared/product.interface';
-import {ProductService} from '../../shared/product.service';
+import {Product} from '../../shared/interfaces/product.interface';
+import {ProductService} from '../../shared/services/product.service';
 
 @Component({
   selector: 'app-product-details',
@@ -34,7 +34,7 @@ export class ProductDetailsComponent implements OnInit {
     }, err => {
       console.log(err);
     }, () => {
-      this.form.controls.text.setValue(this.product.text);
+      this.form.controls.title.setValue(this.product.title);
       this.form.controls.price.setValue(this.product.price);
     });
   }
@@ -43,7 +43,7 @@ export class ProductDetailsComponent implements OnInit {
     const decimalPattern = '^\\d+(\\.\\d{1,2})?$';
 
     this.form = this.fb.group({
-      text: [null, Validators.compose([Validators.required])],
+      title: [null, Validators.compose([Validators.required])],
 
       price: [null, Validators.compose([Validators.required,
         Validators.pattern(decimalPattern)])]
@@ -55,7 +55,7 @@ export class ProductDetailsComponent implements OnInit {
     // in this case, an empty object named 'newUser' as an object of type User
     const updatedProduct = {} as Product;
 
-    updatedProduct.text = this.form.controls.text.value;
+    updatedProduct.title = this.form.controls.title.value;
     updatedProduct.price = this.form.controls.price.value;
 
     this.productService.updateProduct(this.productId, updatedProduct)
@@ -81,7 +81,7 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   getNameErrorMessage(): string {
-    if (this.form.controls.text.hasError('required')) {
+    if (this.form.controls.title.hasError('required')) {
       return 'You must enter a value';
     } else {
       return '';

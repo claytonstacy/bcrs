@@ -87,7 +87,7 @@ router.post('/', async (req, res) => {
 
     let aProduct = {
       price: req.body.price,
-      text: req.body.text,
+      title: req.body.title,
       isEnabled: true
     };
 
@@ -133,7 +133,7 @@ router.put('/:id', async (req, res) => {
 
           product.set({
             price: req.body.price,
-            text: req.body.text
+            title: req.body.title
           })
 
           product.save(function (err, updatedProduct) {

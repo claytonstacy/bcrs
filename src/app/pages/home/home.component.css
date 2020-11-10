@@ -1,14 +1,19 @@
-.main-welcome {
-    margin-top: 30px;
+
+  .invoice-list-container {
+    margin: 30px auto 50px;
   }
-  
-  .title {
-    text-align: center;
-    font-weight: lighter;
+
+  .product-card {
+    width: 50%
   }
-  
-  .subtitle {
-    text-align: center;
-    font-size: 14px;
+  .mat-raised-button {
+    margin-top: 10px;
   }
-  
+
+  .mat-cell {
+    padding-right: 30px;
+  }
+
+  .mat-header-cell {
+    padding-right: 30px;
+  }

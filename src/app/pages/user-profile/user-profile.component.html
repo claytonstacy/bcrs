@@ -1,48 +1,36 @@
-<div fxLayout="column" fxLayoutAlign="center center">
-<div fxFlex>
-  <mat-card class="mat-elevation-z8" style="width: 75%;">
-    <div fxLayout="column" fxLayoutAlign="center center">
-      <div fxFlex>
-        <mat-card-title>Update User</mat-card-title>
-      </div>
-      <div fxFlex>
-        <mat-card-subtitle>or <a routerLink="/session/forgot">click here</a> to change your password.</mat-card-subtitle>
-      </div>
-      <div fxFlex>
-          <mat-card class="mat-elevation-z0">
-              <form [formGroup]="form" (ngSubmit)="saveUser()" #userForm="ngForm">
-                <mat-card-content>
-                    <mat-form-field>
-                      <input type="text" matInput [formControl]="form.controls.firstName" placeholder="First name">
-                    </mat-form-field>
+<div fxLayout="column"  fxLayoutAlign="center center" class="profile-list-container">
+    <mat-card fxLayout="column"  fxLayoutAlign="center center" class="mat-elevation-z8" style="width: 75%;">
+          <mat-card-title>Update User</mat-card-title>
+          <br/>
+          <mat-card-subtitle>or <a routerLink="/session/forgot">click here</a> to change your password.</mat-card-subtitle>
 
-                  <mat-form-field>
-                    <input type="text" matInput [formControl]="form.controls.lastName" placeholder="Last Name">
-                  </mat-form-field>
+                <form [formGroup]="form" (ngSubmit)="saveUser()" #userForm="ngForm">
+                  <mat-card-content>
+                    <div fxLayout="column">
+                      <mat-form-field>
+                        <input type="text" matInput [formControl]="form.controls.firstName" placeholder="First name">
+                      </mat-form-field>
+                      <mat-form-field>
+                        <input type="text" matInput [formControl]="form.controls.lastName" placeholder="Last Name">
+                      </mat-form-field>
+                      <mat-form-field>
+                        <input type="text" matInput [formControl]="form.controls.phoneNumber" placeholder="Phone number">
+                      </mat-form-field>
+                      <mat-form-field>
+                        <input type="text" matInput [formControl]="form.controls.address" placeholder="Address">
+                      </mat-form-field>
+                      <mat-form-field>
+                        <input type="text" matInput [formControl]="form.controls.email" placeholder="Email">
+                      </mat-form-field>
+                    </div>
+                </mat-card-content>
+                <br>
+                <mat-card-actions align="end">
+                  <button mat-raised-button (click)="cancel()" color="primary">Cancel</button>
+                  <button type="submit" mat-raised-button color="accent">Submit</button>
+                </mat-card-actions>
+              </form>
 
-                  <mat-form-field>
-                    <input type="text" matInput [formControl]="form.controls.phoneNumber" placeholder="Phone number">
-                  </mat-form-field>
+    </mat-card>
 
-                  <mat-form-field>
-                    <input type="text" matInput [formControl]="form.controls.address" placeholder="Address">
-                  </mat-form-field>
-
-                  <mat-form-field>
-                    <input type="text" matInput [formControl]="form.controls.email" placeholder="Email">
-                  </mat-form-field>
-              </mat-card-content>
-              <br>
-              <mat-card-actions align="end">
-                <button mat-raised-button (click)="cancel()" color="primary">Cancel</button>
-                <button type="submit" mat-raised-button color="accent">Submit</button>
-              </mat-card-actions>
-            </form>
-           </mat-card>
-      </div>
-    </div>
-  </mat-card>
-</div>
-</div>
-
-
+  </div>

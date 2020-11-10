@@ -10,12 +10,10 @@
 
 const User = require('../models/user');
 const express = require('express');
-const bcrypt = require('bcryptjs');
 const BaseResponse = require('../services/base-response');
 const ErrorResponse = require('../services/error-response');
 
 let router = express.Router();
-const saltRounds = 10;
 
 /*******************************************************************************
  * All of these functions work using "app.use('/api/users, UserApi);" in the
@@ -101,14 +99,16 @@ router.put('/:id', async (req, res) => {
         } else {
             console.log(user);
 
-            user.set({
+            user.set({ // set the role to a new body
               firstName: req.body.firstName,
               lastName: req.body.lastName,
               phoneNumber: req.body.phoneNumber,
               address: req.body.address,
-              email: req.body.email
+              email: req.body.email,
             })
-
+            user.role.set({ // update the role value referencing the role object
+              role: req.body.role
+            })
           user.save(function (err, updatedUser) {
             if (err) {
               console.log(err);
@@ -197,5 +197,30 @@ router.get('/:username/security-questions', async (req, res) => {
       "Internal server error", e.message).toObject());
   }
 });
+
+//FindUserRole API: returns role as object with role and _id properties
+  router.get('/:username/roles', async (req, res) => {
+    try {
+      User.findOne({
+        'userName': req.params.username
+      }, function (error, user) {
+
+        if (error) {
+          console.log(error);
+          const findUserRoleErrorResponse = new ErrorResponse("500",
+            "find-user-role error", error);
+          res.status(500).send(findUserRoleErrorResponse.toObject());
+        } else {
+          console.log(user);
+          const successUserRoleResponse = new BaseResponse("200", "success", user.role);
+          res.json(successUserRoleResponse.toObject());
+        }
+      })
+    } catch (e) {
+      console.log(e);
+      res.status(500).send(new ErrorResponse("500",
+        "Internal server error", e.message).toObject());
+    }
+  })
 
 module.exports = router;

@@ -8,7 +8,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Product } from './product.interface';
+import { Product } from '../interfaces/product.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -35,7 +35,7 @@ export class ProductService {
     return this.http.post('/api/product', {
       // req body
       price: product.price,
-      text: product.text
+      title: product.title
     });
   }
 
@@ -43,7 +43,7 @@ export class ProductService {
     return this.http.put('/api/product/' + productId, {
       // req body
       price: product.price,
-      text: product.text
+      title: product.title
     });
   }
 

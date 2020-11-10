@@ -1,8 +1,56 @@
-<div fxLayout="column" class="main-welcome">
-  <h1 class="title">
-    Welcome to WEB 450's - Bob's Computer Repair Shop <br />
-    <span class="subtitle">
-      Pay close attention to the requirements, double and triple check the files for code attribution, and do not wait unitl the last minute to begin working on each item.
-    </span>
-  </h1>
+<div fxLayout="column"  fxLayoutAlign="center center" class="invoice-list-container">
+  <mat-card class="mat-elevation-z8 product-card" fxLayout="column" fxLayoutAlign="center center">
+    <mat-card-title style="text-align: center;">Please select services and Fees</mat-card-title>
+    <br />
+    <br />
+
+  <form #serviceRepairForm="ngForm" (ngSubmit)="submit(serviceRepairForm.value); serviceRepairForm.reset();">
+    <mat-card-content>
+
+      <!-- service repair -->
+      <div fxLayout="column">
+
+
+        <div ngModelGroup="checkGroup" *ngFor="let product of products">
+          <mat-checkbox name="{{product._id}}" ngModel>
+            {{product.title}} ({{product.price | currency}})
+          </mat-checkbox>
+          <br/>
+        </div>
+      </div>
+      <br/>
+      <mat-divider></mat-divider>
+      <br/>
+
+      <!-- parts & labor -->
+      <div fxLayout="column">
+        <h4 fxFlex>Standard Fees</h4>
+        <mat-form-field fxFlex style="width: 300px !important;">
+          <input matInput
+                 name="parts"
+                 ngModel="0"
+                 placeholder="Parts"/>
+        </mat-form-field>
+
+        <mat-form-field fxFlex style="width: 300px !important;">
+          <input matInput
+                 name="labor"
+                 ngModel="0"
+                 placeholder="Labor @ 50.00/hr"/>
+        </mat-form-field>
+      </div>
+    </mat-card-content>
+
+    <!-- form actions -->
+    <br/><br/>
+    <mat-divider></mat-divider>
+    <br/>
+
+    <mat-card-actions align="end">
+      <button mat-raised-button type="reset" color="primary" routerLink="/">Cancel</button>
+      <button mat-raised-button color="accent">Submit</button>
+    </mat-card-actions>
+
+  </form>
+</mat-card>
 </div>

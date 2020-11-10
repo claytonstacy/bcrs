@@ -1,6 +1,11 @@
+.container {
+  max-width: 1200px;
+  width: 1200px;
+  margin: 0 auto;
+}
+
 .user-list-container {
-  width: 80%;
-  min-width: 890px;
+  min-width: 1000px;
   margin: 50px auto 50px;
 }
 

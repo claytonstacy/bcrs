@@ -1,0 +1,22 @@
+
+.invoice-list-container {
+  width: 100%;
+  min-width: 600px;
+  max-width: 800px;
+  margin: 50px auto 50px;
+}
+
+.invoice-card {
+  width: 100%;
+}
+.mat-raised-button {
+  margin-top: 10px;
+}
+
+.mat-cell {
+  padding-right: 30px;
+}
+
+.mat-header-cell {
+  padding-right: 30px;
+}

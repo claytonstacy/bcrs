@@ -1,13 +1,13 @@
 /*
 ============================================
 Title: BCRS
-Author: Clayton Stacy, Christine Bohnet, Jeff Shepherd
+Author: Clayton Stacy, Christine Bohnet, Jeff Shepherd, Verlee Washington
 Date: 29 Oct 2020
 Description: verify username form component ts file
 ============================================
 */
 
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {HttpClient} from '@angular/common/http';
 import {Router} from '@angular/router';
@@ -24,18 +24,19 @@ export class VerifyUsernameFormComponent implements OnInit {
   constructor(private http: HttpClient, private fb: FormBuilder, private router: Router) {
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.form = this.fb.group({
       username: [null, Validators.compose([Validators.required])]
     });
   }
 
-  validateUsername() {
+  validateUsername(): void {
     const username = this.form.controls['username'].value;
 
     this.http.get('/api/session/verify/users/' + username).subscribe(res => {
       if (res) {
-        this.router.navigate(['/session/verify-security-questions'], {queryParams: {username: username}, skipLocationChange: true});
+        this.router.navigate(['/session/verify-security-questions'],
+          {queryParams: {username}, skipLocationChange: true});
       }
     }, err => {
       this.error = 'Invalid username';

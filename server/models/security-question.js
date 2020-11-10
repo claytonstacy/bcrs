@@ -1,7 +1,7 @@
 /*
 ============================================
 Title: BCRS
-Author: Clayton Stacy, Christine Bohnet, Jeff Shepherd
+Author: Clayton Stacy, Christine Bohnet, Jeff Shepherd, Verlee Washington
 Date: 19 Oct 2020
 Description: Model for BCRS Security Questions
 ============================================
