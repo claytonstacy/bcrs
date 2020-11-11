@@ -8,6 +8,7 @@ Description: APIs for BCRS Role
 */
 const express = require('express');
 const Role = require('../models/role');
+const User = require('../models/user')
 const BaseResponse = require('../services/base-response');
 const ErrorResponse = require('../services/error-response');
 const router = express.Router();
@@ -146,27 +147,56 @@ router.delete('/:id', async(req, res) => {
             } else {
               console.log(role);
 
-            if (role) {
-              role.set({
-                isEnabled: false
-              });
-
-              role.save(function(err,disableRole){
-              if (err) {
+              User.aggregate(
+                [
+                  {
+                    $lookup:
+                    {
+                      from: 'role',
+                      localField: 'role.role',
+                      foreignField: 'text',
+                      as: 'userRoles'
+                    }
+                  },
+                  {
+                    $match:
+                    {
+                      'userRoles.text': role.text
+                    }
+                  }
+                ],
+                function(err, users)
+                {
+                if(err) {
                   console.log(err);
-                  const DeleteRoleOnSaveMongoDbErrorResponse= new ErrorResponse('500', 'internal error', err);
-                  res.status(500).send(DeleteRoleOnSaveMongoDbErrorResponse.toObject());
-
-              } else {
-                  console.log(disableRole);
-                  const DeleteRoleSuccessResponse= new BaseResponse('200', 'Disable role', disableRole);
-                  res.json(DeleteRoleSuccessResponse.toObject());
-              }
-            }) //end save
-          }
-        }
-      })
-
+                  const usersMongoDbErrorResponse= new ErrorResponse('500', 'internal error', err);
+                  res.status(500).send(usersMongoDbErrorResponse.toObject());
+                } else {
+                  if (users.length > 0) {
+                    console.log(`Role <${role.text}> is in use and cannot be deleted`);
+                    const userRoleInUseResponse = new BaseResponse('401', `Role <${role.text}> is in use and cannot be deleted`, role);
+                    res.json(userRoleInUseResponse.toObject())
+                  } else {
+                    console.log(`Role <${role.text}> is not an active role and can be safely removed`);
+                    role.set({
+                      isEnabled: false
+                    });
+                    role.save(function(err, updatedRole) {
+                      if(err) {
+                        console.log(err);
+                        const roleDisableMongoDbErrorResponse= new ErrorResponse('500', 'internal error', err);
+                        res.status(500).send(roleDisableMongoDbErrorResponse.toObject());
+                      } else {
+                        console.log(updatedRole);
+                        const userRoleDisabledResponse = new BaseResponse('200', `Role <${role.text}> has been successfully removed`, updatedRole);
+                        res.json(userRoleDisabledResponse.toObject())
+                      }
+                    })
+                  }
+                }
+              })
+            }
+          })
   } catch (e) {
        console.log(e);
        const deleteRoleErrorCatchResponse= new ErrorResponse('500', 'internal error', e.message);

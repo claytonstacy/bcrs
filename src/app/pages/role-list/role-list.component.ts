@@ -13,6 +13,7 @@ import {MatDialog} from '@angular/material/dialog';
 import {HttpClient} from '@angular/common/http';
 import {RoleService} from '../../shared/services/role.service';
 import {Role} from '../../shared/interfaces/role.interface';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-role-list',
@@ -22,8 +23,9 @@ import {Role} from '../../shared/interfaces/role.interface';
 export class RoleListComponent implements OnInit {
   roles: Role[];
   displayedColumns = ['role', 'functions'];
+  error: string;
 
-  constructor(private http: HttpClient, private roleService: RoleService, private dialog: MatDialog) {
+  constructor(private http: HttpClient, private roleService: RoleService, private dialog: MatDialog, private _snackBar: MatSnackBar) {
     this.http.get('/api/roles').subscribe(res => {
       this.roles = res['data'];
       console.log(this.roles);
@@ -50,8 +52,14 @@ export class RoleListComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result === 'confirm') {
         this.roleService.deleteRole(roleId).subscribe(res => {
-          console.log('Role deleted');
-          this.roles = this.roles.filter(role => role._id !== roleId);
+          console.log('This is the resposne', res)
+          if(res.httpCode === '401') {
+            this.error = res.message;
+            this._snackBar.open(this.error, null,{ duration: 2000 });
+
+          } else {
+            this.roles = this.roles.filter(role => role._id !== roleId);
+          }
         });
       }
     });
