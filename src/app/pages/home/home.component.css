@@ -1,15 +1,11 @@
 
-  .container {
-    max-width: 1200px;
-    width: 1200px;
-    margin: 0 auto;
-  }
-
   .invoice-list-container {
-    min-width: 1000px;
     margin: 30px auto 50px;
   }
 
+  .product-card {
+    width: 50%
+  }
   .mat-raised-button {
     margin-top: 10px;
   }

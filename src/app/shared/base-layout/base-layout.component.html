@@ -23,7 +23,7 @@
               <button mat-menu-item routerLink="/profile">
                 Profile Settings
               </button>
-              <button mat-menu-item [matMenuTriggerFor]="adminOptions">
+              <button mat-menu-item [matMenuTriggerFor]="adminOptions" *ngIf="userRole === 'admin'">
                 Administrator Options
               </button>
               </mat-menu>

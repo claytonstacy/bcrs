@@ -1,8 +1,7 @@
 <div fxLayout="column"  fxLayoutAlign="center center" class="user-list-container">
-  <mat-card class="mat-elevation-z8">
+  <mat-card class="mat-elevation-z8" fxLayout="column" fxLayoutAlign="center center">
     <mat-card-title>Users Configuration</mat-card-title>
-
-    <mat-card-subtitle>    </mat-card-subtitle>
+    <br />
 
     <mat-card-content *ngIf="users">
       <table mat-table [dataSource]="users">
