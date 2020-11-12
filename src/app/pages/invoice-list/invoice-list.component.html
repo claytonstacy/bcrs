@@ -20,7 +20,7 @@
         <ng-container matColumnDef="partsAmount">
           <th mat-header-cell *matHeaderCellDef>Parts Total</th>
           <td mat-cell *matCellDef="let element">
-            {{element.partsAmount}}
+            {{element.partsAmount | currency }}
           </td>
         </ng-container>
 
