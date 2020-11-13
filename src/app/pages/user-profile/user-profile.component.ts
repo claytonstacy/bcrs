@@ -9,7 +9,7 @@ Description: user profile component ts file
 
 import {HttpClient} from '@angular/common/http';
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {UserService} from '../../shared/services/user.service';
 import {User} from '../../shared/interfaces/user.interface';
@@ -86,4 +86,23 @@ export class UserProfileComponent implements OnInit {
   cancel(): void {
     this.router.navigate(['/']);
   }
+
+  getPhoneErrorMessage(): string {
+    if (this.form.controls.phoneNumber.hasError('pattern')) {
+      return 'The phone number must be 10 digits only';
+    } else if (this.form.controls.phoneNumber.hasError('required')) {
+      return 'You must enter a value';
+    } else {
+      return '';
+    }
+  }
+
+  getErrorMessage(control: FormControl): string {
+    if (control.hasError('required')) {
+      return 'You must enter a value';
+    } else {
+      return '';
+    }
+  }
+
 }
