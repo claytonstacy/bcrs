@@ -9,18 +9,23 @@
                     <div fxLayout="column">
                       <mat-form-field>
                         <input type="text" matInput [formControl]="form.controls.firstName" placeholder="First name">
+                        <mat-error *ngIf="form.controls.firstName.invalid">{{getErrorMessage(form.controls.firstName)}}</mat-error>
                       </mat-form-field>
                       <mat-form-field>
                         <input type="text" matInput [formControl]="form.controls.lastName" placeholder="Last Name">
+                        <mat-error *ngIf="form.controls.lastName.invalid">{{getErrorMessage(form.controls.lastName)}}</mat-error>
                       </mat-form-field>
                       <mat-form-field>
                         <input type="text" matInput [formControl]="form.controls.phoneNumber" placeholder="Phone number">
+                        <mat-error *ngIf="form.controls.phoneNumber.invalid">{{getPhoneErrorMessage()}}</mat-error>
                       </mat-form-field>
                       <mat-form-field>
                         <input type="text" matInput [formControl]="form.controls.address" placeholder="Address">
+                        <mat-error *ngIf="form.controls.address.invalid">{{getErrorMessage(form.controls.address)}}</mat-error>
                       </mat-form-field>
                       <mat-form-field>
                         <input type="text" matInput [formControl]="form.controls.email" placeholder="Email">
+                        <mat-error *ngIf="form.controls.email.invalid">{{getErrorMessage(form.controls.email)}}</mat-error>
                       </mat-form-field>
                     </div>
                 </mat-card-content>

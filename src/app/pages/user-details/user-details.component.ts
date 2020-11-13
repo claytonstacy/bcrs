@@ -7,7 +7,7 @@
  *****************************************************************************/
 
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {User} from 'src/app/shared/interfaces/user.interface';
 import {UserService} from 'src/app/shared/services/user.service';
@@ -97,5 +97,13 @@ export class UserDetailsComponent implements OnInit {
 
   cancel(): void {
     this.router.navigate(['/users']);
+  }
+
+  getErrorMessage(control: FormControl): string {
+    if (control.hasError('required')) {
+      return 'Not a valid value';
+    } else {
+      return '';
+    }
   }
 }
