@@ -90,6 +90,7 @@ export class UserDetailsComponent implements OnInit {
 
     this.userService.updateUser(this.userId, updatedUser).subscribe(() => {
       this.router.navigate(['/users']);
+      location.reload()
     }, err => {
       console.log(err);
     });
